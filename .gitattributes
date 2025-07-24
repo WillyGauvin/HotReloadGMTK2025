@@ -1,0 +1,5 @@
+Assets/Plugins/FMOD/**/Info.plist text eol=lf
+*.bundle binary
+
+# FMOD binary assets
+*.bank filter=lfs diff=lfs merge=lfs -text
