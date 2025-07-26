@@ -59,4 +59,13 @@ public class MenuManager : MonoBehaviour
             PlayerController.instance.SwitchToActionMap(PlayerController.ActionMap.Player);
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
 }
