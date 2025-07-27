@@ -40,10 +40,10 @@ public class AudioManager : MonoBehaviour
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
 
-        //masterBus = RuntimeManager.GetBus("bus:/");
-        //musicBus = RuntimeManager.GetBus("bus:/Music");
-        //ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
-        //sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        //masterbus = runtimemanager.getbus("bus:/");
+        //musicbus = runtimemanager.getbus("bus:/music");
+        //ambiencebus = runtimemanager.getbus("bus:/ambience");
+        //sfxbus = runtimemanager.getbus("bus:/sfx");
     }
 
     private void Start()
