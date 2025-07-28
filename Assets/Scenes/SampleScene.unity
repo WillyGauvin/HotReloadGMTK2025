@@ -1402,25 +1402,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ambience>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1704987901
+      Data2: 1197358736
+      Data3: -1130788686
+      Data4: 2004883384
+    Path: event:/Ambience/ambience_birds
   <music>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  <explosion>k__BackingField:
+      Data1: -1670949272
+      Data2: 1244087347
+      Data3: -417035589
+      Data4: 2025930342
+    Path: event:/Music/music_fog
+  <doorOpening>k__BackingField:
     Guid:
-      Data1: 1457176229
-      Data2: 1198909424
-      Data3: -1534306684
-      Data4: -775809924
-    Path: event:/Explosion
+      Data1: 1505637863
+      Data2: 1332754639
+      Data3: 2129949109
+      Data4: -1713848530
+    Path: event:/SFX/sfx_door_open
 --- !u!1 &636006285
 GameObject:
   m_ObjectHideFlags: 0

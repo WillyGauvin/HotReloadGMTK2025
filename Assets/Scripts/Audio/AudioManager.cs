@@ -40,29 +40,30 @@ public class AudioManager : MonoBehaviour
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
 
-        //masterbus = runtimemanager.getbus("bus:/");
-        //musicbus = runtimemanager.getbus("bus:/music");
-        //ambiencebus = runtimemanager.getbus("bus:/ambience");
-        //sfxbus = runtimemanager.getbus("bus:/sfx");
+        masterBus = RuntimeManager.GetBus("bus:/");
+        musicBus = RuntimeManager.GetBus("bus:/music");
+        ambienceBus = RuntimeManager.GetBus("bus:/ambience");
+        sfxBus = RuntimeManager.GetBus("bus:/sfx");
     }
 
     private void Start()
     {
-        //InitializeAmbience(FMODEvents.instance.ambience);
-        //InitializeMusic(FMODEvents.instance.music);
+        InitializeAmbience(FMODEvents.instance.ambience);
+        InitializeMusic(FMODEvents.instance.music);
     }
 
     private void Update()
     {
-        //masterBus.setVolume(masterVolume);
-        //musicBus.setVolume(musicVolume);
-        //ambienceBus.setVolume(ambienceVolume);
-        //sfxBus.setVolume(SFXVolume);
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        ambienceBus.setVolume(ambienceVolume);
+        sfxBus.setVolume(SFXVolume);
     }
 
     private void InitializeAmbience(EventReference ambienceEventReference)
     {
         ambienceEventInstance = CreateInstance(ambienceEventReference);
+        ambienceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         ambienceEventInstance.start();
     }
 

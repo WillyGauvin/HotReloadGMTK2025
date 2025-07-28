@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         MoveInput = value.Get<Vector2>().normalized;
+        RuntimeManager.PlayOneShot(FMODEvents.instance.doorOpening, transform.position);
+        //Debug.Log("PlayingSound");
     }
 
     void OnLook(InputValue value)
