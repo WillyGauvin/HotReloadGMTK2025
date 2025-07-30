@@ -24,17 +24,18 @@ public class PlayerController : MonoBehaviour
     }
 
     PlayerInput input;
-    Vector2 MoveInput;
-    Vector2 LookInput;
+    Player player;
+    public Vector2 MoveInput;
 
     private void Start()
     {
         input = GetComponent<PlayerInput>();
+        player = GetComponent<Player>();
     }
 
     private void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddTorque(new Vector3(MoveInput.y * Time.deltaTime * 10.0f, MoveInput.x * Time.deltaTime * 10.0f, 0.0f));
+        //GetComponent<Rigidbody>().AddTorque(new Vector3(MoveInput.y * Time.deltaTime * 10.0f, MoveInput.x * Time.deltaTime * 10.0f, 0.0f));
     }
     void Update()
     {
@@ -77,8 +78,11 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("PlayingSound");
     }
 
-    void OnLook(InputValue value)
+    void OnInteract(InputValue value)
     {
-        LookInput = value.Get<Vector2>().normalized;
+        if (value.isPressed)
+        {
+            player.Interact();
+        }
     }
 }
