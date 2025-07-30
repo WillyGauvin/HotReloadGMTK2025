@@ -5,6 +5,9 @@ public class RobotInputs : MonoBehaviour
 
     public GameObject inputBox;
 
+    public int 
+    public enum RobotPossibleInputs { Up, Down, Left, Right };
+
 
     private void Awake()
     {
