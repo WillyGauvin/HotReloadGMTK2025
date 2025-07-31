@@ -75,6 +75,7 @@ mono_crash.*
 
 # Art files
 *.sbs
+/ArtSource/.autosave/*
 
 # Crashlytics generated file
 crashlytics-build.properties
