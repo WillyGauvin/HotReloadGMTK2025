@@ -27,12 +27,12 @@ public class CommandBlock : MonoBehaviour, IInteractable
 
     public void LookAt()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        //GetComponent<Renderer>().material.color = Color.red;
     }
 
     public void LookAway()
     {
-        GetComponent<Renderer>().material.color = Color.blue;
+        //GetComponent<Renderer>().material.color = Color.blue;
     }
 
 }
