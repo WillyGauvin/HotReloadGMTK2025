@@ -26,6 +26,13 @@ public class EnterBrain : MonoBehaviour
                 StartCoroutine(MovePlayer(player));
             }
         }
+        else if (other.gameObject.TryGetComponent<InteractableTest>(out InteractableTest box))
+        {
+            if (!box.IsTeleporting)
+            {
+                StartCoroutine(MoveBox(box));
+            }
+        }
     }
 
     IEnumerator MovePlayer(Player player)
@@ -52,5 +59,33 @@ public class EnterBrain : MonoBehaviour
 
         player.GetComponent<CapsuleCollider>().isTrigger = false;
         player.IsControllable = true;
+    }
+
+    IEnumerator MoveBox(InteractableTest Box)
+    {
+
+        Box.IsTeleporting = true;
+        Box.GetComponent<BoxCollider>().isTrigger = true;
+        Box.GetComponent<Rigidbody>().isKinematic = true;
+
+        Tween shrinkTween = Box.gameObject.transform.DOScale(0.01f, 1.0f);
+        Tween moveTween = Box.gameObject.transform.DOMove(transform.position, 1.0f);
+
+        yield return shrinkTween.WaitForCompletion();
+        yield return moveTween.WaitForCompletion();
+
+        Box.transform.localScale = Vector3.one;
+
+        Box.transform.position = BrainEnterTransform.position;
+        Box.transform.rotation = BrainEnterTransform.rotation;
+
+        Box.GetComponent<Rigidbody>().isKinematic = false;
+        Box.GetComponent<BoxCollider>().isTrigger = false;
+
+        Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 1000.0f);
+
+        yield return new WaitForSeconds(2.0f);
+
+        Box.IsTeleporting = false;
     }
 }

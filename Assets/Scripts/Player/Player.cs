@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         CarryObject.transform.localPosition = Vector3.zero;
         CarryObject.transform.localRotation = Quaternion.identity;
         CarryObject.GetComponent<Rigidbody>().isKinematic = true;
-        CarryObject.GetComponent<BoxCollider>().isTrigger = true;
+        CarryObject.GetComponent<BoxCollider>().enabled = false;
     }
 
     void Throw()
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         if (CarryObject == null) return;
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
-        CarryObject.GetComponent<BoxCollider>().isTrigger = false;
+        CarryObject.GetComponent<BoxCollider>().enabled = true;
         CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 500.0f);
 
         CarryObject = null;
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
         if (CarryObject == null) return;
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
-        CarryObject.GetComponent<BoxCollider>().isTrigger = false;
+        CarryObject.GetComponent<BoxCollider>().enabled = true;
         CarryObject.GetComponent<Rigidbody>().AddForce(-transform.forward * 100.0f);
 
         CarryObject = null;

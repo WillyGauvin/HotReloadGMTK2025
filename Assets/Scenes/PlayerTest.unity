@@ -1512,10 +1512,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1562,6 +1562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eed624cc7fb180479feb693916fde90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsTeleporting: 0
 --- !u!65 &476937040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2442,7 +2443,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -2529,7 +2530,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -4304,6 +4305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eed624cc7fb180479feb693916fde90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsTeleporting: 0
 --- !u!65 &1099913468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4430,10 +4432,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -7850,7 +7852,7 @@ Transform:
   m_GameObject: {fileID: 2140736841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 1, z: 0}
+  m_LocalPosition: {x: -3.5, y: 1, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

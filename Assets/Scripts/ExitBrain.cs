@@ -27,6 +27,13 @@ public class ExitBrain : MonoBehaviour
                 StartCoroutine(MovePlayer(player));
             }
         }
+        else if (other.gameObject.TryGetComponent<InteractableTest>(out InteractableTest box))
+        {
+            if (!box.IsTeleporting)
+            {
+                StartCoroutine(MoveBox(box));
+            }
+        }
     }
 
     IEnumerator MovePlayer(Player player)
@@ -52,5 +59,32 @@ public class ExitBrain : MonoBehaviour
 
         player.GetComponent<CapsuleCollider>().isTrigger = false;
         player.IsControllable = true;
+    }
+
+    IEnumerator MoveBox(InteractableTest Box)
+    {
+        Box.IsTeleporting = true;
+        Box.GetComponent<BoxCollider>().isTrigger = true;
+        Box.GetComponent<Rigidbody>().isKinematic = true;
+
+        Tween moveTween = Box.gameObject.transform.DOMove(transform.position, 1.0f);
+
+        yield return moveTween.WaitForCompletion();
+
+        Box.transform.localScale = Vector3.one * 0.01f;
+
+        Box.transform.position = Robot.position;
+        Box.transform.rotation = Robot.rotation;
+
+        Tween scaleTween = Box.transform.DOScale(1.0f, 0.5f);
+
+        Box.GetComponent<Rigidbody>().isKinematic = false;
+        Box.GetComponent<BoxCollider>().isTrigger = false;
+
+        Box.GetComponent<Rigidbody>().AddForce(Robot.forward * 500.0f);
+
+        yield return new WaitForSeconds(2.0f);
+
+        Box.IsTeleporting = false;
     }
 }
