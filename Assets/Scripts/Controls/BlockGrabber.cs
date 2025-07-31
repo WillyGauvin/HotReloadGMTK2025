@@ -75,7 +75,10 @@ public class BlockGrabber : MonoBehaviour
     public void Ungrab()
     {
         var resultV = Vector3.Scale(controllerBody.linearVelocity, throwMultiplier);
-        resultV.x = Mathf.Clamp(MathF.Abs(resultV.x), throwMinHorizontal, throwMaxHorizontal) * Mathf.Sign(resultV.x);
+        if (resultV.x != 0f)
+        {
+            resultV.x = Mathf.Clamp(MathF.Abs(resultV.x), throwMinHorizontal, throwMaxHorizontal) * Mathf.Sign(resultV.x);
+        }
         resultV.y = Mathf.Clamp(resultV.y, throwMinVertical, throwMaxVertical);
         grabbedBlock.Body.isKinematic = false;
         grabbedBlock.Body.linearVelocity = resultV;

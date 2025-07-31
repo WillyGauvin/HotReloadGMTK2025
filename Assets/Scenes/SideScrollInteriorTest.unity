@@ -1463,10 +1463,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 131072
   throwMinHorizontal: 1
-  throwMaxHorizontal: 8
+  throwMaxHorizontal: 16
   throwMinVertical: 1
-  throwMaxVertical: 32
-  throwMultiplier: {x: 3, y: 1}
+  throwMaxVertical: 24
+  throwMultiplier: {x: 6, y: 2}
 --- !u!1 &1316853421
 GameObject:
   m_ObjectHideFlags: 0

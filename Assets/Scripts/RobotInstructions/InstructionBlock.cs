@@ -4,16 +4,12 @@ using UnityEngine;
 public class InstructionBlock : MonoBehaviour
 {
     [SerializeField] private Rigidbody body;
+    [SerializeField, Min(0f)] private float addedGravity;
 
     public Rigidbody Body => body;
 
-    private void Start()
+    private void FixedUpdate()
     {
-        
-    }
-
-    private void Update()
-    {
-        
+        body.AddForce(new Vector3(0f, -addedGravity * body.mass, 0f));
     }
 }
