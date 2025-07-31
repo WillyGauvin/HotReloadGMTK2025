@@ -4,41 +4,26 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    private static int ConveyorBeltID = 0;
-
-    public ConveyorBelt beltInSequence;
-    public RobotInputs beltItem;
-    public InputReader robotInputReader;
+    public RobotInputs heltInput;
+    public float raycastDrawDistance = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        beltInSequence = null;
-        beltInSequence = FindNextBelt();
-
-        gameObject.name = $"Belt: {ConveyorBeltID++}";
-
-        if (robotInputReader != null)
+        //if theres a hard coded input on it already, set the position of it
+        if (heltInput != null)
         {
-            robotInputReader.inputReader.transform.position = GetItemPosition(4);
-        }
-
-        if (beltItem != null)
-        {
-            beltItem.inputBox.transform.position = GetItemPosition(1.5f);
+            heltInput.transform.position = GetItemPosition(0.5f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (robotInputReader != null && robotInputReader.inputReader != null)
-        {
-            StartCoroutine(StartBeltMove());
-        }
 
     }
 
+    //Get the position of the belt and return the position with padding in the Y so the item is in the conveyor belt
     public Vector3 GetItemPosition(float padding)
     {
         Vector3 position = transform.position;
@@ -46,31 +31,8 @@ public class ConveyorBelt : MonoBehaviour
         return new Vector3(position.x, position.y + padding, position.z);
     }
 
-    private IEnumerator StartBeltMove()
-    {
-        yield return new WaitForSeconds(ConveyorBeltManager.instance.ConveyorBeltDelay);
-
-        if (robotInputReader != null && beltInSequence != null && robotInputReader.inputReader != null)
-        {
-            Vector3 newPos = beltInSequence.GetItemPosition(4);
-
-            robotInputReader.inputReader.transform.position = newPos;
-
-            beltInSequence.robotInputReader = robotInputReader;
-
-            //if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null && beltInSequence.robotInputReader.robotController != null)
-            //{
-            //    //Call code on robot, either through reader or on manager to make the robot do something
-            //    beltInSequence.robotInputReader.robotController.ReceiveInput(beltInSequence.beltItem.GetInputType());
-            //}
-
-            robotInputReader = null;
-
-
-        }
-    }
-
-    private ConveyorBelt FindNextBelt()
+    //Ray cast to find the belt infront of it and return it
+    public ConveyorBelt FindNextBelt()
     {
         Transform currentBeltTransfomr = transform; ;
         RaycastHit hit;
@@ -79,7 +41,7 @@ public class ConveyorBelt : MonoBehaviour
 
         Ray raySent = new Ray(currentBeltTransfomr.position, forwardDir);
 
-        if (Physics.Raycast(raySent, out hit, 1f))
+        if (Physics.Raycast(raySent, out hit, raycastDrawDistance))
         {
             ConveyorBelt nextBelt = hit.collider.GetComponent<ConveyorBelt>();
             if (nextBelt != null)
@@ -89,5 +51,17 @@ public class ConveyorBelt : MonoBehaviour
 
         }
         return null;
+    }
+
+    public void AddNewRobotInput(RobotInputs collidedInput)
+    {
+        if (collidedInput != null)
+        {
+            //If there is already one, ignore and dont change it (unless we want to make it bump it off)
+            if (heltInput != null)
+            {
+                heltInput = collidedInput;
+            }
+        }
     }
 }

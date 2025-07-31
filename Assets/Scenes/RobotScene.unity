@@ -2609,6 +2609,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &706159263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5501420939691705667, guid: 1ab6fa6ca0d6e284bad18d73e9b780a6, type: 3}
+  m_PrefabInstance: {fileID: 2008240219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58624879745f7042a5c2c95de925237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &743081394
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,7 +7462,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2175458453578293108, guid: 1ab6fa6ca0d6e284bad18d73e9b780a6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab6fa6ca0d6e284bad18d73e9b780a6, type: 3}
@@ -7797,7 +7809,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c5a7fb26f5ef4c8e706a3b7fc69a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConveyorBeltDelay: 1.5
+  InitalBelt: {fileID: 706159263}
+  beltList: []
+  inputReader: {fileID: 8109212675468469296, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
+  conveyorBeltDelay: 1.5
+  conveyorBeltMaxDelay: 3
+  converyorBeltMinDelay: 0.5
 --- !u!1 &2122610426
 GameObject:
   m_ObjectHideFlags: 0
