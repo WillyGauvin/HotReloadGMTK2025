@@ -82,7 +82,7 @@ public class EnterBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 1000.0f);
+        Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
 
         yield return new WaitForSeconds(2.0f);
 

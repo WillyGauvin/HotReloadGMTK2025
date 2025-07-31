@@ -81,7 +81,7 @@ public class ExitBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        Box.GetComponent<Rigidbody>().AddForce(Robot.forward * 500.0f);
+        Box.GetComponent<Rigidbody>().AddForce(Robot.forward * 20.0f, ForceMode.Impulse);
 
         yield return new WaitForSeconds(2.0f);
 

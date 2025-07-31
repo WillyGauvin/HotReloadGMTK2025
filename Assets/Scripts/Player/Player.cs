@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
         CarryObject.GetComponent<BoxCollider>().enabled = true;
-        CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 500.0f);
+        CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
 
         CarryObject = null;
     }
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
         CarryObject.GetComponent<BoxCollider>().enabled = true;
-        CarryObject.GetComponent<Rigidbody>().AddForce(-transform.forward * 100.0f);
+        CarryObject.GetComponent<Rigidbody>().AddForce(-transform.forward * 5.0f, ForceMode.Impulse);
 
         CarryObject = null;
     }
