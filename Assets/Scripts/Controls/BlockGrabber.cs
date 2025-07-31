@@ -19,6 +19,7 @@ public class BlockGrabber : MonoBehaviour
     [SerializeField] private float throwMaxHorizontal;
     [SerializeField] private float throwMinVertical;
     [SerializeField] private float throwMaxVertical;
+    [SerializeField] private Vector2 throwMultiplier;
 
 
     private InstructionBlock grabbedBlock;
@@ -64,8 +65,8 @@ public class BlockGrabber : MonoBehaviour
 
     public void Grab(InstructionBlock block)
     {
-        block.Body.isKinematic = true;
         block.Body.linearVelocity = Vector2.zero;
+        block.Body.isKinematic = true;
 
         block.GetComponent<Collider>().enabled = false;
         grabbedBlock = block;
@@ -73,7 +74,7 @@ public class BlockGrabber : MonoBehaviour
 
     public void Ungrab()
     {
-        var resultV = controllerBody.linearVelocity;
+        var resultV = Vector3.Scale(controllerBody.linearVelocity, throwMultiplier);
         resultV.x = Mathf.Clamp(MathF.Abs(resultV.x), throwMinHorizontal, throwMaxHorizontal) * Mathf.Sign(resultV.x);
         resultV.y = Mathf.Clamp(resultV.y, throwMinVertical, throwMaxVertical);
         grabbedBlock.Body.isKinematic = false;
