@@ -5,7 +5,7 @@ public class ConveyorBeltManager : MonoBehaviour
     public static ConveyorBeltManager instance { get; private set; }
 
 
-    public float ConveyorBeltSpeed = 2.0f;
+    public float ConveyorBeltDelay = 1.5f;
 
     private void Awake()
     {

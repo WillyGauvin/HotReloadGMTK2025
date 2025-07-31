@@ -18,6 +18,10 @@ public class ConveyorBelt : MonoBehaviour
 
         gameObject.name = $"Belt: {ConveyorBeltID++}";
 
+        if (robotInputReader != null)
+        {
+            robotInputReader.inputReader.transform.position = GetItemPosition();
+        }
     }
 
     // Update is called once per frame
@@ -40,24 +44,20 @@ public class ConveyorBelt : MonoBehaviour
 
     private IEnumerator StartBeltMove()
     {
-        if (robotInputReader != null && beltInSequence != null)
+        yield return new WaitForSeconds(ConveyorBeltManager.instance.ConveyorBeltDelay);
+
+        if (robotInputReader != null && beltInSequence != null && robotInputReader.inputReader != null)
         {
-
-            yield return new WaitForSeconds(ConveyorBeltManager.instance.ConveyorBeltSpeed);
-
             Vector3 newPos = beltInSequence.GetItemPosition();
 
-            while (robotInputReader.inputReader.transform.position != newPos)
-            {
-                robotInputReader.inputReader.transform.position = newPos;
-            }
+            robotInputReader.inputReader.transform.position = newPos;
 
             beltInSequence.robotInputReader = robotInputReader;
 
-            if (beltItem != null && robotInputReader != null)
+            if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null)
             {
                 //Call code on robot, either through reader or on manager to make the robot do something
-
+                Debug.Log("Hit Something");
             }
 
             robotInputReader = null;
