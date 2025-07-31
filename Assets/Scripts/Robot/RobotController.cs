@@ -68,8 +68,8 @@ public class RobotController : MonoBehaviour
             switch (input)
             {
                 case InputType.Forward:
-                    Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward).x, 1.0f);
-                    Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward).z, 1.0f);
+                    Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward * 3.0f).x, 1.0f);
+                    Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward * 3.0f).z, 1.0f);
                     yield return moveXTween.WaitForCompletion();
                     yield return moveZTween.WaitForCompletion();
                     break;

@@ -3941,6 +3941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skybox
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 093b10fbb83da8a45a3250387b9b674e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5572,7 +5576,7 @@ Transform:
   m_GameObject: {fileID: 1988322392}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7009094, y: 0.0000000047306097, z: -0.000000004648758, w: 0.7132504}
-  m_LocalPosition: {x: -100, y: 30, z: 0}
+  m_LocalPosition: {x: -20.6, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

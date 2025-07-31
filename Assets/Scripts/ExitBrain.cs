@@ -50,9 +50,9 @@ public class ExitBrain : MonoBehaviour
         player.transform.localScale = Vector3.one * 0.01f;
 
         player.transform.position = Robot.transform.position;
-        player.transform.rotation = Robot.transform.rotation;
+        player.transform.rotation = Robot.rotation * Quaternion.Euler(0, 180f, 0);
 
-        moveTween = player.transform.DOMove(Robot.position + Robot.forward * 2.0f, 0.5f);
+        moveTween = player.transform.DOMove(Robot.position - Robot.forward * 2.0f, 0.5f);
         Tween scaleTween = player.transform.DOScale(1.0f, 0.5f);
 
         yield return moveTween.WaitForCompletion();
@@ -81,7 +81,7 @@ public class ExitBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        Box.GetComponent<Rigidbody>().AddForce(Robot.forward * 20.0f, ForceMode.Impulse);
+        Box.GetComponent<Rigidbody>().AddForce(-Robot.forward * 5.0f, ForceMode.Impulse);
 
         yield return new WaitForSeconds(2.0f);
 
