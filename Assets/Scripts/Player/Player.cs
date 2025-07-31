@@ -133,21 +133,4 @@ public class Player : MonoBehaviour
 
         CarryObject = null;
     }
-
-    //public void Teleport(Transform targetTransform)
-    //{
-    //    RigidbodyInterpolation prevInterpolation = rb.interpolation;
-
-    //    rb.interpolation = RigidbodyInterpolation.None;
-
-    //    rb.linearVelocity = Vector3.zero;
-    //    rb.angularVelocity = Vector3.zero;
-
-    //    rb.position = targetTransform.position;
-    //    rb.rotation = targetTransform.rotation;
-
-    //    Physics.SyncTransforms();
-
-    //    rb.interpolation = prevInterpolation; ;
-    //}
 }
