@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public bool IsControllable = true;
 
-    float moveSpeed = 5.0f;
+    float moveSpeed = 10.0f;
 
 
     float interactRange = 2f;

@@ -35,8 +35,8 @@ public class EnterBrain : MonoBehaviour
         player.gameObject.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
         player.GetComponent<CapsuleCollider>().isTrigger = true;
 
-        Tween shrinkTween = player.gameObject.transform.DOScale(0.01f, 2.0f);
-        Tween moveTween = player.gameObject.transform.DOMove(transform.position, 2.0f);
+        Tween shrinkTween = player.gameObject.transform.DOScale(0.01f, 1.0f);
+        Tween moveTween = player.gameObject.transform.DOMove(transform.position, 1.0f);
 
         yield return shrinkTween.WaitForCompletion();
         yield return moveTween.WaitForCompletion();
@@ -46,7 +46,7 @@ public class EnterBrain : MonoBehaviour
         player.transform.position = BrainEnterTransform.position;
         player.transform.rotation = BrainEnterTransform.rotation;
 
-        Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 1.0f);
+        Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 0.5f);
 
         yield return walkForward.WaitForCompletion();
 

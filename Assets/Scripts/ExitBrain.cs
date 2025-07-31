@@ -40,11 +40,13 @@ public class ExitBrain : MonoBehaviour
         Tween moveTween = player.transform.DOMove(transform.position, 1.0f);
 
         yield return moveTween.WaitForCompletion();
+        player.transform.localScale = Vector3.one * 0.01f;
 
         player.transform.position = Robot.transform.position;
         player.transform.rotation = Robot.transform.rotation;
 
         moveTween = player.transform.DOMove(Robot.position + Robot.forward * 2.0f, 0.5f);
+        Tween scaleTween = player.transform.DOScale(1.0f, 0.5f);
 
         yield return moveTween.WaitForCompletion();
 
