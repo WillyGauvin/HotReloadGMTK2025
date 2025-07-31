@@ -20,8 +20,9 @@ public class InputReader : MonoBehaviour
     [SerializeField] private ConveyorBelt initalBelt;
 
     float readerMovementSpeed = 1.5f;
-    float readerMaxMovementSpeed = 3.0f;
-    float readerMinMovementSpeed = 3.0f;
+    float readerMaxMovementSpeed = 10.0f;
+    float readerMinMovementSpeed = 1.5f;
+    bool isSpedUp = false;
 
     void Start()
     {
@@ -34,11 +35,13 @@ public class InputReader : MonoBehaviour
     public void SpeedUpReader()
     {
         readerMovementSpeed = readerMaxMovementSpeed;
+        isSpedUp = true;
     }
 
     public void SlowDownReader()
     {
         readerMovementSpeed = readerMinMovementSpeed;
+        isSpedUp = false;
     }
 
     private IEnumerator TraverseTrack(ConveyorBelt startingBelt)
@@ -48,7 +51,7 @@ public class InputReader : MonoBehaviour
 
         while (true)
         {
-            Tween moveToBelt = transform.DOMove(currentBelt.holdTransform.position, readerMovementSpeed).SetSpeedBased(true);
+            Tween moveToBelt = transform.DOMove(currentBelt.holdTransform.position, readerMovementSpeed).SetSpeedBased(true).SetEase(Ease.Linear);
             yield return moveToBelt.WaitForCompletion();
 
             if (currentBelt.heldBox != null)
@@ -58,7 +61,8 @@ public class InputReader : MonoBehaviour
 
             currentBelt = currentBelt.GetNextBelt();
 
-            yield return new WaitForSeconds(0.5f);
+            if (!isSpedUp)
+                yield return new WaitForSeconds(0.5f);
         }
     }
 }

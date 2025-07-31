@@ -32,13 +32,18 @@ public class ConveyorBelt : MonoBehaviour
 
     private void PickupBox(CommandBlock box)
     {
-        if (heldBox == null)
+        if (heldBox != null)
             return;
 
         heldBox = box;
+        Rigidbody boxRb = heldBox.GetComponent<Rigidbody>();
+        boxRb.isKinematic = true;
+        boxRb.angularVelocity = Vector3.zero;
+        boxRb.linearVelocity = Vector3.zero;
+
         heldBox.transform.SetParent(holdTransform);
         heldBox.transform.localPosition = Vector3.zero;
-        heldBox.transform.localRotation = Quaternion.identity;
+        heldBox.transform.rotation = transform.rotation;
 
         box.transform.SetParent(holdTransform);
     }

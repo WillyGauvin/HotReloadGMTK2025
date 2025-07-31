@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance { get; private set; }
 
+    private InputAction speedUpAction;
+    PlayerInput input;
+
     private void Awake()
     {
         if (instance != null)
@@ -15,6 +18,22 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Found more than one Player Controller in the scene.");
         }
         instance = this;
+
+        input = GetComponent<PlayerInput>();
+
+        speedUpAction = input.actions["SpeedUpRobot"];
+
+        speedUpAction.performed += OnSpeedUp;
+        speedUpAction.canceled += OnSlowDown;
+
+    }
+    private void OnDestroy()
+    {
+        if (speedUpAction != null)
+        {
+            speedUpAction.performed -= OnSpeedUp;
+            speedUpAction.canceled -= OnSlowDown;
+        }
     }
 
     public enum ActionMap
@@ -23,13 +42,11 @@ public class PlayerController : MonoBehaviour
         UI,
     }
 
-    PlayerInput input;
     Player player;
     public Vector2 MoveInput;
 
     private void Start()
     {
-        input = GetComponent<PlayerInput>();
         player = GetComponent<Player>();
     }
 
@@ -86,16 +103,15 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    void OnSpeedUpRobot(InputValue value)
+    void OnSpeedUp(InputAction.CallbackContext context)
     {
-        //if (value.isPressed)
-        //{
-        //    ConveyorBeltManager.instance.SpeedUpReader();
-        //}
-        //else
-        //{
-        //    ConveyorBeltManager.instance.SlowDownReader();
-        //}
+        InputReader.instance.SpeedUpReader();
+    }
+
+    void OnSlowDown(InputAction.CallbackContext context)
+    {
+        InputReader.instance.SlowDownReader();
+
     }
     void OnDEBUG_RobotForward(InputValue value)
     {
