@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4a2636b0bd40f44b80011264e4f612, type: 3}
+  m_Name: Character Controller Parameters
+  m_EditorClassIdentifier: 
+  MoveMaxSpeed: 12
+  MoveAccel: 24
+  MoveBrake: 48
+  InstantAcceleration: 0
+  MaxSlope: 0.2
+  Gravity: 32
+  MaxFallSpeed: 32
+  MidairAccelFactor: 1
+  MidairBrakeFactor: 1
+  PeakVelocityMin: 0
+  PeakVelocityMax: 0.1
+  PeakGravityFactor: 0.5
+  FallGravityFactor: 1.5
+  JumpStrength: 16
+  LateJumpTimeSec: 0.15
+  EarlyJumpTimeSec: 0.15
+  JumpInterruptionAllowed: 1
+  JumpInterruptionVelocity: 1
+  ExtraJumpCount: 0
+  ExtraJumpStrengthFactor: 1
+  ExtraJumpAllowInterruption: 1
