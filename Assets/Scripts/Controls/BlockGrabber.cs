@@ -1,16 +1,14 @@
 using System;
-using System.Collections.Generic;
-using Alchemy.Inspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BlockGrabber : MonoBehaviour
 {
-    [SerializeField] private Rigidbody controllerBody;
     [SerializeField] private Transform positionCastCenter;
     [SerializeField] private Transform positionWhenHeld;
 
-    [SerializeField] private InputActionReference inputAction;
+    [SerializeField] private InputActionReference movementInputAction;
+    [SerializeField] private InputActionReference grabInputAction;
 
     [Header("Parameters")]
     [SerializeField] private float radius;
@@ -26,7 +24,7 @@ public class BlockGrabber : MonoBehaviour
 
     private void Start()
     {
-        inputAction.action.performed += (context) =>
+        grabInputAction.action.performed += (context) =>
         {
             if (context.performed)
             {
@@ -74,12 +72,24 @@ public class BlockGrabber : MonoBehaviour
 
     public void Ungrab()
     {
-        var resultV = Vector3.Scale(controllerBody.linearVelocity, throwMultiplier);
-        if (resultV.x != 0f)
+        var resultV = new Vector3();
+        var heldInput = movementInputAction.action.ReadValue<Vector2>();
+        if (heldInput.y < 0f)
         {
-            resultV.x = Mathf.Clamp(MathF.Abs(resultV.x), throwMinHorizontal, throwMaxHorizontal) * Mathf.Sign(resultV.x);
+            resultV = new Vector3(
+                throwMinHorizontal * heldInput.x * (1f + heldInput.y),
+                throwMinVertical * (1f + heldInput.y),
+                0f
+            );
         }
-        resultV.y = Mathf.Clamp(resultV.y, throwMinVertical, throwMaxVertical);
+        else
+        {
+            resultV = new Vector3(
+                Mathf.Lerp(throwMinHorizontal, throwMaxHorizontal, heldInput.x) * Mathf.Sign(heldInput.x),
+                Mathf.Lerp(throwMinVertical, throwMaxVertical, heldInput.y),
+                0f
+            );
+        }
         grabbedBlock.Body.isKinematic = false;
         grabbedBlock.Body.linearVelocity = resultV;
 

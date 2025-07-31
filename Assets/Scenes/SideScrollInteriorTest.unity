@@ -1454,17 +1454,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27299a1f11c3bd347a44b93e970ebd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerBody: {fileID: 1233492572}
   positionCastCenter: {fileID: 1233492571}
   positionWhenHeld: {fileID: 491493028}
-  inputAction: {fileID: 1765456233628462433, guid: 17d9e948a374a1540861cce773945857, type: 3}
+  movementInputAction: {fileID: 7362880110071244597, guid: 17d9e948a374a1540861cce773945857, type: 3}
+  grabInputAction: {fileID: 1765456233628462433, guid: 17d9e948a374a1540861cce773945857, type: 3}
   radius: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 131072
-  throwMinHorizontal: 1
+  throwMinHorizontal: 8
   throwMaxHorizontal: 16
-  throwMinVertical: 1
+  throwMinVertical: 12
   throwMaxVertical: 24
   throwMultiplier: {x: 6, y: 2}
 --- !u!1 &1316853421
