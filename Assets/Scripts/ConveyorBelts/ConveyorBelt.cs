@@ -20,7 +20,12 @@ public class ConveyorBelt : MonoBehaviour
 
         if (robotInputReader != null)
         {
-            robotInputReader.inputReader.transform.position = GetItemPosition();
+            robotInputReader.inputReader.transform.position = GetItemPosition(4);
+        }
+
+        if (beltItem != null)
+        {
+            beltItem.inputBox.transform.position = GetItemPosition(1.5f);
         }
     }
 
@@ -34,9 +39,8 @@ public class ConveyorBelt : MonoBehaviour
 
     }
 
-    public Vector3 GetItemPosition()
+    public Vector3 GetItemPosition(float padding)
     {
-        float padding = 4f;
         Vector3 position = transform.position;
 
         return new Vector3(position.x, position.y + padding, position.z);
@@ -48,16 +52,16 @@ public class ConveyorBelt : MonoBehaviour
 
         if (robotInputReader != null && beltInSequence != null && robotInputReader.inputReader != null)
         {
-            Vector3 newPos = beltInSequence.GetItemPosition();
+            Vector3 newPos = beltInSequence.GetItemPosition(4);
 
             robotInputReader.inputReader.transform.position = newPos;
 
             beltInSequence.robotInputReader = robotInputReader;
 
-            if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null)
+            if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null && beltInSequence.robotInputReader.robotController != null)
             {
                 //Call code on robot, either through reader or on manager to make the robot do something
-                Debug.Log("Hit Something");
+                beltInSequence.robotInputReader.robotController.ReceiveInput(beltInSequence.beltItem.GetInputType());
             }
 
             robotInputReader = null;

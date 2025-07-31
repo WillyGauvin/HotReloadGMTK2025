@@ -1,10 +1,13 @@
 using UnityEngine;
 
+public enum InputType { Up, Down, Left, Right };
 public class RobotInputs : MonoBehaviour
 {
 
     public GameObject inputBox;
 
+
+    public InputType inputType;
 
     private void Awake()
     {
@@ -22,4 +25,10 @@ public class RobotInputs : MonoBehaviour
     {
 
     }
+
+    public InputType GetInputType()
+    {
+        return inputType;
+    }
+
 }

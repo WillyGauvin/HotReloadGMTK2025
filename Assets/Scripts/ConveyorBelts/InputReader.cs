@@ -2,13 +2,11 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public enum InputType { Up, Down, Left, Right };
 
 public class InputReader : MonoBehaviour
 {
     public GameObject inputReader;
-
-    public InputType inputType;
+    public RobotMovement robotController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
