@@ -21,15 +21,15 @@ MonoBehaviour:
   MaxFallSpeed: 32
   MidairAccelFactor: 1
   MidairBrakeFactor: 0.5
-  PeakVelocityMin: 0
+  PeakVelocityMin: -0.5
   PeakVelocityMax: 0.5
-  PeakGravityFactor: 0.5
+  PeakGravityFactor: 0.1
   FallGravityFactor: 1.5
   JumpStrength: 12
   LateJumpTimeSec: 0.15
   EarlyJumpTimeSec: 0.15
   JumpInterruptionAllowed: 1
-  JumpInterruptionVelocity: 1
+  JumpInterruptionVelocity: 4
   ExtraJumpCount: 0
   ExtraJumpStrengthFactor: 1
   ExtraJumpAllowInterruption: 1
