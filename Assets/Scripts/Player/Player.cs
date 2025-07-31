@@ -1,8 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
+    public bool IsControllable = true;
+
     float moveSpeed = 5.0f;
 
 
@@ -11,48 +12,54 @@ public class Player : MonoBehaviour
     public Transform CarryPosition;
     GameObject CarryObject;
 
-    private Rigidbody rb;
-
     PlayerController controller;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         controller = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsControllable) return;
+
         if (controller.MoveInput.magnitude > 0)
         {
             transform.LookAt(transform.position + new Vector3(controller.MoveInput.x, 0, controller.MoveInput.y));
         }
 
         InteractTrace();
+
+        Move(controller.MoveInput);
     }
 
     private void FixedUpdate()
     {
-        Move(controller.MoveInput);
     }
 
     public void Move(Vector2 input)
     {
-        Vector3 Velocity = new Vector3(input.x * moveSpeed, 0.0f, input.y * moveSpeed);
-        rb.linearVelocity = Velocity;
+        if (!IsControllable) return;
 
-        if (rb.linearVelocity.magnitude > moveSpeed)
-        {
-            Vector3 Direction = rb.linearVelocity.normalized;
-            Debug.Log("Limiting");
-            rb.linearVelocity = Direction * moveSpeed;
-        }
+        Vector3 Velocity = new Vector3(input.x * moveSpeed, 0.0f, input.y * moveSpeed);
+        transform.position += Velocity * Time.deltaTime;
+
+        //rb.linearVelocity = Velocity;
+
+        //if (rb.linearVelocity.magnitude > moveSpeed)
+        //{
+        //    Vector3 Direction = rb.linearVelocity.normalized;
+        //    Debug.Log("Limiting");
+        //    rb.linearVelocity = Direction * moveSpeed;
+        //}
     }
 
     public void Interact()
     {
+        if (!IsControllable) return;
+
         if (interactable != null)
         {
             interactable.Interact(this);
@@ -126,4 +133,21 @@ public class Player : MonoBehaviour
 
         CarryObject = null;
     }
+
+    //public void Teleport(Transform targetTransform)
+    //{
+    //    RigidbodyInterpolation prevInterpolation = rb.interpolation;
+
+    //    rb.interpolation = RigidbodyInterpolation.None;
+
+    //    rb.linearVelocity = Vector3.zero;
+    //    rb.angularVelocity = Vector3.zero;
+
+    //    rb.position = targetTransform.position;
+    //    rb.rotation = targetTransform.rotation;
+
+    //    Physics.SyncTransforms();
+
+    //    rb.interpolation = prevInterpolation; ;
+    //}
 }
