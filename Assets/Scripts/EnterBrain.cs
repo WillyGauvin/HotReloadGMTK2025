@@ -31,6 +31,7 @@ public class EnterBrain : MonoBehaviour
             if (!box.IsTeleporting)
             {
                 StartCoroutine(MoveBox(box));
+                RobotController.instance.ReceiveInput(box.GetComponent<RobotInputs>().inputType, true);
             }
         }
     }

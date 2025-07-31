@@ -85,4 +85,43 @@ public class PlayerController : MonoBehaviour
             player.Interact();
         }
     }
+    
+    void OnSpeedUpRobot(InputValue value)
+    {
+        //if (value.isPressed)
+        //{
+        //    ConveyorBeltManager.instance.SpeedUpReader();
+        //}
+        //else
+        //{
+        //    ConveyorBeltManager.instance.SlowDownReader();
+        //}
+    }
+    void OnDEBUG_RobotForward(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.ReceiveInput(InputType.Forward, false);
+#endif
+    }
+    void OnDEBUG_RobotClockwise(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.ReceiveInput(InputType.Rotate_Clockwise, false);
+#endif
+    }
+
+    void OnDEBUG_RobotCounterClockwise(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.ReceiveInput(InputType.Rotate_CounterClockwise, false);
+#endif
+    }
+
+    void OnDEBUG_RobotForwardPriority(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.ReceiveInput(InputType.Forward, true);
+#endif
+    }
+
 }
