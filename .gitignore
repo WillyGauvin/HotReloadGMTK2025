@@ -73,6 +73,9 @@ mono_crash.*
 *.unitypackage.meta
 *.app
 
+# Art files
+*.sbs
+
 # Crashlytics generated file
 crashlytics-build.properties
 
