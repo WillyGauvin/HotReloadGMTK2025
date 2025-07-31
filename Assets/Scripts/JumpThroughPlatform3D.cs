@@ -4,6 +4,7 @@ using UnityEngine;
 public class JumpThroughPlatform3D : MonoBehaviour
 {
     [SerializeField] private BoxCollider localCollider;
+    [SerializeField] private LayerMask onlyAffectsMask = 2147483647;
 
     private LayerMask ignoringMask = 0;
     private HashSet<Collider> ignoringColliders = new();
@@ -38,6 +39,10 @@ public class JumpThroughPlatform3D : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if ((onlyAffectsMask.value & (1 << collision.collider.gameObject.layer)) == 0)
+        {
+            return;
+        }
         foreach (var x in collision.contacts)
         {
             if (x.normal.y > -0.2f)

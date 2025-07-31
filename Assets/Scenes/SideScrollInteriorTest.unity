@@ -629,6 +629,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localCollider: {fileID: 337622725}
+  onlyAffectsMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!54 &337622727
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1050,6 +1053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localCollider: {fileID: 894678350}
+  onlyAffectsMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!54 &894678352
 Rigidbody:
   m_ObjectHideFlags: 0

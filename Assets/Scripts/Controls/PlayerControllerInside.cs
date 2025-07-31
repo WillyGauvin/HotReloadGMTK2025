@@ -30,6 +30,7 @@ public class PlayerControllerInside : MonoBehaviour
 
     private readonly HashSet<Collider> _floorContacts = new();
 
+    public float MoveInputLLastDirection => moveInputLastDirection;
     public bool CanMove
     {
         get => canMove;
