@@ -58,11 +58,11 @@ public class ConveyorBelt : MonoBehaviour
 
             beltInSequence.robotInputReader = robotInputReader;
 
-            if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null && beltInSequence.robotInputReader.robotController != null)
-            {
-                //Call code on robot, either through reader or on manager to make the robot do something
-                beltInSequence.robotInputReader.robotController.ReceiveInput(beltInSequence.beltItem.GetInputType());
-            }
+            //if (beltInSequence.beltItem != null && beltInSequence.robotInputReader != null && beltInSequence.robotInputReader.robotController != null)
+            //{
+            //    //Call code on robot, either through reader or on manager to make the robot do something
+            //    beltInSequence.robotInputReader.robotController.ReceiveInput(beltInSequence.beltItem.GetInputType());
+            //}
 
             robotInputReader = null;
 

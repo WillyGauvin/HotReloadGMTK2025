@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum InputType { Up, Down, Left, Right };
+public enum InputType { Forward, Rotate_Clockwise, Rotate_CounterClockwise };
 public class RobotInputs : MonoBehaviour
 {
 
