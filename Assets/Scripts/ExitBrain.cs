@@ -27,7 +27,7 @@ public class ExitBrain : MonoBehaviour
                 StartCoroutine(MovePlayer(player));
             }
         }
-        else if (other.gameObject.TryGetComponent<InteractableTest>(out InteractableTest box))
+        else if (other.gameObject.TryGetComponent<CommandBlock>(out CommandBlock box))
         {
             if (!box.IsTeleporting)
             {
@@ -61,7 +61,7 @@ public class ExitBrain : MonoBehaviour
         player.IsControllable = true;
     }
 
-    IEnumerator MoveBox(InteractableTest Box)
+    IEnumerator MoveBox(CommandBlock Box)
     {
         Box.IsTeleporting = true;
         Box.GetComponent<BoxCollider>().isTrigger = true;

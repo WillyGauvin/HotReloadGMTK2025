@@ -26,12 +26,12 @@ public class EnterBrain : MonoBehaviour
                 StartCoroutine(MovePlayer(player));
             }
         }
-        else if (other.gameObject.TryGetComponent<InteractableTest>(out InteractableTest box))
+        else if (other.gameObject.TryGetComponent<CommandBlock>(out CommandBlock box))
         {
             if (!box.IsTeleporting)
             {
                 StartCoroutine(MoveBox(box));
-                RobotController.instance.ReceiveInput(box.GetComponent<RobotInputs>().inputType, true);
+                RobotController.instance.ReceiveInput(box.inputType, true);
             }
         }
     }
@@ -62,7 +62,7 @@ public class EnterBrain : MonoBehaviour
         player.IsControllable = true;
     }
 
-    IEnumerator MoveBox(InteractableTest Box)
+    IEnumerator MoveBox(CommandBlock Box)
     {
 
         Box.IsTeleporting = true;

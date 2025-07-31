@@ -1,67 +1,45 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    public RobotInputs heltInput;
-    public float raycastDrawDistance = 1.0f;
+    public Transform holdTransform;
+    [HideInInspector] public CommandBlock heldBox;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    public ConveyorBelt GetNextBelt()
     {
-        //if theres a hard coded input on it already, set the position of it
-        if (heltInput != null)
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 1.0f))
         {
-            heltInput.transform.position = GetItemPosition(0.5f);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    //Get the position of the belt and return the position with padding in the Y so the item is in the conveyor belt
-    public Vector3 GetItemPosition(float padding)
-    {
-        Vector3 position = transform.position;
-
-        return new Vector3(position.x, position.y + padding, position.z);
-    }
-
-    //Ray cast to find the belt infront of it and return it
-    public ConveyorBelt FindNextBelt()
-    {
-        Transform currentBeltTransfomr = transform; ;
-        RaycastHit hit;
-
-        Vector3 forwardDir = transform.forward;
-
-        Ray raySent = new Ray(currentBeltTransfomr.position, forwardDir);
-
-        if (Physics.Raycast(raySent, out hit, raycastDrawDistance))
-        {
-            ConveyorBelt nextBelt = hit.collider.GetComponent<ConveyorBelt>();
-            if (nextBelt != null)
-            {
+            if (hit.collider.TryGetComponent<ConveyorBelt>(out ConveyorBelt nextBelt))
                 return nextBelt;
-            }
-
+            else
+                return null;
         }
         return null;
     }
 
-    public void AddNewRobotInput(RobotInputs collidedInput)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collidedInput != null)
+        if (other.TryGetComponent<CommandBlock>(out CommandBlock box))
         {
-            //If there is already one, ignore and dont change it (unless we want to make it bump it off)
-            if (heltInput != null)
-            {
-                heltInput = collidedInput;
-            }
+            PickupBox(box);
         }
+    }
+
+    private void PickupBox(CommandBlock box)
+    {
+        if (heldBox == null)
+            return;
+
+        heldBox = box;
+        heldBox.transform.SetParent(holdTransform);
+        heldBox.transform.localPosition = Vector3.zero;
+        heldBox.transform.localRotation = Quaternion.identity;
+
+        box.transform.SetParent(holdTransform);
     }
 }

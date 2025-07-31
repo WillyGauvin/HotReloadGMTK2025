@@ -1,57 +1,64 @@
-using System;
+using DG.Tweening;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 
 public class InputReader : MonoBehaviour
 {
-    public ConveyorBelt currentBelt;
+    public static InputReader instance { get; private set; }
 
-    protected float conveyorBeltHeightOffset = 2.5f;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else
+            Debug.LogError("Found more than 1 InputReader in scene");
+    }
+
+    [SerializeField] private ConveyorBelt initalBelt;
+
+    float readerMovementSpeed = 1.5f;
+    float readerMaxMovementSpeed = 3.0f;
+    float readerMinMovementSpeed = 3.0f;
 
     void Start()
     {
-
+        if (initalBelt == null)
+            Debug.LogError("Initial Belt not set on ConveyorBeltManager");
+        else
+            StartCoroutine(TraverseTrack(initalBelt));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpeedUpReader()
     {
-
+        readerMovementSpeed = readerMaxMovementSpeed;
     }
 
-    //Called when spawned in by the Conveyor Belt Manager
-    public void SetUpInputReader(ConveyorBelt startingBelt)
+    public void SlowDownReader()
     {
-        transform.position = startingBelt.GetItemPosition(conveyorBeltHeightOffset);
-        currentBelt = startingBelt;
+        readerMovementSpeed = readerMinMovementSpeed;
     }
 
-    //How the input reader moves
-    public void SetNewBelt(ConveyorBelt newBelt)
+    private IEnumerator TraverseTrack(ConveyorBelt startingBelt)
     {
-        if (newBelt != null)
+        ConveyorBelt currentBelt = startingBelt;
+        transform.position = currentBelt.holdTransform.position;
+
+        while (true)
         {
-            currentBelt = newBelt;
-            transform.position = currentBelt.GetItemPosition(conveyorBeltHeightOffset);
-            CheckForInputs();
-        }
+            Tween moveToBelt = transform.DOMove(currentBelt.holdTransform.position, readerMovementSpeed).SetSpeedBased(true);
+            yield return moveToBelt.WaitForCompletion();
 
-
-    }
-
-    //When called, check if the reader is on the same belt as a input
-    private void CheckForInputs()
-    {
-        if (currentBelt != null)
-        {
-            //Check if the belt has a heldInput
-            if (currentBelt.heltInput != null)
+            if (currentBelt.heldBox != null)
             {
-                //let the robot know its got a new input
-
-                RobotController.instance.ReceiveInput(currentBelt.heltInput.inputType, false);
+                RobotController.instance.ReceiveInput(currentBelt.heldBox.inputType, false);
             }
+
+            currentBelt = currentBelt.GetNextBelt();
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

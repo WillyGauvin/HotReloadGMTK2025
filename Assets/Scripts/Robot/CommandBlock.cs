@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class InteractableTest : MonoBehaviour, IInteractable
+public enum InputType { Forward, Rotate_Clockwise, Rotate_CounterClockwise };
+public class CommandBlock : MonoBehaviour, IInteractable
 {
+    public InputType inputType;
+
     public bool IsTeleporting = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Interact(Player player)
@@ -30,4 +34,5 @@ public class InteractableTest : MonoBehaviour, IInteractable
     {
         GetComponent<Renderer>().material.color = Color.blue;
     }
+
 }
