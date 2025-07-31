@@ -15,8 +15,10 @@ public class InputReader : MonoBehaviour
 
     private void Awake()
     {
+        //find the robot it the game
         robotMovement = FindAnyObjectByType<RobotMovement>();
 
+        //fail state incase there isnt one
         if (robotMovement == null)
             Debug.LogError("Have Not Set Robot in Scene");
     }
@@ -38,6 +40,7 @@ public class InputReader : MonoBehaviour
         currentBelt = startingBelt;
     }
 
+    //How the input reader moves
     public void SetNewBelt(ConveyorBelt newBelt)
     {
         if (newBelt != null)
@@ -50,6 +53,7 @@ public class InputReader : MonoBehaviour
 
     }
 
+    //When called, check if the reader is on the same belt as a input
     private void CheckForInputs()
     {
         if (currentBelt != null)

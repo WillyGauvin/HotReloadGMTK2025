@@ -29,6 +29,7 @@ public class ConveyorBeltManager : MonoBehaviour
         instance = this;
 
         beltList = new List<ConveyorBelt>();
+
         if (InitalBelt != null)
         {
             beltList.Add(InitalBelt);
@@ -36,12 +37,15 @@ public class ConveyorBeltManager : MonoBehaviour
             bool isAlreadyAdded = false;
             do
             {
+                //find the next belt using lastest belt added in the list
                 ConveyorBelt belt = beltList.Last().FindNextBelt();
 
+                //if this belt and the first belt are the same, end the loop
                 if (belt == InitalBelt)
                 {
                     isAlreadyAdded = true;
                 }
+                //otherwise add it to the list and loop
                 else
                 {
                     beltList.Add(belt);
@@ -55,12 +59,21 @@ public class ConveyorBeltManager : MonoBehaviour
 
         }
 
+        //spawn a input reader and set it up
         if (inputReader != null)
+        {
+            InputReader newReader = Instantiate(inputReader, transform.localPosition, Quaternion.identity);
+            inputReader = newReader;
             inputReader.SetUpInputReader(InitalBelt);
+        }
+        else
+            Debug.LogError("Have Not Set inputReader prefab reference in Conveyor Belt Manager");
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //start the loop if everything is working and has been properly setup
         if (inputReader != null && beltList.Count > 0)
         {
             StartCoroutine(MoveInputReader());
@@ -78,8 +91,8 @@ public class ConveyorBeltManager : MonoBehaviour
 
         while (true)
         {
+            //find current index of the input reader
             int currentBeltIndex = beltList.IndexOf(inputReader.currentBelt);
-
 
             //Check if belt is valid
             if (currentBeltIndex != -1)
@@ -89,6 +102,7 @@ public class ConveyorBeltManager : MonoBehaviour
                 {
                     inputReader.SetNewBelt(InitalBelt);
                 }
+                //otherwise, move to the next one
                 else
                 {
                     inputReader.SetNewBelt(beltList[currentBeltIndex + 1]);
@@ -100,6 +114,7 @@ public class ConveyorBeltManager : MonoBehaviour
         }
     }
 
+    //Speed up the reader by lowering the delay
     public void SpeedUpReader()
     {
         conveyorBeltDelay -= 0.5f;
@@ -110,6 +125,7 @@ public class ConveyorBeltManager : MonoBehaviour
         }
     }
 
+    //Slow down the reader by raising the delay
     public void SlowDownReader()
     {
         conveyorBeltDelay += 0.5f;

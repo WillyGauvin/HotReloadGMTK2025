@@ -2360,63 +2360,6 @@ MonoBehaviour:
       Data3: 2129949109
       Data4: -1713848530
     Path: event:/SFX/sfx_door_open
---- !u!1001 &596449917
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3072346745058653251, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_Name
-      value: InputReader
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -94.68624
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.030574
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5189830145290141312, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
 --- !u!1 &600227449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8029,17 +7972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 18627678}
   settingsMenu: {fileID: 1114703540}
---- !u!114 &2112815425 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8109212675468469296, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
-  m_PrefabInstance: {fileID: 596449917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0488665d9bd41cb49a898d20f24b5565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2113543431
 GameObject:
   m_ObjectHideFlags: 0
@@ -8086,7 +8018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitalBelt: {fileID: 710896849}
   beltList: []
-  inputReader: {fileID: 2112815425}
+  inputReader: {fileID: 8109212675468469296, guid: d7828ed2bf7a72447807d6df5d8532ba, type: 3}
   conveyorBeltDelay: 1.5
   conveyorBeltMaxDelay: 3
   converyorBeltMinDelay: 0.5
@@ -8424,7 +8356,6 @@ SceneRoots:
   - {fileID: 1099913471}
   - {fileID: 476937043}
   - {fileID: 2008240219}
-  - {fileID: 596449917}
   - {fileID: 90733705}
   - {fileID: 1348529874}
   - {fileID: 15128540}

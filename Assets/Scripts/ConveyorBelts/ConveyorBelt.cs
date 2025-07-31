@@ -10,10 +10,10 @@ public class ConveyorBelt : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-
+        //if theres a hard coded input on it already, set the position of it
         if (heltInput != null)
         {
-            heltInput.inputBox.transform.position = GetItemPosition(0.5f);
+            heltInput.transform.position = GetItemPosition(0.5f);
         }
     }
 
@@ -23,6 +23,7 @@ public class ConveyorBelt : MonoBehaviour
 
     }
 
+    //Get the position of the belt and return the position with padding in the Y so the item is in the conveyor belt
     public Vector3 GetItemPosition(float padding)
     {
         Vector3 position = transform.position;
@@ -31,6 +32,7 @@ public class ConveyorBelt : MonoBehaviour
     }
 
 
+    //Ray cast to find the belt infront of it and return it
     public ConveyorBelt FindNextBelt()
     {
         Transform currentBeltTransfomr = transform; ;
@@ -56,6 +58,7 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (collidedInput != null)
         {
+            //If there is already one, ignore and dont change it (unless we want to make it bump it off)
             if (heltInput != null)
             {
                 heltInput = collidedInput;
