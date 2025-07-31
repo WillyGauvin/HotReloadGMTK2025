@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Character Controller Parameters
   m_EditorClassIdentifier: 
   MoveMaxSpeed: 12
-  MoveAccel: 12
+  MoveAccel: 48
   MoveBrake: 48
   InstantAcceleration: 0
   MaxSlope: 0.2
-  Gravity: 8
+  Gravity: 24
   MaxFallSpeed: 32
   MidairAccelFactor: 1
   MidairBrakeFactor: 0.5
   PeakVelocityMin: -0.5
   PeakVelocityMax: 0.5
   PeakGravityFactor: 0.1
-  FallGravityFactor: 1.5
-  JumpStrength: 12
+  FallGravityFactor: 3
+  JumpStrength: 16
   LateJumpTimeSec: 0.15
   EarlyJumpTimeSec: 0.15
   JumpInterruptionAllowed: 1
