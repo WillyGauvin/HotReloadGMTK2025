@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3072346745058653251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.93004, y: 1.333, z: 8.869}
+  m_LocalPosition: {x: -97.38515, y: 2, z: -3.9345374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0488665d9bd41cb49a898d20f24b5565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputReader: {fileID: 0}
+  currentBelt: {fileID: 0}
+  robotMovement: {fileID: 0}
