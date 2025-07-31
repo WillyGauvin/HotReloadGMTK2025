@@ -85,7 +85,7 @@ public class BlockGrabber : MonoBehaviour
         else
         {
             resultV = new Vector3(
-                Mathf.Lerp(throwMinHorizontal, throwMaxHorizontal, heldInput.x) * Mathf.Sign(heldInput.x),
+                Mathf.Lerp(throwMinHorizontal, throwMaxHorizontal, Mathf.Abs(heldInput.x)) * Mathf.Sign(heldInput.x),
                 Mathf.Lerp(throwMinVertical, throwMaxVertical, heldInput.y),
                 0f
             );

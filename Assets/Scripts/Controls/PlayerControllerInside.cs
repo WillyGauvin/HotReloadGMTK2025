@@ -49,21 +49,6 @@ public class PlayerControllerInside : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        inputActionJump.action.performed += (context) =>
-        {
-            if (!context.canceled)
-            {
-                Jump();
-            }
-            else
-            {
-                JumpReleased();
-            }
-        };
-    }
-
     public void Jump(bool allowMidair = false)
     {
         if (!canMove || lastJumpInputSec == Time.time)
@@ -126,6 +111,14 @@ public class PlayerControllerInside : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (inputActionJump.action.WasPressedThisFrame())
+        {
+            Jump();
+        }
+        else if (inputActionJump.action.WasReleasedThisFrame())
+        {
+            JumpReleased();
+        }
         moveInput = inputActionMovement.action.ReadValue<Vector2>();
         if (moveInput.x != 0f)
         {
