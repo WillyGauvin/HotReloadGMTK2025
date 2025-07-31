@@ -5,6 +5,8 @@ public class InstructionBlock : MonoBehaviour
 {
     [SerializeField] private Rigidbody body;
 
+    public Rigidbody Body => body;
+
     private void Start()
     {
         
