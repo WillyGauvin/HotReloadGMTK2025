@@ -102,6 +102,14 @@ public class PlayerController : MonoBehaviour
             player.Interact();
         }
     }
+
+    void OnThrow(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            player.Throw();
+        }
+    }
     
     void OnSpeedUp(InputAction.CallbackContext context)
     {

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     float interactRange = 2f;
     IInteractable interactable;
     public Transform CarryPosition;
-    GameObject CarryObject;
+    public CommandBlock CarryObject;
 
     PlayerController controller;
 
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Throw();
+            Drop();
         }
     }
 
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Pickup(GameObject interactable)
+    public void Pickup(CommandBlock interactable)
     {
         if (CarryObject != null)
             Drop();
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         CarryObject.GetComponent<BoxCollider>().enabled = false;
     }
 
-    void Throw()
+    public void Throw()
     {
         if (CarryObject == null) return;
         CarryObject.transform.SetParent(null);

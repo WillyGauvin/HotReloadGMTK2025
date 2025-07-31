@@ -3,7 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ConveyorBelt : MonoBehaviour
+public class ConveyorBelt : MonoBehaviour, IInteractable
 {
     public Transform holdTransform;
     [HideInInspector] public CommandBlock heldBox;
@@ -26,16 +26,17 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (other.TryGetComponent<CommandBlock>(out CommandBlock box))
         {
-            PickupBox(box);
+            PickupBox(box, false);
         }
     }
 
-    private void PickupBox(CommandBlock box)
+    private void PickupBox(CommandBlock box, bool isSwapping)
     {
-        if (heldBox != null)
+        if (heldBox != null && !isSwapping)
             return;
 
         heldBox = box;
+        heldBox.GetComponent<BoxCollider>().enabled = true;
         Rigidbody boxRb = heldBox.GetComponent<Rigidbody>();
         boxRb.isKinematic = true;
         boxRb.angularVelocity = Vector3.zero;
@@ -46,5 +47,43 @@ public class ConveyorBelt : MonoBehaviour
         heldBox.transform.rotation = transform.rotation;
 
         box.transform.SetParent(holdTransform);
+    }
+
+    public void Interact(Player player)
+    {
+        Debug.Log("Interacted with Belt");
+        //Swap box
+        if (heldBox != null && player.CarryObject != null)
+        {
+            CommandBlock box = heldBox;
+            PickupBox(player.CarryObject, true);
+            player.CarryObject = null;
+            player.Pickup(box);
+        }
+
+        //Belt Pickup box
+        else if (player.CarryObject != null)
+        {
+            Debug.Log("Carry Object is: " + player.CarryObject);
+            PickupBox(player.CarryObject, false);
+            player.CarryObject = null;
+        }
+
+        //Player Pickup box
+        else if (heldBox != null)
+        {
+            player.Pickup(heldBox);
+            heldBox = null;
+        }
+    }
+
+    public void LookAt()
+    {
+        //GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public void LookAway()
+    {
+        //GetComponent<Renderer>().material.color = Color.blue;
     }
 }

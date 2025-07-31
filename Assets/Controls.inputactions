@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "5a298300-e929-433d-a2e1-91c11017104d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DEBUG_RobotForward",
                     "type": "Button",
                     "id": "b4082100-9c4b-4ecc-b879-f85273482a4a",
@@ -283,6 +292,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpeedUpRobot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "298583d9-9cb3-428b-998e-7228901fad49",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

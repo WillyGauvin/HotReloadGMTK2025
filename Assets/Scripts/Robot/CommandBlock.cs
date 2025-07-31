@@ -21,8 +21,8 @@ public class CommandBlock : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        //Debug.Log("Interacted");
-        player.Pickup(gameObject);
+        Debug.Log("Interacted with Block");
+        player.Pickup(this);
     }
 
     public void LookAt()
