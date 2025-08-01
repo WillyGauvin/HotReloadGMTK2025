@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     float moveSpeed = 5.0f;
     public float rotateEasingSpeed = 5.0f;
+    public float leanBackAmount = 15.0f;
 
     float interactRange = 2f;
     IInteractable interactable;
@@ -35,13 +36,25 @@ public class Player : MonoBehaviour
         }
 
         Vector3 forwardThisFrame = new Vector3(controller.MoveInput.x, 0, controller.MoveInput.y);
-        if (!Vector3.Equals(forwardThisFrame, Vector3.zero))
+        Vector3 rightThisFrame = Vector3.Cross(forwardThisFrame, Vector3.up);
+
+        bool movingThisFrame = !Vector3.Equals(forwardThisFrame, Vector3.zero);
+
+        // If no input, then don't update the forward so we keep facing that direction
+        if (movingThisFrame)
         {
             currentForward = forwardThisFrame;
         }
+        // Smoothly rotate towards target each frame if non-zero
         if (!Vector3.Equals(currentForward, Vector3.zero))
         {
-            Quaternion target = Quaternion.LookRotation(currentForward);
+            Vector3 targetDirection = currentForward;
+            // Add some lean
+            if (movingThisFrame)
+            {
+                targetDirection = Quaternion.AngleAxis(leanBackAmount, rightThisFrame) * targetDirection;
+            }
+            Quaternion target = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, target, rotateEasingSpeed * Time.deltaTime);
         }
 
