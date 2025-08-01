@@ -15,6 +15,12 @@ public class RobotController : MonoBehaviour
 
     [SerializeField] LayerMask collidableSurfaces;
 
+    public List<ParticleSystem> moveParticles = new List<ParticleSystem>();
+    
+    public MeshRenderer robotBulb;
+    public Color bulbMoveColor;
+    private Color bulbStationaryColor;
+
     private void Awake()
     {
         if (instance != null)
@@ -25,6 +31,7 @@ public class RobotController : MonoBehaviour
         {
             instance = this;
         }
+        bulbStationaryColor = robotBulb.material.GetColor("_BaseColor");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,7 +45,6 @@ public class RobotController : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward * 3.0f, Color.blue);
-
     }
 
     //Call when an input has been recognized by the InputReader
@@ -73,26 +79,36 @@ public class RobotController : MonoBehaviour
                 case InputType.Forward:
                     if (CanMove())
                     {
+                        ActivateMoveParticles(true);
+                        ActivateBulb(true);
                         Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward * 3.0f).x, 1.0f);
                         Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward * 3.0f).z, 1.0f);
                         yield return moveXTween.WaitForCompletion();
                         yield return moveZTween.WaitForCompletion();
+                        ActivateMoveParticles(false);
+                        ActivateBulb(false);
                     }
                     else
                     {
+                        ActivateBulb(true);
                         Tween shake = transform.DOShakePosition(0.5f, transform.forward * 0.25f, 10, 40.0f, false, true, ShakeRandomnessMode.Harmonic);
                         yield return shake.WaitForCompletion();
+                        ActivateBulb(false);
                     }
                     break;
 
                 case InputType.Rotate_Clockwise:
+                    ActivateBulb(true);
                     Tween rotateClockwiseTween = rb.DORotate(rb.transform.rotation.eulerAngles + new Vector3(0.0f, 90.0f, 0.0f), 1.0f);
                     yield return rotateClockwiseTween.WaitForCompletion();
+                    ActivateBulb(false);
                     break;
 
                 case InputType.Rotate_CounterClockwise:
+                    ActivateBulb(true);
                     Tween rotateCounterClockwiseTween = rb.DORotate(rb.transform.rotation.eulerAngles + new Vector3(0.0f, -90.0f, 0.0f), 1.0f);
                     yield return rotateCounterClockwiseTween.WaitForCompletion();
+                    ActivateBulb(false);
                     break;
             }
         }
@@ -108,5 +124,28 @@ public class RobotController : MonoBehaviour
         }
         else
             return true;
+    }
+
+    private void ActivateBulb(bool active)
+    {
+        robotBulb.material.SetColor("_BaseColor", active ? bulbMoveColor : bulbStationaryColor);
+    }
+
+    void ActivateMoveParticles(bool activate)
+    {
+        if (activate)
+        {
+            foreach (var particle in moveParticles)
+            {
+                particle.Play();
+            }
+        }
+        else
+        {
+            foreach (var particle in moveParticles)
+            {
+                particle.Stop();
+            }
+        }
     }
 }
