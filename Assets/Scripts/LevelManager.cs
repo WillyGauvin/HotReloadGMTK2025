@@ -10,8 +10,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private List<WinCondition> winConditionList;
 
-    [SerializeField] private bool playerReachGoal;
-    [SerializeField] private bool robotReachGoal;
+    [SerializeField] public bool playerReachGoal;
+    [SerializeField] public bool robotReachGoal;
 
     public Animator sceneTransition;
     public BoxCollider waterTrigger;

@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class RobotController : MonoBehaviour
 {
-    public static RobotController instance {  get; private set; }
+    public static RobotController instance { get; private set; }
 
     private Queue<InputType> regularQueue = new Queue<InputType>();
     private Queue<InputType> priorityQueue = new Queue<InputType>();
@@ -16,10 +16,11 @@ public class RobotController : MonoBehaviour
     [SerializeField] LayerMask collidableSurfaces;
 
     public List<ParticleSystem> moveParticles = new List<ParticleSystem>();
-    
+
     public MeshRenderer robotBulb;
     public Color bulbMoveColor;
     private Color bulbStationaryColor;
+    private bool hasReachedGoal;
 
     private void Awake()
     {
@@ -50,13 +51,16 @@ public class RobotController : MonoBehaviour
     //Call when an input has been recognized by the InputReader
     public void ReceiveInput(InputType input, bool isPriority)
     {
-        if (isPriority)
+        if (!hasReachedGoal)
         {
-            priorityQueue.Enqueue(input);
-        }
-        else
-        {
-            regularQueue.Enqueue(input);
+            if (isPriority)
+            {
+                priorityQueue.Enqueue(input);
+            }
+            else
+            {
+                regularQueue.Enqueue(input);
+            }
         }
     }
 
@@ -114,6 +118,10 @@ public class RobotController : MonoBehaviour
         }
     }
 
+    public void HasReachedGoal(bool state)
+    {
+        hasReachedGoal = state;
+    }
     private bool CanMove()
     {
         Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);

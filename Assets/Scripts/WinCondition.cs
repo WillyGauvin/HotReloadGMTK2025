@@ -37,6 +37,8 @@ public class WinCondition : MonoBehaviour
             Player playerReff = FindAnyObjectByType<Player>();
             if (robotCanUse)
             {
+                robot.HasReachedGoal(true);
+
                 if (playerReff.isInBrain)
                 {
                     LevelManager.instance.PlayerReachGoal(true);
