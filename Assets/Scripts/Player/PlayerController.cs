@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour
     {
         if (resetLevel.WasPressedThisFrame())
         {
-            LevelManager.instance.ResetCurrentLevel();
+            LevelManager tempMananger = LevelManager.instance;
+            tempMananger.StartCoroutine(tempMananger.ResetCurrentLevel());
         }
     }
 

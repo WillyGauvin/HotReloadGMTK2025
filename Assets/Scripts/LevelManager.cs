@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
         {
-            ResetCurrentLevel();
+            StartCoroutine(ResetCurrentLevel());
         }
     }
 
@@ -91,11 +91,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void ResetCurrentLevel()
+    public IEnumerator ResetCurrentLevel()
     {
         isLevelBeaten = false;
 
         sceneTransition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1.5f);
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
