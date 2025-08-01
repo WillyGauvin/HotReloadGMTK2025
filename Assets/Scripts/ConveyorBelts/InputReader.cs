@@ -19,15 +19,15 @@ public class InputReader : MonoBehaviour
 
     [SerializeField] private ConveyorBelt initalBelt;
 
-    float readerMovementSpeed = 1.5f;
+    float readerMovementSpeed = 4.0f;
     float readerMaxMovementSpeed = 10.0f;
-    float readerMinMovementSpeed = 1.5f;
+    float readerMinMovementSpeed = 4.0f;
     bool isSpedUp = false;
 
     void Start()
     {
         if (initalBelt == null)
-            Debug.LogError("Initial Belt not set on ConveyorBeltManager");
+            Debug.LogError("Initial Belt not set on InputReader");
         else
             StartCoroutine(TraverseTrack(initalBelt));
     }
@@ -47,11 +47,11 @@ public class InputReader : MonoBehaviour
     private IEnumerator TraverseTrack(ConveyorBelt startingBelt)
     {
         ConveyorBelt currentBelt = startingBelt;
-        transform.position = currentBelt.holdTransform.position;
+        transform.position = currentBelt.beltholdTransform.position;
 
         while (true)
         {
-            Tween moveToBelt = transform.DOMove(currentBelt.holdTransform.position, readerMovementSpeed).SetSpeedBased(true).SetEase(Ease.Linear);
+            Tween moveToBelt = transform.DOMove(currentBelt.beltholdTransform.position, readerMovementSpeed).SetSpeedBased(true).SetEase(Ease.Linear);
             yield return moveToBelt.WaitForCompletion();
 
             if (currentBelt.heldBox != null)
