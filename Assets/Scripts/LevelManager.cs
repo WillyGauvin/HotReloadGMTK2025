@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool robotReachGoal;
 
     public Animator sceneTransition;
+    public BoxCollider waterTrigger;
 
     private void Awake()
     {
@@ -41,11 +42,21 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("No Win Condition Found, Be Sure To Add One");
         }
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (waterTrigger != null)
+            waterTrigger.enabled = true;
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
+        {
+            ResetCurrentLevel();
+        }
     }
 
     // Update is called once per frame

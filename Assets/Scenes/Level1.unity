@@ -6195,7 +6195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.43013
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6203,7 +6203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.54691
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6232,6 +6232,22 @@ PrefabInstance:
     - target: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350816705604914521, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+      propertyPath: waterTrigger
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182798698490538131, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+      propertyPath: m_Size.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182798698490538131, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+      propertyPath: m_Size.z
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182798698490538131, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+      propertyPath: m_Center.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8708501892187380504, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_Name

@@ -223,6 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419953501254604320}
   - component: {fileID: 3350816705604914521}
+  - component: {fileID: 4975238887543380078}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -263,3 +264,25 @@ MonoBehaviour:
   playerReachGoal: 0
   robotReachGoal: 0
   sceneTransition: {fileID: 9205823236128296402}
+  waterTrigger: {fileID: 4975238887543380078}
+--- !u!65 &4975238887543380078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708501892187380504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 35, y: 1, z: 35}
+  m_Center: {x: 0, y: -5, z: 0}
