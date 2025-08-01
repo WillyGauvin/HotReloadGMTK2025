@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour
 
     float interactRange = 2f;
     IInteractable interactable;
-    public Transform CarryPosition;
+    public Transform PlayerCarryPosition;
     public CommandBlock CarryObject;
 
     PlayerController controller;
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     public Transform characterMesh;
 
     Vector3 currentForward = Vector3.zero;
+
+    [SerializeField] LayerMask interactableMask;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -132,10 +135,10 @@ public class Player : MonoBehaviour
 
     void InteractTrace()
     {
-        Debug.DrawRay(transform.position, transform.forward * interactRange, Color.blue);
+        Debug.DrawRay(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward * interactRange, Color.blue);
 
-        Ray r = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
+        Ray r = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
+        if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange, interactableMask, QueryTriggerInteraction.Collide))
         {
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
             {
@@ -163,13 +166,9 @@ public class Player : MonoBehaviour
     {
         if (CarryObject != null)
             Drop();
-        CarryObject = interactable;
-
-        CarryObject.transform.SetParent(CarryPosition);
-        CarryObject.transform.localPosition = Vector3.zero;
-        CarryObject.transform.localRotation = Quaternion.identity;
-        CarryObject.GetComponent<Rigidbody>().isKinematic = true;
-        CarryObject.GetComponent<BoxCollider>().enabled = false;
+        
+        if (!interactable.IsTweening)
+            CarryObject = interactable.Pickup(this);
     }
 
     public void Throw()

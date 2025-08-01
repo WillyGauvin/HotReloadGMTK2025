@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -5,14 +6,14 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour, IInteractable
 {
-    public Transform holdTransform;
+    public Transform beltholdTransform;
     public CommandBlock heldBox;
+    [SerializeField] LayerMask layerMask;
 
     public ConveyorBelt GetNextBelt()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 1.0f))
+        Ray ray = new Ray(beltholdTransform.position, transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 5.5f, layerMask))
         {
             if (hit.collider.TryGetComponent<ConveyorBelt>(out ConveyorBelt nextBelt))
                 return nextBelt;
@@ -24,7 +25,7 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<CommandBlock>(out CommandBlock box))
+        if (other.TryGetComponent<CommandBlock>(out CommandBlock box) && other.GetComponentInParent<Player>() == null)
         {
             PickupBox(box, false);
         }
@@ -35,36 +36,22 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
         if (heldBox != null && !isSwapping)
             return;
 
-        heldBox = box;
-        heldBox.GetComponent<BoxCollider>().enabled = true;
-        Rigidbody boxRb = heldBox.GetComponent<Rigidbody>();
-        boxRb.isKinematic = true;
-        boxRb.angularVelocity = Vector3.zero;
-        boxRb.linearVelocity = Vector3.zero;
-
-        heldBox.transform.SetParent(holdTransform);
-        heldBox.transform.localPosition = Vector3.zero;
-        heldBox.transform.rotation = transform.rotation;
-
-        box.transform.SetParent(holdTransform);
+        heldBox = box.Pickup(this);
     }
 
     public void Interact(Player player)
     {
-        Debug.Log("Interacted with Belt");
         //Swap box
         if (heldBox != null && player.CarryObject != null)
         {
-            CommandBlock box = heldBox;
+            CommandBlock block = heldBox;
             PickupBox(player.CarryObject, true);
-            player.CarryObject = null;
-            player.Pickup(box);
+            player.Pickup(block);
         }
 
         //Belt Pickup box
         else if (player.CarryObject != null)
         {
-            Debug.Log("Carry Object is: " + player.CarryObject);
             PickupBox(player.CarryObject, false);
             player.CarryObject = null;
         }
@@ -73,7 +60,6 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
         else if (heldBox != null)
         {
             player.Pickup(heldBox);
-            heldBox = null;
         }
     }
 
