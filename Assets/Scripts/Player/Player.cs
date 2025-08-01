@@ -144,20 +144,20 @@ public class Player : MonoBehaviour
             {
                 if (interactable != interactObj)
                 {
-                    interactable?.LookAway();
+                    interactable?.LookAway(this);
                     interactable = interactObj;
-                    interactable.LookAt();
+                    interactable.LookAt(this);
                 }
             }
             else
             {
-                interactable?.LookAway();
+                interactable?.LookAway(this);
                 interactable = null;
             }
         }
         else
         {
-            interactable?.LookAway();
+            interactable?.LookAway(this);
             interactable = null;
         }
     }

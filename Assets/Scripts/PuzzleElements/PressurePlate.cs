@@ -1,36 +1,42 @@
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
     [SerializeField] Bridge myBridge;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private HashSet<GameObject> validObjectsInTrigger = new HashSet<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>() || other.GetComponent<RobotController>())
+        if (IsValidObject(other))
         {
-            myBridge.OpenBridge();
+            validObjectsInTrigger.Add(other.gameObject);
+
+            if (validObjectsInTrigger.Count == 1)
+            {
+                myBridge.OpenBridge();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>() || other.GetComponent<RobotController>())
+        if (IsValidObject(other))
         {
-            myBridge.CloseBridge();
+            validObjectsInTrigger.Remove(other.gameObject);
+
+            if (validObjectsInTrigger.Count == 0)
+            {
+                myBridge.CloseBridge();
+            }
         }
+    }
+
+    private bool IsValidObject(Collider collider)
+    {
+        return collider.GetComponent<Player>() || collider.GetComponent<RobotController>();
     }
 }

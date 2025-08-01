@@ -15,8 +15,8 @@ public class Bridge : MonoBehaviour
     [SerializeField] GameObject sideBridge;
     BoxCollider[] bridgeColliders;
 
-    float rightClosedPosX = 0.93f;
-    float leftClosedPosX = -0.93f;
+    float rightClosedPosX = 1.5f;
+    float leftClosedPosX = -1.5f;
 
     bool isOpening,isClosing;
 
