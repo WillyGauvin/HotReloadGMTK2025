@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool IsControllable = true;
+    public bool isInBrain = true;
 
     float moveSpeed = 5.0f;
 
@@ -122,7 +123,7 @@ public class Player : MonoBehaviour
 
         CarryObject = null;
     }
-    
+
     void Drop()
     {
         if (CarryObject == null) return;

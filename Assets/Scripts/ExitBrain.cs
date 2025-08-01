@@ -9,13 +9,13 @@ public class ExitBrain : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +58,7 @@ public class ExitBrain : MonoBehaviour
         yield return moveTween.WaitForCompletion();
 
         player.GetComponent<CapsuleCollider>().isTrigger = false;
+        player.isInBrain = false;
         player.IsControllable = true;
     }
 
