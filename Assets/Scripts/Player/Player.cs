@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     PlayerController controller;
 
+    public ParticleSystem moveParticle;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,10 +44,26 @@ public class Player : MonoBehaviour
 
     public void Move(Vector2 input)
     {
-        if (!IsControllable) return;
+        if (!IsControllable)
+        {
+            moveParticle.Stop();
+            return;
+        }
 
         Vector3 Velocity = new Vector3(input.x * moveSpeed, 0.0f, input.y * moveSpeed);
         transform.position += Velocity * Time.deltaTime;
+
+        if (Velocity.magnitude > 0.0f)
+        {
+            if (!moveParticle.isPlaying)
+            {
+                moveParticle.Play();
+            }
+        }
+        else
+        {
+            moveParticle.Stop();
+        }
 
         //rb.linearVelocity = Velocity;
 
