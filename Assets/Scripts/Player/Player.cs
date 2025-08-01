@@ -28,14 +28,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsControllable) return;
+        if (!IsControllable)
+        {
+            currentForward = Vector3.zero;
+            return;
+        }
 
         Vector3 forwardThisFrame = new Vector3(controller.MoveInput.x, 0, controller.MoveInput.y);
         if (!Vector3.Equals(forwardThisFrame, Vector3.zero))
         {
             currentForward = forwardThisFrame;
         }
-
         if (!Vector3.Equals(currentForward, Vector3.zero))
         {
             Quaternion target = Quaternion.LookRotation(currentForward);
