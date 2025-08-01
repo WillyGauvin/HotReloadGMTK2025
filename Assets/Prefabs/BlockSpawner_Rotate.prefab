@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4353355265601428641, guid: f6a77a143bf836645a45bc1beb27e019, type: 3}
+      propertyPath: spawnPrefab
+      value: 
+      objectReference: {fileID: 8622886643899074999, guid: 9205009b2f833db4da4ba7336b361b9f, type: 3}
     - target: {fileID: 5249455134047399109, guid: f6a77a143bf836645a45bc1beb27e019, type: 3}
       propertyPath: m_Name
       value: BlockSpawner_Rotate
