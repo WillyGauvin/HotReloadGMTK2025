@@ -6,7 +6,7 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour, IInteractable
 {
     public Transform holdTransform;
-    [HideInInspector] public CommandBlock heldBox;
+    public CommandBlock heldBox;
 
     public ConveyorBelt GetNextBelt()
     {

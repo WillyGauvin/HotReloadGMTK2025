@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7781330142308124810}
   - component: {fileID: 1706542254093674503}
   - component: {fileID: 8950746198128587690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f2b287e1c8c30448075d896e71d5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidableSurfaces:
+    serializedVersion: 2
+    m_Bits: 247
 --- !u!54 &8950746198128587690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -191,9 +194,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5117700066308340382, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
       propertyPath: m_Name
       value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233112405309087440, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

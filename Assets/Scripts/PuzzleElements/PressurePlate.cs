@@ -20,7 +20,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<Player>() || other.GetComponent<RobotController>())
         {
             myBridge.OpenBridge();
         }
@@ -28,7 +28,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<Player>() || other.GetComponent<RobotController>())
         {
             myBridge.CloseBridge();
         }

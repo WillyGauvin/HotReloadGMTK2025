@@ -13,6 +13,8 @@ public class RobotController : MonoBehaviour
 
     Rigidbody rb;
 
+    [SerializeField] LayerMask collidableSurfaces;
+
     private void Awake()
     {
         if (instance != null)
@@ -68,10 +70,18 @@ public class RobotController : MonoBehaviour
             switch (input)
             {
                 case InputType.Forward:
-                    Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward * 3.0f).x, 1.0f);
-                    Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward * 3.0f).z, 1.0f);
-                    yield return moveXTween.WaitForCompletion();
-                    yield return moveZTween.WaitForCompletion();
+                    if (CanMove())
+                    {
+                        Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward * 3.0f).x, 1.0f);
+                        Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward * 3.0f).z, 1.0f);
+                        yield return moveXTween.WaitForCompletion();
+                        yield return moveZTween.WaitForCompletion();
+                    }
+                    else
+                    {
+                        Tween shake = transform.DOShakePosition(0.5f, transform.forward * 0.25f, 10, 40.0f, false, true, ShakeRandomnessMode.Harmonic);
+                        yield return shake.WaitForCompletion();
+                    }
                     break;
 
                 case InputType.Rotate_Clockwise:
@@ -85,5 +95,12 @@ public class RobotController : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private bool CanMove()
+    {
+        Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
+
+        return (Physics.Raycast(ray, out RaycastHit hit, 1.0f, collidableSurfaces));
     }
 }
