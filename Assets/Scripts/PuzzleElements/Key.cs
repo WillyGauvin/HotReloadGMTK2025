@@ -38,14 +38,19 @@ public class Key : MonoBehaviour
         Tween moveToGate = transform.DOJump(myGate.transform.position, 3.0f, 2, 1.5f);
 
         yield return moveToGate.WaitForCompletion();
+        yield return rotation.WaitForCompletion();
 
         if (myGate)
         {
             myGate.UnlockGate();
         }
 
-        transform.position = OriginalPosition;
-        //Destroy(this);
+        Tween pop = transform.DOScale(0.0f, 0.25f).SetEase(Ease.InBack, 2.0f);
+        yield return pop.WaitForCompletion();
+
+        Destroy(gameObject);
+
+        //transform.position = OriginalPosition;
     }
 
     IEnumerator KeyBob()

@@ -9,26 +9,28 @@ public class Bridge : MonoBehaviour
     Coroutine closeBridgeRef;
     Coroutine openBridgeRef;
 
-    [SerializeField] GameObject[] leftBridge;
-    [SerializeField] GameObject[] rightBridge;
+    [SerializeField] GameObject leftBridge;
+    [SerializeField] GameObject rightBridge;
 
-    Vector3 leftClosedPos, rightClosedPos;
+    [SerializeField] GameObject sideBridge;
+    BoxCollider[] bridgeColliders;
+
+    float rightClosedPosX = 0.93f;
+    float leftClosedPosX = -0.93f;
 
     bool isOpening,isClosing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        leftClosedPos = transform.position - new Vector3(0.5f * leftBridge.Length + 0.25f, 0.0f, 0.0f);
-        rightClosedPos = transform.position + new Vector3(0.5f * leftBridge.Length + 0.25f, 0.0f, 0.0f);
+        leftBridge.transform.localPosition = new Vector3(leftClosedPosX, 0.0f, 0.0f);
+        rightBridge.transform.localPosition = new Vector3(rightClosedPosX, 0.0f, 0.0f);
 
-        foreach (GameObject bridge in leftBridge)
+        bridgeColliders = sideBridge.GetComponents<BoxCollider>();
+
+        foreach (BoxCollider collider in bridgeColliders)
         {
-            bridge.transform.position = leftClosedPos;
-        }
-        foreach (GameObject bridge in rightBridge)
-        {
-            bridge.transform.position = rightClosedPos;
+            collider.enabled = false;
         }
     }
 
@@ -44,21 +46,23 @@ public class Bridge : MonoBehaviour
 
     IEnumerator CR_OpenBridge()
     {
+        foreach (BoxCollider collider in bridgeColliders)
+        {
+            collider.enabled = true;
+        }
         isOpening = true;
 
         if (isClosing)
             StopCoroutine(closeBridgeRef);
 
-        KillTweens();
+        leftBridge.transform.DOKill();
+        rightBridge.transform.DOKill();
 
-        for (int i = 0; i < leftBridge.Length; i++)
-        {
-            leftBridge[i].transform.DOMove(transform.position + -transform.right * (-0.25f + 0.5f * (i + 1)), 1.0f);
-            rightBridge[i].transform.DOMove(transform.position + transform.right * (-0.25f + 0.5f * (i + 1)), 1.0f);
-        }
+        Tween leftMove = leftBridge.transform.DOLocalMoveX(0.0f, 1.0f);
+        Tween rightMove = rightBridge.transform.DOLocalMoveX(0.0f, 1.0f);
 
-        yield return DOTween.Sequence().AppendInterval(1.0f);
-
+        yield return leftMove.WaitForCompletion();
+        yield return rightMove.WaitForCompletion();
         //Sounds
 
         isOpening = false;
@@ -68,33 +72,24 @@ public class Bridge : MonoBehaviour
     {
         isClosing = true;
 
-        if(isOpening)
-            StopCoroutine(openBridgeRef);
-
-        KillTweens();
-
-
-        for (int i = 0; i < leftBridge.Length; i++)
+        foreach (BoxCollider collider in bridgeColliders)
         {
-            leftBridge[i].transform.DOMove(leftClosedPos, 0.5f);
-            rightBridge[i].transform.DOMove(rightClosedPos, 0.5f);
+            collider.enabled = false;
         }
 
-        yield return DOTween.Sequence().AppendInterval(1.0f);
+        if (isOpening)
+            StopCoroutine(openBridgeRef);
+
+        leftBridge.transform.DOKill();
+        rightBridge.transform.DOKill();
+
+        Tween leftMove = leftBridge.transform.DOLocalMoveX(leftClosedPosX, 1.0f);
+        Tween rightMove = rightBridge.transform.DOLocalMoveX(rightClosedPosX, 1.0f);
+
+        yield return leftMove.WaitForCompletion();
+        yield return rightMove.WaitForCompletion();
 
         //Sounds
         isClosing = false;
-    }
-
-    private void KillTweens()
-    {
-        foreach (GameObject gameObject in leftBridge)
-        {
-            gameObject.transform.DOKill();
-        }
-        foreach (GameObject gameObject in rightBridge)
-        {
-            gameObject.transform.DOKill();
-        }
     }
 }

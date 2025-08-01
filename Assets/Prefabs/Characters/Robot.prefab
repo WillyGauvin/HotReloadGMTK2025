@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collidableSurfaces:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 512
 --- !u!54 &8950746198128587690
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -22,11 +22,11 @@ public class Gate : MonoBehaviour
         yield return pop.WaitForCompletion();
         yield return raiseUp.WaitForCompletion();
 
-        yield return new WaitForSeconds(2.0f);
+        //yield return new WaitForSeconds(2.0f);
 
-        transform.localScale = Vector3.one;
-        transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
+        //transform.localScale = Vector3.one;
+        //transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
 
-        //Destroy(this);
+        Destroy(gameObject);
     }
 }

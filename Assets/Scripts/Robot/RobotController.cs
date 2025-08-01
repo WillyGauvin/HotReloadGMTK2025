@@ -37,6 +37,7 @@ public class RobotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward * 3.0f, Color.blue);
 
     }
 
@@ -100,7 +101,12 @@ public class RobotController : MonoBehaviour
     private bool CanMove()
     {
         Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
-
-        return (Physics.Raycast(ray, out RaycastHit hit, 1.0f, collidableSurfaces));
+        if (Physics.Raycast(ray, out RaycastHit hit, 3.0f, collidableSurfaces))
+        {
+            Debug.Log(hit.collider.gameObject);
+            return false;
+        }
+        else
+            return true;
     }
 }
