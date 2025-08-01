@@ -20,6 +20,8 @@ public class Bridge : MonoBehaviour
 
     bool isOpening,isClosing;
 
+    private HashSet<GameObject> validObjectsInTrigger = new HashSet<GameObject>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,14 +36,45 @@ public class Bridge : MonoBehaviour
         }
     }
 
-    public void OpenBridge()
+    private void OpenBridge()
     {
         openBridgeRef = StartCoroutine(CR_OpenBridge());
     }
 
-    public void CloseBridge()
+    private void CloseBridge()
     {
         closeBridgeRef = StartCoroutine(CR_CloseBridge());
+    }
+
+    public void SteppedOn(Collider other)
+    {
+        if (IsValidObject(other))
+        {
+            validObjectsInTrigger.Add(other.gameObject);
+
+            if (validObjectsInTrigger.Count == 1)
+            {
+                OpenBridge();
+            }
+        }
+    }
+
+    public void SteppedOff(Collider other)
+    {
+        if (IsValidObject(other))
+        {
+            validObjectsInTrigger.Remove(other.gameObject);
+
+            if (validObjectsInTrigger.Count == 0)
+            {
+                CloseBridge();
+            }
+        }
+    }
+
+    private bool IsValidObject(Collider collider)
+    {
+        return collider.GetComponent<Player>() || collider.GetComponent<RobotController>();
     }
 
     IEnumerator CR_OpenBridge()
@@ -92,4 +125,6 @@ public class Bridge : MonoBehaviour
         //Sounds
         isClosing = false;
     }
+
+
 }
