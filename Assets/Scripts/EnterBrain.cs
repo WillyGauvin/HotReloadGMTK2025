@@ -24,6 +24,10 @@ public class EnterBrain : MonoBehaviour
             if (player.IsControllable)
             {
                 StartCoroutine(MovePlayer(player));
+                if (LevelManager.instance.robotReachGoal)
+                {
+                    LevelManager.instance.playerReachGoal = true;
+                }
             }
         }
         else if (other.gameObject.TryGetComponent<CommandBlock>(out CommandBlock box))

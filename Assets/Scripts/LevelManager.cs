@@ -10,11 +10,13 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private List<WinCondition> winConditionList;
 
-    [SerializeField] private bool playerReachGoal;
-    [SerializeField] private bool robotReachGoal;
+    [SerializeField] public bool playerReachGoal;
+    [SerializeField] public bool robotReachGoal;
 
     public Animator sceneTransition;
     public BoxCollider waterTrigger;
+
+    public ParticleSystem waterSplashParticle;
 
     private void Awake()
     {
@@ -53,6 +55,8 @@ public class LevelManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(waterSplashParticle, other.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
+
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
         {
             StartCoroutine(ResetCurrentLevel());
