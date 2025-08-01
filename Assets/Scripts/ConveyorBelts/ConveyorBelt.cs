@@ -9,6 +9,20 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
     public Transform beltholdTransform;
     public CommandBlock heldBox;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject ghostBlock;
+
+    public CommandBlock HeldBox 
+    { 
+        get { return heldBox; } 
+        set 
+        { 
+            heldBox = value; 
+            if (heldBox != null)
+            {
+                ghostBlock.SetActive(false);
+            }
+        }
+    }
 
     public ConveyorBelt GetNextBelt()
     {
@@ -33,18 +47,18 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
 
     private void PickupBox(CommandBlock box, bool isSwapping)
     {
-        if (heldBox != null && !isSwapping)
+        if (HeldBox != null && !isSwapping)
             return;
 
-        heldBox = box.Pickup(this);
+        HeldBox = box.Pickup(this);
     }
 
     public void Interact(Player player)
     {
         //Swap box
-        if (heldBox != null && player.CarryObject != null)
+        if (HeldBox != null && player.CarryObject != null)
         {
-            CommandBlock block = heldBox;
+            CommandBlock block = HeldBox;
             PickupBox(player.CarryObject, true);
             player.Pickup(block);
         }
@@ -57,19 +71,22 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
         }
 
         //Player Pickup box
-        else if (heldBox != null)
+        else if (HeldBox != null)
         {
-            player.Pickup(heldBox);
+            player.Pickup(HeldBox);
         }
     }
 
-    public void LookAt()
+    public void LookAt(Player player)
     {
-        //GetComponent<Renderer>().material.color = Color.red;
+        if (HeldBox == null && player.CarryObject != null)
+        {
+            ghostBlock.SetActive(true);
+        }
     }
 
-    public void LookAway()
+    public void LookAway(Player player)
     {
-        //GetComponent<Renderer>().material.color = Color.blue;
+        ghostBlock.SetActive(false);
     }
 }

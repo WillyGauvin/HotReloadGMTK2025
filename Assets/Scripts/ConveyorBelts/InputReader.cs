@@ -54,9 +54,9 @@ public class InputReader : MonoBehaviour
             Tween moveToBelt = transform.DOMove(currentBelt.beltholdTransform.position, readerMovementSpeed).SetSpeedBased(true).SetEase(Ease.Linear);
             yield return moveToBelt.WaitForCompletion();
 
-            if (currentBelt.heldBox != null)
+            if (currentBelt.HeldBox != null)
             {
-                RobotController.instance.ReceiveInput(currentBelt.heldBox.inputType, false);
+                RobotController.instance.ReceiveInput(currentBelt.HeldBox.inputType, false);
             }
 
             currentBelt = currentBelt.GetNextBelt();

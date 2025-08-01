@@ -40,13 +40,13 @@ public class CommandBlock : MonoBehaviour, IInteractable
         player.Pickup(this);
     }
 
-    public void LookAt()
+    public void LookAt(Player player)
     {
         //GetComponent<Renderer>().material.color = Color.red;
         Highlight(highlightIntensity);
     }
 
-    public void LookAway()
+    public void LookAway(Player player)
     {
         //GetComponent<Renderer>().material.color = Color.blue;
         Highlight(0.0f);
@@ -71,7 +71,7 @@ public class CommandBlock : MonoBehaviour, IInteractable
 
         if (myBelt)
         {
-            myBelt.heldBox = null;
+            myBelt.HeldBox = null;
         }
         myBelt = null;
 
