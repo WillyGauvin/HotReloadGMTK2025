@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
     public Animator sceneTransition;
     public BoxCollider waterTrigger;
 
+    public ParticleSystem waterSplashParticle;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,6 +55,8 @@ public class LevelManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(waterSplashParticle, other.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
+
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
         {
             StartCoroutine(ResetCurrentLevel());

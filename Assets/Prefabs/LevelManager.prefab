@@ -265,6 +265,7 @@ MonoBehaviour:
   robotReachGoal: 0
   sceneTransition: {fileID: 9205823236128296402}
   waterTrigger: {fileID: 4975238887543380078}
+  waterSplashParticle: {fileID: 7870619482597036342, guid: 8176b55afb4aa734992a74518bf312d7, type: 3}
 --- !u!65 &4975238887543380078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -285,4 +286,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 35, y: 1, z: 35}
-  m_Center: {x: 0, y: -5, z: 0}
+  m_Center: {x: 0, y: -1.47, z: 0}
