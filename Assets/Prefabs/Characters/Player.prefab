@@ -98,9 +98,14 @@ MonoBehaviour:
   IsControllable: 1
   isInBrain: 1
   rotateEasingSpeed: 15
+  leanBackAmount: 15
+  bounceSpeed: 30
+  bounceStrength: 0.2
+  bounceEasingSpeed: 5
   CarryPosition: {fileID: 1289423453612687288}
   CarryObject: {fileID: 0}
   moveParticle: {fileID: 4975380894023688669}
+  characterMesh: {fileID: 4498957758653444876}
 --- !u!136 &3082012720993985698
 CapsuleCollider:
   m_ObjectHideFlags: 0

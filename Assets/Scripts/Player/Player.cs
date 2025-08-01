@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     float moveSpeed = 5.0f;
     public float rotateEasingSpeed = 5.0f;
     public float leanBackAmount = 15.0f;
+    public float bounceSpeed = 15.0f;
+    public float bounceStrength = 0.5f;
+    public float bounceEasingSpeed = 5.0f;
 
     float interactRange = 2f;
     IInteractable interactable;
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
     PlayerController controller;
 
     public ParticleSystem moveParticle;
+    public Transform characterMesh;
 
     Vector3 currentForward = Vector3.zero;
 
@@ -57,6 +61,18 @@ public class Player : MonoBehaviour
             Quaternion target = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, target, rotateEasingSpeed * Time.deltaTime);
         }
+
+        // Add some bounce to the character
+        Vector3 meshTarget = Vector3.zero;
+        if (movingThisFrame)
+        {
+            meshTarget.y += (Mathf.Sin(Time.time * bounceSpeed)) * bounceStrength;
+        }
+        else
+        {
+            meshTarget = Vector3.zero;
+        }
+        characterMesh.transform.localPosition = Vector3.Lerp(characterMesh.transform.localPosition, meshTarget, Time.deltaTime * bounceEasingSpeed);
 
         InteractTrace();
 
