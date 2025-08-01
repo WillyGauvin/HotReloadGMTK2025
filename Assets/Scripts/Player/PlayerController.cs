@@ -9,7 +9,17 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance { get; private set; }
 
     private InputAction speedUpAction;
+    private InputAction resetLevel;
     PlayerInput input;
+
+    private void OnEnable()
+    {
+        input.actions["ResetLevel"].Enable();
+    }
+    private void OnDisable()
+    {
+        input.actions["ResetLevel"].Disable();
+    }
 
     private void Awake()
     {
@@ -22,6 +32,8 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
 
         speedUpAction = input.actions["SpeedUpRobot"];
+
+        resetLevel = input.actions["ResetLevel"];
 
         speedUpAction.performed += OnSpeedUp;
         speedUpAction.canceled += OnSlowDown;
@@ -56,6 +68,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (resetLevel.WasPressedThisFrame())
+        {
+            LevelManager.instance.ResetCurrentLevel();
+        }
     }
 
     public void SwitchToActionMap(ActionMap map)
@@ -110,7 +126,7 @@ public class PlayerController : MonoBehaviour
             player.Throw();
         }
     }
-    
+
     void OnSpeedUp(InputAction.CallbackContext context)
     {
         InputReader.instance.SpeedUpReader();
