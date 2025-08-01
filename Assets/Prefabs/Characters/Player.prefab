@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsControllable: 1
   isInBrain: 1
+  rotateEasingSpeed: 15
   CarryPosition: {fileID: 1289423453612687288}
   CarryObject: {fileID: 0}
   moveParticle: {fileID: 4975380894023688669}

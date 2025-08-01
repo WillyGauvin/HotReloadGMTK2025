@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     public bool isInBrain = true;
 
     float moveSpeed = 5.0f;
-
+    public float rotateEasingSpeed = 5.0f;
 
     float interactRange = 2f;
     IInteractable interactable;
@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     PlayerController controller;
 
     public ParticleSystem moveParticle;
+
+    Vector3 currentForward = Vector3.zero;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,9 +30,16 @@ public class Player : MonoBehaviour
     {
         if (!IsControllable) return;
 
-        if (controller.MoveInput.magnitude > 0)
+        Vector3 forwardThisFrame = new Vector3(controller.MoveInput.x, 0, controller.MoveInput.y);
+        if (!Vector3.Equals(forwardThisFrame, Vector3.zero))
         {
-            transform.LookAt(transform.position + new Vector3(controller.MoveInput.x, 0, controller.MoveInput.y));
+            currentForward = forwardThisFrame;
+        }
+
+        if (!Vector3.Equals(currentForward, Vector3.zero))
+        {
+            Quaternion target = Quaternion.LookRotation(currentForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, rotateEasingSpeed * Time.deltaTime);
         }
 
         InteractTrace();
