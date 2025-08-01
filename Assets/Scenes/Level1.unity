@@ -6480,10 +6480,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 457720305522271286, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+      propertyPath: m_SortingOrder
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 3350816705604914521, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: waterTrigger
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2025706548}
     - target: {fileID: 4182798698490538131, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
       propertyPath: m_Size.x
       value: 35
@@ -6508,6 +6512,11 @@ PrefabInstance:
 --- !u!4 &2025706547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 419953501254604320, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
+  m_PrefabInstance: {fileID: 2025706546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2025706548 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4975238887543380078, guid: a77e4b8df9310c14f9d0b0df686d4261, type: 3}
   m_PrefabInstance: {fileID: 2025706546}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2038652634
