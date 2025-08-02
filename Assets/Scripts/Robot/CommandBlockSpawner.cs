@@ -41,6 +41,7 @@ public class CommandBlockSpawner : MonoBehaviour
         myCommandBlock.GetComponent<BoxCollider>().enabled = false;
 
         moveTween = myCommandBlock.transform.DOMoveY(placementTransform.position.y, 1.0f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.block_spawner);
         yield return moveTween.WaitForCompletion();
 
         if (myCommandBlock)

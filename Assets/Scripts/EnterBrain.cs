@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class EnterBrain : MonoBehaviour
 {
     [SerializeField] Transform BrainEnterTransform;
+    [SerializeField] GameObject ParticleBurstPrefab;
     ConveyorBelt StartingBelt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -154,9 +155,17 @@ public class EnterBrain : MonoBehaviour
         Tween rotateBox = Box.transform.DORotateQuaternion(InputReader.instance.BrainCenter.rotation, 10.0f).SetSpeedBased(true);
         yield return moveMove.WaitForCompletion();
         yield return rotateBox.WaitForCompletion();
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.explosionBlock);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_ouch);
+        Instantiate(ParticleBurstPrefab, Box.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
         Tween explosion = Box.transform.DOPunchScale(new Vector3(2.0f, 2.0f, 2.0f), 0.5f);
+
         RobotController.instance.ReceiveInput(InputType.Pop, true);
         yield return explosion.WaitForCompletion();
+
         Destroy(Box.gameObject);
+
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
     }
 }

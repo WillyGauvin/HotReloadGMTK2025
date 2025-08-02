@@ -9,18 +9,25 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Ambience")]
     [field: SerializeField] public EventReference ambience { get; private set; }
 
-    [field: Header("Death")]
-    [field: SerializeField] public EventReference player_splash { get; private set; }
-    [field: SerializeField] public EventReference robot_splash { get; private set; }
-    [field: SerializeField] public EventReference robot_hitwall { get; private set; }
 
     [field: Header("Music")]
     [field: SerializeField] public EventReference gameMusic { get; private set; }
     [field: SerializeField] public EventReference menuMusic { get; private set; }
 
+    [field: Header("Death")]
+    [field: SerializeField] public EventReference player_splash { get; private set; }
+    [field: SerializeField] public EventReference robot_splash { get; private set; }
+    [field: SerializeField] public EventReference robot_hitwall { get; private set; }
+
     [field: Header("DrawBridge")]
     [field: SerializeField] public EventReference drawBridge_lower { get; private set; }
     [field: SerializeField] public EventReference drawBridge_raise { get; private set; }
+
+    [field: Header("InsideTank")]
+    [field: SerializeField] public EventReference commandline_speedUp { get; private set; }
+    [field: SerializeField] public EventReference commandline_slowDown { get; private set; }
+    [field: SerializeField] public EventReference explosionBlock { get; private set; }
+
 
     [field: Header("Items")]
     [field: SerializeField] public EventReference block_spawner { get; private set; }
@@ -40,6 +47,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Player Voice")]
     [field: SerializeField] public EventReference player_drop { get; private set; }
+    [field: SerializeField] public EventReference player_action { get; private set; }
     [field: SerializeField] public EventReference player_pick_up { get; private set; }
     [field: SerializeField] public EventReference player_random_chatter { get; private set; }
     [field: SerializeField] public EventReference player_throw { get; private set; }
@@ -56,7 +64,18 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Tank Voices")]
     [field: SerializeField] public EventReference command_executed { get; private set; }
     [field: SerializeField] public EventReference command_instantly_executed { get; private set; }
-    [field: SerializeField] public EventReference command_readerSpedUp { get; private set; }
+    [field: SerializeField] public EventReference conversation_long { get; private set; }
+    [field: SerializeField] public EventReference conversation_short { get; private set; }
+    [field: SerializeField] public EventReference emotion_angry { get; private set; }
+    [field: SerializeField] public EventReference emotion_neutral { get; private set; }
+    [field: SerializeField] public EventReference emotion_ouch { get; private set; }
+    [field: SerializeField] public EventReference emotion_satisfied { get; private set; }
+    [field: SerializeField] public EventReference voice_driving { get; private set; }
+    [field: SerializeField] public EventReference voice_fallWater { get; private set; }
+    [field: SerializeField] public EventReference voice_wallHit { get; private set; }
+
+
+
 
     [field: Header("Snapshots")]
     [field: SerializeField] public EventReference muffle { get; private set; }
