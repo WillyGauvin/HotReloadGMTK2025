@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterVolume: 1
-  musicVolume: 0.042
+  musicVolume: 1
   ambienceVolume: 1
   SFXVolume: 1
 --- !u!1001 &7554092214501245674
