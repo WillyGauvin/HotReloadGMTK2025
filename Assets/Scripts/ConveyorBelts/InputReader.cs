@@ -24,32 +24,44 @@ public class InputReader : MonoBehaviour
     float readerMaxMovementSpeed = 10.0f;
     float readerMinMovementSpeed = 4.0f;
     bool isSpedUp = false;
+    ConveyorBelt currentBelt;
+    Coroutine TraversBeltCoroutine;
 
     void Start()
     {
+        currentBelt = initalBelt;
+        transform.position = currentBelt.beltholdTransform.position;
         if (initalBelt == null)
             Debug.LogError("Initial Belt not set on InputReader");
         else
-            StartCoroutine(TraverseTrack(initalBelt));
+            TraversBeltCoroutine = StartCoroutine(TraverseTrack());
     }
 
     public void SpeedUpReader()
     {
+        StopCoroutine(TraversBeltCoroutine);
+        transform.DOKill();
         readerMovementSpeed = readerMaxMovementSpeed;
         isSpedUp = true;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.commandline_speedUp);
+        TraversBeltCoroutine = StartCoroutine(TraverseTrack());
     }
 
     public void SlowDownReader()
     {
-        readerMovementSpeed = readerMinMovementSpeed;
-        isSpedUp = false;
+        if (readerMovementSpeed == readerMaxMovementSpeed)
+        {
+            StopCoroutine(TraversBeltCoroutine);
+            transform.DOKill();
+            readerMovementSpeed = readerMinMovementSpeed;
+            isSpedUp = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.commandline_slowDown);
+            TraversBeltCoroutine = StartCoroutine(TraverseTrack());
+        }
     }
 
-    private IEnumerator TraverseTrack(ConveyorBelt startingBelt)
+    private IEnumerator TraverseTrack()
     {
-        ConveyorBelt currentBelt = startingBelt;
-        transform.position = currentBelt.beltholdTransform.position;
-
         while (true)
         {
             Tween moveToBelt = transform.DOMove(currentBelt.beltholdTransform.position, readerMovementSpeed).SetSpeedBased(true).SetEase(Ease.Linear);

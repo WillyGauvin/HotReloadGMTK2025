@@ -59,18 +59,41 @@ public class LevelManager : MonoBehaviour
     {
         Instantiate(waterSplashParticle, other.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
 
+        if (other.GetComponent<RobotController>())
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.robot_splash);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.voice_fallWater);
+        }
+        else if (other.GetComponent<PlayerController>())
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
+            if (Random.Range(0,2) == 1)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_neutral);
+            }
+            else
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_ouch);
+            }
+        }
+        else
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
+        }
+
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
         {
             StartCoroutine(ResetCurrentLevel());
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckCompletedLevel()
     {
         if (playerReachGoal && robotReachGoal)
         {
             AudioManager.instance.SetMusicArea(States_Music.level_finish);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_satisfied);
             isLevelBeaten = true;
             StartCoroutine(PlayNextLevel());
         }
@@ -78,10 +101,12 @@ public class LevelManager : MonoBehaviour
     public void PlayerReachGoal(bool hasReachedGoal)
     {
         playerReachGoal = hasReachedGoal;
+        CheckCompletedLevel();
     }
     public void RobotReachGoal(bool hasReachedGoal)
     {
         robotReachGoal = hasReachedGoal;
+        CheckCompletedLevel();
     }
 
     private IEnumerator PlayNextLevel()
