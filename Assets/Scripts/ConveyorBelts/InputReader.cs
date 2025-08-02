@@ -20,7 +20,7 @@ public class InputReader : MonoBehaviour
     public ConveyorBelt initalBelt;
     public Transform BrainCenter;
 
-    float readerMovementSpeed = 4.0f;
+    public float readerMovementSpeed = 4.0f;
     float readerMaxMovementSpeed = 10.0f;
     float readerMinMovementSpeed = 4.0f;
     bool isSpedUp = false;
