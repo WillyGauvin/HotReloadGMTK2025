@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using FMOD.Studio;
 
 public class Player : MonoBehaviour
 {
@@ -29,10 +30,17 @@ public class Player : MonoBehaviour
 
     [SerializeField] LayerMask interactableMask;
 
+    float oldSin = 0.0f;
+
+    //audio
+    private EventInstance playerFootsteps;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<PlayerController>();
+
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.player_footsteps);
     }
 
     // Update is called once per frame
@@ -71,7 +79,25 @@ public class Player : MonoBehaviour
         Vector3 meshTarget = Vector3.zero;
         if (movingThisFrame)
         {
-            meshTarget.y += (Mathf.Sin(Time.time * bounceSpeed)) * bounceStrength;
+            float newSin = (Mathf.Sin(Time.time * bounceSpeed));
+            meshTarget.y += newSin * bounceStrength;
+
+            if (newSin < 0.0f && oldSin > 0.0f)
+            {
+                if(Random.Range(0, 101) < 100)
+                {
+                    if (CarryObject)
+                    {
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_walkBox);
+                    }
+                    else
+                    {
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_walk);
+                    }
+                }
+            }
+            oldSin = newSin;
+
         }
         else
         {
@@ -110,6 +136,7 @@ public class Player : MonoBehaviour
         {
             moveParticle.Stop();
         }
+        UpdateSound(Velocity);
     }
 
     public void Interact()
@@ -183,22 +210,6 @@ public class Player : MonoBehaviour
             interactable = null;
         }
     }
-    void OnDrawGizmosSelected()
-    {
-        Vector3 origin = transform.position + transform.forward * interactRadius;
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(origin, interactRadius);
-
-        float angleLeft = -20.0f * Mathf.Deg2Rad;
-        float angleRight = 20.0f * Mathf.Deg2Rad;
-
-        Vector3 leftDirection = new Vector3(Mathf.Sin(angleLeft), 0.0f, Mathf.Cos(angleLeft));
-        Vector3 rightDirection = new Vector3(Mathf.Sin(angleRight), 0.0f, Mathf.Cos(angleRight));
-
-        Gizmos.DrawRay(transform.position, leftDirection);
-        Gizmos.DrawRay(transform.position, rightDirection);
-    }
 
     public void Pickup(CommandBlock interactable)
     {
@@ -206,7 +217,10 @@ public class Player : MonoBehaviour
             Drop();
         
         if (!interactable.IsTweening)
+        {
             CarryObject = interactable.Pickup(this);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.player_pick_up, transform.position);
+        }
     }
 
     public void Throw()
@@ -217,9 +231,12 @@ public class Player : MonoBehaviour
         CarryObject.GetComponent<BoxCollider>().enabled = true;
         CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_throw);
+
+
         CarryObject = null;
 
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.item, transform.position);
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.item, transform.position);
     }
 
     void Drop()
@@ -230,7 +247,27 @@ public class Player : MonoBehaviour
         CarryObject.GetComponent<BoxCollider>().enabled = true;
         CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 3.0f, ForceMode.Impulse);
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_drop);
+
         CarryObject = null;
+    }
+
+    private void UpdateSound(Vector3 velocity)
+    {
+        if (velocity.x != 0.0f || velocity.z != 0.0f)
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
 }

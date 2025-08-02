@@ -24,7 +24,8 @@ public class Bridge : MonoBehaviour
 
     private HashSet<GameObject> validObjectsInTrigger = new HashSet<GameObject>();
 
-    private EventInstance bridgeSound;
+    private EventInstance bridgeRaise;
+    private EventInstance bridgeLower;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,9 +40,12 @@ public class Bridge : MonoBehaviour
             collider.enabled = false;
         }
 
-        bridgeSound = AudioManager.instance.CreateInstance(FMODEvents.instance.drawBridge);
-        FMOD.ATTRIBUTES_3D attributes = FMODUnity.RuntimeUtils.To3DAttributes(gameObject);
-        bridgeSound.set3DAttributes(attributes);
+        bridgeRaise = AudioManager.instance.CreateInstance(FMODEvents.instance.drawBridge_raise);
+        bridgeLower = AudioManager.instance.CreateInstance(FMODEvents.instance.drawBridge_lower);
+
+        //bridgeSound = AudioManager.instance.CreateInstance(FMODEvents.instance.drawBridge);
+        //FMOD.ATTRIBUTES_3D attributes = FMODUnity.RuntimeUtils.To3DAttributes(gameObject);
+        //bridgeSound.set3DAttributes(attributes);
     }
 
     private void OpenBridge()
@@ -58,6 +62,7 @@ public class Bridge : MonoBehaviour
     {
         if (IsValidObject(other))
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.pressurePlate_pressed);
             validObjectsInTrigger.Add(other.gameObject);
 
             if (validObjectsInTrigger.Count == 1)
@@ -71,6 +76,7 @@ public class Bridge : MonoBehaviour
     {
         if (IsValidObject(other))
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.pressurePlate_released);
             validObjectsInTrigger.Remove(other.gameObject);
 
             if (validObjectsInTrigger.Count == 0)
@@ -87,8 +93,8 @@ public class Bridge : MonoBehaviour
 
     IEnumerator CR_OpenBridge()
     {
-        bridgeSound.setParameterByName("bridge_state", 0);
-        bridgeSound.start();
+        bridgeRaise.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bridgeLower.start();
 
         foreach (BoxCollider collider in bridgeColliders)
         {
@@ -114,8 +120,11 @@ public class Bridge : MonoBehaviour
 
     IEnumerator CR_CloseBridge()
     {
-        bridgeSound.setParameterByName("bridge_state", 1);
-        bridgeSound.start();
+        ////bridgeSound.setParameterByName("bridge_state", 1);
+        ////bridgeSound.start();
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.drawBridge_raise);
+        bridgeLower.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bridgeRaise.start();
 
         isClosing = true;
 

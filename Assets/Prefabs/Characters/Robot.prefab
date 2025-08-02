@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8950746198128587690}
   m_Layer: 8
   m_Name: Robot
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

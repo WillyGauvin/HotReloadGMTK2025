@@ -27,6 +27,8 @@ public class AudioManager : MonoBehaviour
     private EventInstance ambienceEventInstance;
     private EventInstance musicEventInstance;
 
+    private EventInstance snapShotInstance;
+
     public static AudioManager instance { get; private set; }
 
     private void Awake()
@@ -50,6 +52,8 @@ public class AudioManager : MonoBehaviour
     {
         InitializeAmbience(FMODEvents.instance.ambience);
         InitializeMusic(FMODEvents.instance.gameMusic);
+        LoadPlayerPrefs();
+        InitializeMuffle();
     }
 
     private void Update()
@@ -58,6 +62,22 @@ public class AudioManager : MonoBehaviour
         musicBus.setVolume(musicVolume);
         ambienceBus.setVolume(ambienceVolume);
         sfxBus.setVolume(SFXVolume);
+    }
+
+    public void SaveToPlayerPrefs()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("AmbienceVolume", ambienceVolume);
+        PlayerPrefs.SetFloat("SFXVolume", SFXVolume);
+    }
+
+    void LoadPlayerPrefs()
+    {
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
+        ambienceVolume = PlayerPrefs.GetFloat("AmbienceVolume", 1.0f);
+        SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
     }
 
     private void InitializeAmbience(EventReference ambienceEventReference)
@@ -73,6 +93,17 @@ public class AudioManager : MonoBehaviour
         musicEventInstance.start();
     }
 
+    private void InitializeMuffle()
+    {
+        float DistanceToBrain = Vector3.Distance(InputReader.instance.transform.position, PlayerController.instance.transform.position);
+        float DistanceToWorld = Vector3.Distance(RobotController.instance.transform.position, PlayerController.instance.transform.position);
+
+        if (DistanceToBrain < DistanceToWorld)
+        {
+            StartMuffle();
+        }
+    }
+
     public void SetAmbienceParameter(string parameterName, float parameterValue)
     {
         ambienceEventInstance.setParameterByName(parameterName, parameterValue);
@@ -82,9 +113,26 @@ public class AudioManager : MonoBehaviour
         musicEventInstance.setParameterByName("level_music", (float)area);
     }
 
+    public void StartMuffle()
+    {
+        snapShotInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        snapShotInstance.release();
+    }
+
+    public void EndMuffle()
+    {
+        snapShotInstance = FMODUnity.RuntimeManager.CreateInstance(FMODEvents.instance.muffle);
+        snapShotInstance.start();
+    }
+
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
+    }
+
+    public void PlayOneShot(EventReference sound)
+    {
+        RuntimeManager.PlayOneShot(sound);
     }
 
     public EventInstance CreateInstance(EventReference eventReference)
