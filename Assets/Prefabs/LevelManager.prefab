@@ -679,6 +679,14 @@ MonoBehaviour:
   fullWipeOut: {fileID: 6426128757296184975}
   wipeBoxL: {fileID: 4490742858298093592}
   wipeBoxR: {fileID: 3760193473944037543}
-  boxWipeDirectionIn: {x: 0, y: 2}
-  boxWipeDirectionOut: {x: 0, y: -2}
+  boxWipeDirections:
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}
+  transitionRandomColors:
+  - {r: 0.56, g: 0.43555558, b: 0.19623934, a: 1}
+  - {r: 0.3559322, g: 0.3559322, b: 0.56, a: 1}
+  - {r: 0.55, g: 0.19439659, b: 0.26551738, a: 1}
+  - {r: 0.24572733, g: 0.53, b: 0.20236365, a: 1}
+  transitionRandomColorAffectsNextLevel: 1
   boxWipeShakeMagnitude: 32
