@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour
     public float bounceStrength = 0.5f;
     public float bounceEasingSpeed = 5.0f;
 
-    float interactRange = 2f;
+    float interactRadius = 0.5f;
     IInteractable interactable;
     public Transform PlayerCarryPosition;
     public CommandBlock CarryObject;
@@ -127,24 +128,53 @@ public class Player : MonoBehaviour
 
     void InteractTrace()
     {
-        Debug.DrawRay(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward * interactRange, Color.blue);
+        Vector3 origin = transform.position + transform.forward * interactRadius;
+        Collider[] hits = Physics.OverlapSphere(origin, interactRadius, interactableMask, QueryTriggerInteraction.Collide);
 
-        Ray r = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange, interactableMask, QueryTriggerInteraction.Collide))
+        if (hits.Length == 0)
         {
-            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            interactable?.LookAway(this);
+            interactable = null;
+            return;
+        }
+
+        IInteractable bestCandidate = null;
+        float bestScore = float.MinValue;
+
+        foreach (Collider hit in hits)
+        {
+            if (!hit.TryGetComponent(out IInteractable candidate))
+                continue;
+
+
+            Vector3 toTarget = (hit.transform.position - transform.position);
+            toTarget.y = 0.0f;
+
+            float distance = toTarget.magnitude;
+
+            Vector3 direction = toTarget.normalized;
+;
+            float alignment = Vector3.Dot(transform.forward, direction); // 1 = perfectly in front
+
+            if (alignment < Mathf.Cos(40f * Mathf.Deg2Rad))
+                continue;
+
+            float score = (alignment * 1.0f) + (1.0f / distance * 0.5f); // tune weights
+
+            if (score > bestScore)
             {
-                if (interactable != interactObj)
-                {
-                    interactable?.LookAway(this);
-                    interactable = interactObj;
-                    interactable.LookAt(this);
-                }
+                bestScore = score;
+                bestCandidate = candidate;
             }
-            else
+        }
+
+        if (bestCandidate != null)
+        {
+            if (interactable != bestCandidate)
             {
                 interactable?.LookAway(this);
-                interactable = null;
+                interactable = bestCandidate;
+                interactable.LookAt(this);
             }
         }
         else
@@ -152,6 +182,22 @@ public class Player : MonoBehaviour
             interactable?.LookAway(this);
             interactable = null;
         }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Vector3 origin = transform.position + transform.forward * interactRadius;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(origin, interactRadius);
+
+        float angleLeft = -20.0f * Mathf.Deg2Rad;
+        float angleRight = 20.0f * Mathf.Deg2Rad;
+
+        Vector3 leftDirection = new Vector3(Mathf.Sin(angleLeft), 0.0f, Mathf.Cos(angleLeft));
+        Vector3 rightDirection = new Vector3(Mathf.Sin(angleRight), 0.0f, Mathf.Cos(angleRight));
+
+        Gizmos.DrawRay(transform.position, leftDirection);
+        Gizmos.DrawRay(transform.position, rightDirection);
     }
 
     public void Pickup(CommandBlock interactable)
@@ -182,8 +228,9 @@ public class Player : MonoBehaviour
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
         CarryObject.GetComponent<BoxCollider>().enabled = true;
-        CarryObject.GetComponent<Rigidbody>().AddForce(-transform.forward * 5.0f, ForceMode.Impulse);
+        CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 3.0f, ForceMode.Impulse);
 
         CarryObject = null;
     }
+
 }
