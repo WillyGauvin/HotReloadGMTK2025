@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class WinCondition : MonoBehaviour
@@ -8,6 +9,10 @@ public class WinCondition : MonoBehaviour
     [SerializeField] public bool isCompleted;
 
     public BoxCollider winConditionTrigger;
+    public Transform flag;
+    public float flagScaleAmount = 1.2f;
+
+    private Tween flagAnimation = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +35,7 @@ public class WinCondition : MonoBehaviour
             if (playerCanUse)
             {
                 LevelManager.instance.PlayerReachGoal(true);
+                ActivateAnimation(true);
             }
         }
         if (other.TryGetComponent<RobotController>(out RobotController robot))
@@ -44,6 +50,7 @@ public class WinCondition : MonoBehaviour
                     LevelManager.instance.PlayerReachGoal(true);
                 }
                 LevelManager.instance.RobotReachGoal(true);
+                ActivateAnimation(true);
             }
         }
     }
@@ -55,6 +62,7 @@ public class WinCondition : MonoBehaviour
             if (playerCanUse)
             {
                 LevelManager.instance.PlayerReachGoal(false);
+                ActivateAnimation(false);
             }
         }
         if (other.TryGetComponent<RobotController>(out RobotController robot))
@@ -67,7 +75,23 @@ public class WinCondition : MonoBehaviour
                     LevelManager.instance.PlayerReachGoal(false);
                 }
                 LevelManager.instance.RobotReachGoal(false);
+                ActivateAnimation(false);
             }
+        }
+    }
+
+    private void ActivateAnimation(bool activate)
+    {
+        
+        if (activate)
+        {
+            flagAnimation = flag.transform.DOScale(flagScaleAmount, .5f).SetLoops(-1, LoopType.Yoyo);
+        }
+        else
+        {
+            flagAnimation.Kill();
+            flag.transform.DOScale(1.0f, .2f);
+            flagAnimation = null;
         }
     }
 }

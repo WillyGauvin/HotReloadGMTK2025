@@ -16,6 +16,7 @@ public class RobotController : MonoBehaviour
     [SerializeField] LayerMask collidableSurfaces;
 
     public List<ParticleSystem> moveParticles = new List<ParticleSystem>();
+    public ParticleSystem hitParticle;
 
     public MeshRenderer robotBulb;
     public Color bulbMoveColor;
@@ -95,6 +96,7 @@ public class RobotController : MonoBehaviour
                     else
                     {
                         ActivateBulb(true);
+                        ActivateHitParticle();
                         Tween shake = transform.DOShakePosition(0.5f, transform.forward * 0.25f, 10, 40.0f, false, true, ShakeRandomnessMode.Harmonic);
                         yield return shake.WaitForCompletion();
                         ActivateBulb(false);
@@ -154,5 +156,14 @@ public class RobotController : MonoBehaviour
                 particle.Stop();
             }
         }
+    }
+
+    void ActivateHitParticle()
+    {
+        if (hitParticle.isPlaying)
+        {
+            hitParticle.Stop();
+        }
+        hitParticle.Play();
     }
 }
