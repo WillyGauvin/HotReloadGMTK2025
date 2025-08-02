@@ -28,9 +28,6 @@ public class ScreenTransition : MonoBehaviour
 
     public void Start()
     {
-        fullWipeIn.gameObject.SetActive(false);
-        fullWipeOut.gameObject.SetActive(false);
-        conveyorPatternArrow.gameObject.SetActive(false);
         if (lastSceneTransitionType == 1)
         {
             PlayNextLevelTransition(true);
@@ -45,12 +42,6 @@ public class ScreenTransition : MonoBehaviour
     {
         if (conveyorPattern == null || conveyorPattern.Length == 0)
         {
-            if (transitionPlaying)
-            {
-                return;
-            }
-            transitionPlaying = true;
-
             var patternItemCount = Mathf.CeilToInt(canvasWidth.rect.width / PatternInterval);
             conveyorPattern = new RectTransform[patternItemCount];
             for (var i = 0; i < patternItemCount; i++)
@@ -61,9 +52,15 @@ public class ScreenTransition : MonoBehaviour
             }
             conveyorPatternArrow.gameObject.SetActive(false);
         }
-        var sequence = DOTween.Sequence();
         if (!isSceneStart)
         {
+            if (transitionPlaying)
+            {
+                return;
+            }
+            var sequence = DOTween.Sequence();
+            transitionPlaying = true;
+
             currentTransitionColor = Color.white;
             if (transitionRandomColorAffectsNextLevel)
             {
@@ -84,9 +81,11 @@ public class ScreenTransition : MonoBehaviour
                     .DOScale(new Vector3(-0.5f, 0.5f, 1f), 0.1f)
                     .SetEase(Ease.OutCubic));
             }
+            sequence.Play();
         }
         else
         {
+            var sequence = DOTween.Sequence();
             lastSceneTransitionType = 0;
 
             sequence.Insert(0f, fullWipeOut.DOAnchorPosX(canvasWidth.rect.width + 128f, 0.4f));
@@ -102,8 +101,8 @@ public class ScreenTransition : MonoBehaviour
                     .DOScale(new Vector3(-0.5f, 0f, 1f), 0.1f)
                     .SetEase(Ease.OutCubic));
             }
+            sequence.Play();
         }
-        sequence.Play();
     }
 
     public void PlayRestartTransition(bool isSceneStart = false)
