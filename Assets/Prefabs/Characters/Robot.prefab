@@ -139,6 +139,11 @@ MonoBehaviour:
   hitParticle: {fileID: 6290378089940650426}
   robotBulb: {fileID: 8715688423489385364}
   bulbMoveColor: {r: 0, g: 1, b: 0.5674212, a: 1}
+  expression_neutral: {fileID: 2100000, guid: 9326051353ffb884d806657626349a0a, type: 2}
+  expression_angry: {fileID: 2100000, guid: 697faf62850f77440b4cd0ec2c85ca2c, type: 2}
+  expression_happy: {fileID: 2100000, guid: 3ddffd0bef48fde498fc80984a643b2f, type: 2}
+  expression_ouch: {fileID: 2100000, guid: b76ffcdac76ca834cb527af4b01d2762, type: 2}
+  faceMesh: {fileID: 5922512969989754155}
   ForwardBlockPrefab: {fileID: 4699375574208733598, guid: 6964c5b6c7fcb944d84ade8901710ee3, type: 3}
   ClockwisePrefab: {fileID: 8622886643899074999, guid: 9205009b2f833db4da4ba7336b361b9f, type: 3}
   CounterClockwisePrefab: {fileID: 8622886643899074999, guid: 0ba9f197dfe30c646a882bd1def17dfc, type: 3}
@@ -341,6 +346,11 @@ PrefabInstance:
 --- !u!4 &2535363909097721101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
+  m_PrefabInstance: {fileID: 2640751466362497766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5922512969989754155 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -678588488315902003, guid: df167bd00a9f09844b1d33a13cbcc132, type: 3}
   m_PrefabInstance: {fileID: 2640751466362497766}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &8715688423489385364 stripped

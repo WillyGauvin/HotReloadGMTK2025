@@ -74,12 +74,14 @@ public class LevelManager : MonoBehaviour
             else
             {
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_ouch);
+                RobotController.instance.SetExpression(RobotExpression.Ouch);
             }
         }
         else
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
+            RobotController.instance.SetExpression(RobotExpression.Angry);
         }
 
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
@@ -94,6 +96,7 @@ public class LevelManager : MonoBehaviour
         {
             AudioManager.instance.SetMusicArea(States_Music.level_finish);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_satisfied);
+            RobotController.instance.SetExpression(RobotExpression.Happy);
             isLevelBeaten = true;
             StartCoroutine(PlayNextLevel());
         }
