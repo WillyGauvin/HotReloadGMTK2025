@@ -935,6 +935,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3802539539606351674, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
+      propertyPath: initalBelt
+      value: 
+      objectReference: {fileID: 9012961514856277697}
+    - target: {fileID: 3802539539606351674, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
       propertyPath: BrainCenter
       value: 
       objectReference: {fileID: 2225912385718667886}
@@ -955,6 +959,17 @@ Transform:
 --- !u!114 &8082584994873386876 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5317664955212073027, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
+  m_PrefabInstance: {fileID: 4172365294160916287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58624879745f7042a5c2c95de925237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9012961514856277697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4968385862424807934, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
   m_PrefabInstance: {fileID: 4172365294160916287}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

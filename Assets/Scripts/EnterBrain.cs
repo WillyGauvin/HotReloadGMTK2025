@@ -12,7 +12,7 @@ public class EnterBrain : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartingBelt = BrainEnterTransform.GetComponent<ExitBrain>().StartingBelt;
+        StartingBelt = InputReader.instance.initalBelt;
     }
 
     // Update is called once per frame
