@@ -48,9 +48,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 6a89d45c515c6524f9febe88ea80bfec, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: -900840116002235059, guid: 6a89d45c515c6524f9febe88ea80bfec, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6a89d45c515c6524f9febe88ea80bfec, type: 3}
       propertyPath: m_Name
       value: DockFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6a89d45c515c6524f9febe88ea80bfec, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

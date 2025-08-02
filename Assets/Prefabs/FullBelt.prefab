@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 28598711560623401}
   m_Layer: 0
   m_Name: FullBelt
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 11
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -162,6 +166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -223,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -296,6 +308,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -425,6 +441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -486,6 +506,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -549,6 +573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -610,6 +638,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -673,6 +705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -734,6 +770,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -797,6 +837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -858,6 +902,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -921,6 +969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -982,6 +1034,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1045,6 +1101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Belt 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1106,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
       propertyPath: m_Name
       value: Belt 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228475148903998026, guid: 70197012d84cc0542b97e29cfbf5dcc9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

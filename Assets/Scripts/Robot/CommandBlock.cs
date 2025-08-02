@@ -23,6 +23,10 @@ public class CommandBlock : MonoBehaviour, IInteractable
 
     public ConveyorBelt myBelt;
 
+    float minImpactVelocity = 1.0f;
+    float lastImpactTime = -1f;
+    float impactCooldown = 0.2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -100,7 +104,6 @@ public class CommandBlock : MonoBehaviour, IInteractable
         Tween rotateBlock = transform.DORotateQuaternion(target.rotation * Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f)), 0.5f);
         yield return moveBlock.WaitForCompletion();
         yield return rotateBlock.WaitForCompletion();
-
         IsTweening = false;
 
     }
@@ -137,5 +140,23 @@ public class CommandBlock : MonoBehaviour, IInteractable
         IsTweening = false;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (Time.time - lastImpactTime > impactCooldown && collision.relativeVelocity.magnitude > minImpactVelocity)
+            {
+                if (collision.relativeVelocity.magnitude > 10.0f)
+                    FMODUnity.RuntimeManager.PlayOneShot(FMODEvents.instance.item_throw);
+                else
+                    FMODUnity.RuntimeManager.PlayOneShot(FMODEvents.instance.item_drop);
 
+                lastImpactTime = Time.time;
+            }
+        }
+        else
+        {
+            Debug.Log(collision.gameObject.name + " is not ground");
+        }
+    }
 }

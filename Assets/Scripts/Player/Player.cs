@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using FMOD.Studio;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class Player : MonoBehaviour
     public float bounceStrength = 0.5f;
     public float bounceEasingSpeed = 5.0f;
 
-    float interactRange = 2f;
+    float interactRadius = 0.5f;
     IInteractable interactable;
     public Transform PlayerCarryPosition;
     public CommandBlock CarryObject;
@@ -28,10 +30,17 @@ public class Player : MonoBehaviour
 
     [SerializeField] LayerMask interactableMask;
 
+    float oldSin = 0.0f;
+
+    //audio
+    private EventInstance playerFootsteps;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<PlayerController>();
+
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.player_footsteps);
     }
 
     // Update is called once per frame
@@ -70,7 +79,25 @@ public class Player : MonoBehaviour
         Vector3 meshTarget = Vector3.zero;
         if (movingThisFrame)
         {
-            meshTarget.y += (Mathf.Sin(Time.time * bounceSpeed)) * bounceStrength;
+            float newSin = (Mathf.Sin(Time.time * bounceSpeed));
+            meshTarget.y += newSin * bounceStrength;
+
+            if (newSin < 0.0f && oldSin > 0.0f)
+            {
+                if(Random.Range(0, 101) < 100)
+                {
+                    if (CarryObject)
+                    {
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_walkBox);
+                    }
+                    else
+                    {
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_walk);
+                    }
+                }
+            }
+            oldSin = newSin;
+
         }
         else
         {
@@ -109,6 +136,7 @@ public class Player : MonoBehaviour
         {
             moveParticle.Stop();
         }
+        UpdateSound(Velocity);
     }
 
     public void Interact()
@@ -127,24 +155,53 @@ public class Player : MonoBehaviour
 
     void InteractTrace()
     {
-        Debug.DrawRay(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward * interactRange, Color.blue);
+        Vector3 origin = transform.position + transform.forward * interactRadius;
+        Collider[] hits = Physics.OverlapSphere(origin, interactRadius, interactableMask, QueryTriggerInteraction.Collide);
 
-        Ray r = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange, interactableMask, QueryTriggerInteraction.Collide))
+        if (hits.Length == 0)
         {
-            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+            interactable?.LookAway(this);
+            interactable = null;
+            return;
+        }
+
+        IInteractable bestCandidate = null;
+        float bestScore = float.MinValue;
+
+        foreach (Collider hit in hits)
+        {
+            if (!hit.TryGetComponent(out IInteractable candidate))
+                continue;
+
+
+            Vector3 toTarget = (hit.transform.position - transform.position);
+            toTarget.y = 0.0f;
+
+            float distance = toTarget.magnitude;
+
+            Vector3 direction = toTarget.normalized;
+;
+            float alignment = Vector3.Dot(transform.forward, direction); // 1 = perfectly in front
+
+            if (alignment < Mathf.Cos(40f * Mathf.Deg2Rad))
+                continue;
+
+            float score = (alignment * 1.0f) + (1.0f / distance * 0.5f); // tune weights
+
+            if (score > bestScore)
             {
-                if (interactable != interactObj)
-                {
-                    interactable?.LookAway(this);
-                    interactable = interactObj;
-                    interactable.LookAt(this);
-                }
+                bestScore = score;
+                bestCandidate = candidate;
             }
-            else
+        }
+
+        if (bestCandidate != null)
+        {
+            if (interactable != bestCandidate)
             {
                 interactable?.LookAway(this);
-                interactable = null;
+                interactable = bestCandidate;
+                interactable.LookAt(this);
             }
         }
         else
@@ -160,7 +217,10 @@ public class Player : MonoBehaviour
             Drop();
         
         if (!interactable.IsTweening)
+        {
             CarryObject = interactable.Pickup(this);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.player_pick_up, transform.position);
+        }
     }
 
     public void Throw()
@@ -171,9 +231,12 @@ public class Player : MonoBehaviour
         CarryObject.GetComponent<BoxCollider>().enabled = true;
         CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_throw);
+
+
         CarryObject = null;
 
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.item, transform.position);
+        //AudioManager.instance.PlayOneShot(FMODEvents.instance.item, transform.position);
     }
 
     void Drop()
@@ -182,8 +245,29 @@ public class Player : MonoBehaviour
         CarryObject.transform.SetParent(null);
         CarryObject.GetComponent<Rigidbody>().isKinematic = false;
         CarryObject.GetComponent<BoxCollider>().enabled = true;
-        CarryObject.GetComponent<Rigidbody>().AddForce(-transform.forward * 5.0f, ForceMode.Impulse);
+        CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 3.0f, ForceMode.Impulse);
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_drop);
 
         CarryObject = null;
     }
+
+    private void UpdateSound(Vector3 velocity)
+    {
+        if (velocity.x != 0.0f || velocity.z != 0.0f)
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
 }

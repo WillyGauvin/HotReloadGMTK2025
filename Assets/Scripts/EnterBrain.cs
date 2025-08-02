@@ -54,16 +54,20 @@ public class EnterBrain : MonoBehaviour
 
         Tween shrinkTween = player.gameObject.transform.DOScale(0.01f, 1.0f);
         Tween moveTween = player.gameObject.transform.DOMove(transform.position, 1.0f);
+        yield return moveTween.WaitForPosition(0.5f);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_tank_entry);
 
         yield return shrinkTween.WaitForCompletion();
         yield return moveTween.WaitForCompletion();
+
+        AudioManager.instance.SetAmbienceParameter("ambience_transition", 0.0f);
+        AudioManager.instance.StartMuffle();
 
 
         player.transform.localScale = Vector3.one;
 
         player.transform.position = BrainEnterTransform.position;
         player.transform.rotation = BrainEnterTransform.rotation;
-        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_TankEntry, BrainEnterTransform.position);
 
         if (player.CarryObject)
         {
@@ -130,6 +134,8 @@ public class EnterBrain : MonoBehaviour
             else
             {
                 Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
+                yield return new WaitForSeconds(0.3f);
+                //AudioManager.instance.PlayOneShot(FMODEvents.instance.item_throw);
             }
 
             yield return new WaitForSeconds(2.0f);
