@@ -5,11 +5,12 @@ using DG.Tweening;
 public class EnterBrain : MonoBehaviour
 {
     [SerializeField] Transform BrainEnterTransform;
+    ConveyorBelt StartingBelt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        StartingBelt = BrainEnterTransform.GetComponent<ExitBrain>().StartingBelt;
     }
 
     // Update is called once per frame
@@ -72,7 +73,6 @@ public class EnterBrain : MonoBehaviour
 
     IEnumerator MoveBox(CommandBlock Box)
     {
-
         Box.IsTeleporting = true;
         Box.GetComponent<BoxCollider>().isTrigger = true;
         Box.GetComponent<Rigidbody>().isKinematic = true;
@@ -91,8 +91,31 @@ public class EnterBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
+        ConveyorBelt currentBelt = StartingBelt;
 
+        while (currentBelt.heldBox != null)
+        {
+            currentBelt = currentBelt.GetNextBelt();
+            if (currentBelt == StartingBelt)
+            {
+                currentBelt = null;
+                break;
+            }
+        }
+
+        if (currentBelt)
+        {
+            Debug.Log(currentBelt.gameObject.name);
+
+
+            Tween moveMove = Box.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 10.0f).SetSpeedBased(true);
+            yield return moveMove.WaitForCompletion();
+            currentBelt.PickupBox(Box, false);
+        }
+        else
+        {
+            Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
+        }
         yield return new WaitForSeconds(2.0f);
 
         Box.IsTeleporting = false;

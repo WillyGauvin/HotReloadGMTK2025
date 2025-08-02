@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Robot: {fileID: 0}
+  StartingBelt: {fileID: 8082584994873386876}
 --- !u!1 &5510925830051760867
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +917,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 28598711560623401, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
   m_PrefabInstance: {fileID: 4172365294160916287}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8082584994873386876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5317664955212073027, guid: 06b9d571ef489f14299d7354d72971f6, type: 3}
+  m_PrefabInstance: {fileID: 4172365294160916287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58624879745f7042a5c2c95de925237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4577298623031802826
 PrefabInstance:
   m_ObjectHideFlags: 0

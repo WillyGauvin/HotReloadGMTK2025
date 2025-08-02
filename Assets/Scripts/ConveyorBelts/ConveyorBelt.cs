@@ -41,11 +41,14 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
     {
         if (other.TryGetComponent<CommandBlock>(out CommandBlock box) && other.GetComponentInParent<Player>() == null)
         {
-            PickupBox(box, false);
+            if (!box.IsTeleporting)
+            {
+                PickupBox(box, false);
+            }
         }
     }
 
-    private void PickupBox(CommandBlock box, bool isSwapping)
+    public void PickupBox(CommandBlock box, bool isSwapping)
     {
         if (HeldBox != null && !isSwapping)
             return;

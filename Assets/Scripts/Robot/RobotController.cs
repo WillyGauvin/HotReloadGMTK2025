@@ -127,7 +127,6 @@ public class RobotController : MonoBehaviour
         Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3.0f, collidableSurfaces))
         {
-            Debug.Log(hit.collider.gameObject);
             return false;
         }
         else
