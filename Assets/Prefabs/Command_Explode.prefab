@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 16ed25859d4999c40948173eb6a30dfd, type: 2}
     - target: {fileID: 4325591935064536565, guid: 6964c5b6c7fcb944d84ade8901710ee3, type: 3}
       propertyPath: inputType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4699375574208733598, guid: 6964c5b6c7fcb944d84ade8901710ee3, type: 3}
       propertyPath: m_Name

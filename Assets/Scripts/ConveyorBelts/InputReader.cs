@@ -84,7 +84,6 @@ public class InputReader : MonoBehaviour
         {
             currentBelt.PopBlock();
             currentBelt = currentBelt.GetNextBelt();
-            yield return new WaitForSeconds(0.1f);
         }
 
         yield return null;
