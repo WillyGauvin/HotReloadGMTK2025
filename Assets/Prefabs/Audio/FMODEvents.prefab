@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8315564110766815439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6814533401729965110}
+  - component: {fileID: 7316417981335050077}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6814533401729965110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315564110766815439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7316417981335050077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315564110766815439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2d4b5a06dc8e94684dfc530f292e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ambience>k__BackingField:
+    Guid:
+      Data1: -1670949272
+      Data2: 1244087347
+      Data3: -417035589
+      Data4: 2025930342
+    Path: event:/Music/music_level
+  <gameMusic>k__BackingField:
+    Guid:
+      Data1: -1670949272
+      Data2: 1244087347
+      Data3: -417035589
+      Data4: 2025930342
+    Path: event:/Music/music_level
+  <menuMusic>k__BackingField:
+    Guid:
+      Data1: 563221583
+      Data2: 1132800573
+      Data3: 823380120
+      Data4: 961672553
+    Path: event:/Music/music_menu
+  <item>k__BackingField:
+    Guid:
+      Data1: 421123207
+      Data2: 1197860849
+      Data3: -1449540218
+      Data4: 1824578832
+    Path: event:/SFX/Items/item_sfx
+  <player_Actions>k__BackingField:
+    Guid:
+      Data1: 1151358106
+      Data2: 1206868146
+      Data3: -1087123041
+      Data4: -88229608
+    Path: event:/SFX/Player Voice/player_actions
+  <player_Footsteps>k__BackingField:
+    Guid:
+      Data1: 1284125186
+      Data2: 1215309191
+      Data3: 379658636
+      Data4: 1976483338
+    Path: event:/SFX/Player Movement/Footsteps/player_footsteps
+  <player_TankEntry>k__BackingField:
+    Guid:
+      Data1: 221328869
+      Data2: 1270599923
+      Data3: 1626829205
+      Data4: -733805133
+    Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_entry
+  <player_TankExit>k__BackingField:
+    Guid:
+      Data1: -1140372722
+      Data2: 1142263265
+      Data3: 814260373
+      Data4: 1645213106
+    Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_exit
+  <tank_Driving>k__BackingField:
+    Guid:
+      Data1: -329739392
+      Data2: 1164400962
+      Data3: -1903879283
+      Data4: -627911318
+    Path: event:/SFX/Tank Movement/tank_driving
+  <tank_Commands>k__BackingField:
+    Guid:
+      Data1: -749846134
+      Data2: 1170365950
+      Data3: 218658216
+      Data4: 1956627279
+    Path: event:/SFX/Tank Voices/tank_commands
+  <pressurePlate>k__BackingField:
+    Guid:
+      Data1: -626341055
+      Data2: 1080661534
+      Data3: 788916125
+      Data4: -1158600829
+    Path: event:/SFX/Pressure Plate/pressure_plate
+  <drawBridge>k__BackingField:
+    Guid:
+      Data1: 1154316907
+      Data2: 1211634097
+      Data3: 1941167765
+      Data4: -1983990147
+    Path: event:/SFX/Draw Bridge/draw_bridge
+  <menuClick>k__BackingField:
+    Guid:
+      Data1: 1154316907
+      Data2: 1211634097
+      Data3: 1941167765
+      Data4: -1983990147
+    Path: event:/SFX/Draw Bridge/draw_bridge

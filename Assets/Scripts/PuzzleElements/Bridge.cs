@@ -3,6 +3,8 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 
 public class Bridge : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class Bridge : MonoBehaviour
 
     private HashSet<GameObject> validObjectsInTrigger = new HashSet<GameObject>();
 
+    private EventInstance bridgeSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +38,10 @@ public class Bridge : MonoBehaviour
         {
             collider.enabled = false;
         }
+
+        bridgeSound = AudioManager.instance.CreateInstance(FMODEvents.instance.drawBridge);
+        FMOD.ATTRIBUTES_3D attributes = FMODUnity.RuntimeUtils.To3DAttributes(gameObject);
+        bridgeSound.set3DAttributes(attributes);
     }
 
     private void OpenBridge()
@@ -79,6 +87,9 @@ public class Bridge : MonoBehaviour
 
     IEnumerator CR_OpenBridge()
     {
+        bridgeSound.setParameterByName("bridge_state", 0);
+        bridgeSound.start();
+
         foreach (BoxCollider collider in bridgeColliders)
         {
             collider.enabled = true;
@@ -103,6 +114,9 @@ public class Bridge : MonoBehaviour
 
     IEnumerator CR_CloseBridge()
     {
+        bridgeSound.setParameterByName("bridge_state", 1);
+        bridgeSound.start();
+
         isClosing = true;
 
         foreach (BoxCollider collider in bridgeColliders)

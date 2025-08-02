@@ -42,6 +42,7 @@ public class EnterBrain : MonoBehaviour
 
     IEnumerator MovePlayer(Player player)
     {
+
         player.IsControllable = false;
 
         player.gameObject.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
@@ -53,10 +54,12 @@ public class EnterBrain : MonoBehaviour
         yield return shrinkTween.WaitForCompletion();
         yield return moveTween.WaitForCompletion();
 
+
         player.transform.localScale = Vector3.one;
 
         player.transform.position = BrainEnterTransform.position;
         player.transform.rotation = BrainEnterTransform.rotation;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_TankEntry, BrainEnterTransform.position);
 
         Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 0.5f);
 

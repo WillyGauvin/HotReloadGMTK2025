@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/ambience.bank
   Name: ambience
   StudioPath: bank:/ambience
-  lastModified: 638896666703572924
+  lastModified: 638896791034409494
   FileSizes: []
   Exists: 1
---- !u!114 &-7614937574192087068
+--- !u!114 &-7833968951459563968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,24 +28,158 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/music_fog
+  m_Name: event:/SFX/Draw Bridge/draw_bridge
   m_EditorClassIdentifier: 
-  Path: event:/Music/music_fog
+  Path: event:/SFX/Draw Bridge/draw_bridge
   Guid:
-    Data1: -1670949272
-    Data2: 1244087347
-    Data3: -417035589
-    Data4: 2025930342
+    Data1: 1154316907
+    Data2: 1211634097
+    Data3: 1941167765
+    Data4: -1983990147
   Banks:
-  - {fileID: 4868953197658503835}
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4222162308683243280}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7480094433153870462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_menu/level_music
+  m_EditorClassIdentifier: 
+  Name: level_music
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 355142699
+    data2: 3788748839
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - level
+  - level_finish
+  - level_fail
+  Exists: 1
+--- !u!114 &-6969105734735077770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tank Movement/tank_driving
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tank Movement/tank_driving
+  Guid:
+    Data1: -329739392
+    Data2: 1164400962
+    Data3: -1903879283
+    Data4: -627911318
+  Banks:
+  - {fileID: -2822455953754918049}
   IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2690639313410814209}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11630
+--- !u!114 &-6193057938012899037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/pressure_plate/pressure_plate_state
+  m_EditorClassIdentifier: 
+  Name: pressure_plate_state
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3866377559
+    data2: 2670610905
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4706214255887178665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/music_level/level_music
+  m_EditorClassIdentifier: 
+  Name: level_music
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 355142699
+    data2: 3788748839
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - level
+  - level_finish
+  - level_fail
+  Exists: 1
+--- !u!114 &-4283257769108769352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Menu/menu_item_click
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Menu/menu_item_click
+  Guid:
+    Data1: 1489186375
+    Data2: 1182049577
+    Data3: -1726643057
+    Data4: 1168595571
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 202087
---- !u!114 &-3706497135991448501
+  Length: 0
+--- !u!114 &-4076726418118956414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,20 +189,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/sfx_door_open
+  m_Name: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_exit
   m_EditorClassIdentifier: 
-  Path: event:/SFX/sfx_door_open
+  Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_exit
   Guid:
-    Data1: 1505637863
-    Data2: 1332754639
-    Data3: 2129949109
-    Data4: -1713848530
+    Data1: -1140372722
+    Data2: 1142263265
+    Data3: 814260373
+    Data4: 1645213106
   Banks:
   - {fileID: -2822455953754918049}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3275227300136215759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player Voice/player_actions
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player Voice/player_actions
+  Guid:
+    Data1: 1151358106
+    Data2: 1206868146
+    Data3: -1087123041
+    Data4: -88229608
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1250403326968946317}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -87,10 +249,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/sfx.bank
   Name: sfx
   StudioPath: bank:/sfx
-  lastModified: 638896666701295724
+  lastModified: 638896791034523347
   FileSizes: []
   Exists: 1
---- !u!114 &-2222674565128795172
+--- !u!114 &-1838259666672444386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,24 +261,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/ambience_birds
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/tank_commands/tank_state
   m_EditorClassIdentifier: 
-  Path: event:/Ambience/ambience_birds
-  Guid:
-    Data1: -1704987901
-    Data2: 1197358736
-    Data3: -1130788686
-    Data4: 2004883384
-  Banks:
-  - {fileID: -8380898984210447881}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 56000
+  Name: tank_state
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1911423745
+    data2: 1645565145
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - command_executed
+  - command_instantly_executed
+  - command_line_sped_up
+  Exists: 1
 --- !u!114 &-1273709788111292505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,9 +294,36 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638896666701283033
+  lastModified: 638896791034282901
   FileSizes: []
   Exists: 1
+--- !u!114 &-790372411588589894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_entry
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_entry
+  Guid:
+    Data1: 221328869
+    Data2: 1270599923
+    Data3: 1626829205
+    Data4: -733805133
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,23 +343,159 @@ MonoBehaviour:
   - {fileID: 4868953197658503835}
   - {fileID: -2822455953754918049}
   EditorEvents:
-  - {fileID: -2222674565128795172}
-  - {fileID: -7614937574192087068}
-  - {fileID: -3706497135991448501}
+  - {fileID: 6042291716680965818}
+  - {fileID: 5889109023666909173}
+  - {fileID: 7049667601151314517}
+  - {fileID: 7550021539337813338}
+  - {fileID: -4076726418118956414}
+  - {fileID: 6102309685558700270}
+  - {fileID: -4283257769108769352}
+  - {fileID: -7833968951459563968}
+  - {fileID: -6969105734735077770}
+  - {fileID: 2768205867842571445}
+  - {fileID: 4072171794806603890}
+  - {fileID: -3275227300136215759}
+  - {fileID: -790372411588589894}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1273709788111292505}
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638896666703572924
+  cacheTime: 638896791034523347
   SerializableEventsDict:
-  - key: event:/Ambience/ambience_birds
+  - key: event:/Ambience/ambience_transition
     index: 0
-  - key: event:/Music/music_fog
+  - key: event:/Music/music_menu
     index: 1
-  - key: event:/SFX/sfx_door_open
+  - key: event:/Music/music_level
     index: 2
+  - key: event:/SFX/Player Movement/Footsteps/player_footsteps
+    index: 3
+  - key: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_exit
+    index: 4
+  - key: event:/SFX/Pressure Plate/pressure_plate
+    index: 5
+  - key: event:/SFX/Menu/menu_item_click
+    index: 6
+  - key: event:/SFX/Draw Bridge/draw_bridge
+    index: 7
+  - key: event:/SFX/Tank Movement/tank_driving
+    index: 8
+  - key: event:/SFX/Items/item_sfx
+    index: 9
+  - key: event:/SFX/Tank Voices/tank_commands
+    index: 10
+  - key: event:/SFX/Player Voice/player_actions
+    index: 11
+  - key: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_entry
+    index: 12
+--- !u!114 &1250403326968946317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/player_actions/player_action
+  m_EditorClassIdentifier: 
+  Name: player_action
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 2317198311
+    data2: 3112353006
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - walk
+  - walk_with_box
+  - throw
+  - drop
+  - pick_up
+  - random_chatter
+  Exists: 1
+--- !u!114 &1296116116551106867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/item_sfx/item_state
+  m_EditorClassIdentifier: 
+  Name: item_state
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1437713634
+    data2: 1194832826
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - item_drop
+  - item_throw
+  Exists: 1
+--- !u!114 &1520924546563347442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ambience_transition/ambience_transition
+  m_EditorClassIdentifier: 
+  Name: ambience_transition
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 127834165
+    data2: 3862221859
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1735682618376401941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/player_footsteps/player_position
+  m_EditorClassIdentifier: 
+  Name: player_position
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2861894502
+    data2: 1289715043
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - inside
+  - outside
+  Exists: 1
 --- !u!114 &1849028034053486528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,10 +511,114 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638896666701051422
+  lastModified: 638896791034296113
   FileSizes:
   - Name: 
-    Value: 1258
+    Value: 2326
+  Exists: 1
+--- !u!114 &2690639313410814209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/tank_driving/tank_movement
+  m_EditorClassIdentifier: 
+  Name: tank_movement
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3564291486
+    data2: 302929524
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2768205867842571445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Items/item_sfx
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Items/item_sfx
+  Guid:
+    Data1: 421123207
+    Data2: 1197860849
+    Data3: -1449540218
+    Data4: 1824578832
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1296116116551106867}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4072171794806603890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tank Voices/tank_commands
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tank Voices/tank_commands
+  Guid:
+    Data1: -749846134
+    Data2: 1170365950
+    Data3: 218658216
+    Data4: 1956627279
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -1838259666672444386}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4222162308683243280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/draw_bridge/bridge_state
+  m_EditorClassIdentifier: 
+  Name: bridge_state
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2437497563
+    data2: 3156758312
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &4868953197658503835
 MonoBehaviour:
@@ -206,6 +635,146 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/music.bank
   Name: music
   StudioPath: bank:/music
-  lastModified: 638896666703527064
+  lastModified: 638896791034477029
   FileSizes: []
   Exists: 1
+--- !u!114 &5889109023666909173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/music_menu
+  m_EditorClassIdentifier: 
+  Path: event:/Music/music_menu
+  Guid:
+    Data1: 563221583
+    Data2: 1132800573
+    Data3: 823380120
+    Data4: 961672553
+  Banks:
+  - {fileID: 4868953197658503835}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7480094433153870462}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15906
+--- !u!114 &6042291716680965818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/ambience_transition
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/ambience_transition
+  Guid:
+    Data1: 922632421
+    Data2: 1164189686
+    Data3: -590851711
+    Data4: 913150179
+  Banks:
+  - {fileID: -8380898984210447881}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1520924546563347442}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 75999
+--- !u!114 &6102309685558700270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pressure Plate/pressure_plate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pressure Plate/pressure_plate
+  Guid:
+    Data1: -626341055
+    Data2: 1080661534
+    Data3: 788916125
+    Data4: -1158600829
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6193057938012899037}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7049667601151314517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/music_level
+  m_EditorClassIdentifier: 
+  Path: event:/Music/music_level
+  Guid:
+    Data1: -1670949272
+    Data2: 1244087347
+    Data3: -417035589
+    Data4: 2025930342
+  Banks:
+  - {fileID: 4868953197658503835}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4706214255887178665}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 114121
+--- !u!114 &7550021539337813338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player Movement/Footsteps/player_footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player Movement/Footsteps/player_footsteps
+  Guid:
+    Data1: 1284125186
+    Data2: 1215309191
+    Data3: 379658636
+    Data4: 1976483338
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1735682618376401941}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

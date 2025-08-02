@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
     {
         if (playerReachGoal && robotReachGoal)
         {
+            AudioManager.instance.SetMusicArea(States_Music.level_finish);
             isLevelBeaten = true;
             StartCoroutine(PlayNextLevel());
         }
@@ -98,6 +99,8 @@ public class LevelManager : MonoBehaviour
     public IEnumerator ResetCurrentLevel()
     {
         isLevelBeaten = false;
+
+        AudioManager.instance.SetMusicArea(States_Music.level_fail);
 
         sceneTransition.SetTrigger("Start");
 

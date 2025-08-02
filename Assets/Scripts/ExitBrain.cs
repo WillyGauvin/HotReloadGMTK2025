@@ -52,6 +52,9 @@ public class ExitBrain : MonoBehaviour
         player.transform.position = Robot.transform.position;
         player.transform.rotation = Robot.rotation * Quaternion.Euler(0, 180f, 0);
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.player_TankExit, Robot.position);
+
+
         moveTween = player.transform.DOMove(Robot.position - Robot.forward * 2.0f, 0.5f);
         Tween scaleTween = player.transform.DOScale(1.0f, 0.5f);
 

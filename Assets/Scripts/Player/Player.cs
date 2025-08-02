@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -180,6 +181,8 @@ public class Player : MonoBehaviour
         CarryObject.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
 
         CarryObject = null;
+
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.item, transform.position);
     }
 
     void Drop()

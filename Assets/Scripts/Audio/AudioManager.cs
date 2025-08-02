@@ -48,8 +48,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //InitializeAmbience(FMODEvents.instance.ambience);
-        //InitializeMusic(FMODEvents.instance.music);
+        InitializeAmbience(FMODEvents.instance.ambience);
+        InitializeMusic(FMODEvents.instance.gameMusic);
     }
 
     private void Update()
@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
     private void InitializeAmbience(EventReference ambienceEventReference)
     {
         ambienceEventInstance = CreateInstance(ambienceEventReference);
-        ambienceEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+
         ambienceEventInstance.start();
     }
 
@@ -77,11 +77,10 @@ public class AudioManager : MonoBehaviour
     {
         ambienceEventInstance.setParameterByName(parameterName, parameterValue);
     }
-
-    //public void SetMusicArea(MusicArea area)
-    //{
-    //    musicEventInstance.setParameterByName("area", (float)area);
-    //}
+    public void SetMusicArea(States_Music area)
+    {
+        musicEventInstance.setParameterByName("level_music", (float)area);
+    }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {

@@ -1598,7 +1598,7 @@ MonoBehaviour:
       Data2: 1244087347
       Data3: -417035589
       Data4: 2025930342
-    Path: event:/Music/music_fog
+    Path: event:/Music/music_level
   <doorOpening>k__BackingField:
     Guid:
       Data1: 1505637863
