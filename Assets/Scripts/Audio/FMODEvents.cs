@@ -5,11 +5,14 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Snapshots")]
-    [field: SerializeField] public EventReference muffle { get; private set; }
 
     [field: Header("Ambience")]
     [field: SerializeField] public EventReference ambience { get; private set; }
+
+    [field: Header("Death")]
+    [field: SerializeField] public EventReference player_splash { get; private set; }
+    [field: SerializeField] public EventReference robot_splash { get; private set; }
+    [field: SerializeField] public EventReference robot_hitwall { get; private set; }
 
     [field: Header("Music")]
     [field: SerializeField] public EventReference gameMusic { get; private set; }
@@ -20,14 +23,18 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference drawBridge_raise { get; private set; }
 
     [field: Header("Items")]
+    [field: SerializeField] public EventReference block_spawner { get; private set; }
+    [field: SerializeField] public EventReference gate_pop { get; private set; }
     [field: SerializeField] public EventReference item_drop { get; private set; }
     [field: SerializeField] public EventReference item_throw { get; private set; }
+    [field: SerializeField] public EventReference key_collect { get; private set; }
 
     [field: Header("Menu")]
     [field: SerializeField] public EventReference menu_click { get; private set; }
 
     [field: Header("Player Movement")]
-    [field: SerializeField] public EventReference player_footsteps { get; private set; }
+    [field: SerializeField] public EventReference player_footsteps_outside { get; private set; }
+    [field: SerializeField] public EventReference player_footsteps_tank { get; private set; }
     [field: SerializeField] public EventReference player_tank_entry { get; private set; }
     [field: SerializeField] public EventReference player_tank_exit { get; private set; }
 
@@ -51,6 +58,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference command_instantly_executed { get; private set; }
     [field: SerializeField] public EventReference command_readerSpedUp { get; private set; }
 
+    [field: Header("Snapshots")]
+    [field: SerializeField] public EventReference muffle { get; private set; }
 
 
 

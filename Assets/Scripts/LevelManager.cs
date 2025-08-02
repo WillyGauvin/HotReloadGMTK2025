@@ -57,6 +57,11 @@ public class LevelManager : MonoBehaviour
     {
         Instantiate(waterSplashParticle, other.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
 
+        if (other.GetComponent<RobotController>())
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.robot_splash);
+        else
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
+
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
         {
             StartCoroutine(ResetCurrentLevel());

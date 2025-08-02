@@ -107,13 +107,20 @@ MonoBehaviour:
       Data3: -1726643057
       Data4: 1168595571
     Path: event:/SFX/Menu/menu_item_click
-  <player_footsteps>k__BackingField:
+  <player_footsteps_outside>k__BackingField:
     Guid:
-      Data1: 1284125186
-      Data2: 1215309191
-      Data3: 379658636
-      Data4: 1976483338
-    Path: event:/SFX/Player Movement/Footsteps/player_footsteps
+      Data1: 2077223513
+      Data2: 1262912174
+      Data3: -135119226
+      Data4: -1839180652
+    Path: event:/SFX/Player Movement/Footsteps/footsteps_outside
+  <player_footsteps_tank>k__BackingField:
+    Guid:
+      Data1: 612178660
+      Data2: 1088811772
+      Data3: -1142667847
+      Data4: 142876983
+    Path: event:/SFX/Player Movement/Footsteps/footsteps_tank_inside
   <player_tank_entry>k__BackingField:
     Guid:
       Data1: 221328869

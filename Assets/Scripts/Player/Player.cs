@@ -31,16 +31,10 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask interactableMask;
 
     float oldSin = 0.0f;
-
-    //audio
-    private EventInstance playerFootsteps;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<PlayerController>();
-
-        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.player_footsteps);
     }
 
     // Update is called once per frame
@@ -84,7 +78,13 @@ public class Player : MonoBehaviour
 
             if (newSin < 0.0f && oldSin > 0.0f)
             {
-                if(Random.Range(0, 101) < 100)
+                if (isInBrain)
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.player_footsteps_tank);
+                else
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.player_footsteps_outside);
+
+
+                if (Random.Range(0, 101) < 25)
                 {
                     if (CarryObject)
                     {
@@ -136,7 +136,6 @@ public class Player : MonoBehaviour
         {
             moveParticle.Stop();
         }
-        UpdateSound(Velocity);
     }
 
     public void Interact()
@@ -251,23 +250,4 @@ public class Player : MonoBehaviour
 
         CarryObject = null;
     }
-
-    private void UpdateSound(Vector3 velocity)
-    {
-        if (velocity.x != 0.0f || velocity.z != 0.0f)
-        {
-            PLAYBACK_STATE playbackState;
-            playerFootsteps.getPlaybackState(out playbackState);
-
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                playerFootsteps.start();
-            }
-        }
-        else
-        {
-            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
-        }
-    }
-
 }
