@@ -23,6 +23,12 @@ public class RobotController : MonoBehaviour
     private Color bulbStationaryColor;
     private bool hasReachedGoal;
 
+    [Header("Debug Prefabs")]
+    [SerializeField] GameObject ForwardBlockPrefab;
+    [SerializeField] GameObject ClockwisePrefab;
+    [SerializeField] GameObject CounterClockwisePrefab;
+    [SerializeField] GameObject PopPrefab;
+
     private void Awake()
     {
         if (instance != null)
@@ -116,6 +122,9 @@ public class RobotController : MonoBehaviour
                     yield return rotateCounterClockwiseTween.WaitForCompletion();
                     ActivateBulb(false);
                     break;
+                case InputType.Pop:
+                    InputReader.instance.PopBlocks();
+                    break;
             }
         }
     }
@@ -129,7 +138,6 @@ public class RobotController : MonoBehaviour
         Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3.0f, collidableSurfaces))
         {
-            Debug.Log(hit.collider.gameObject);
             return false;
         }
         else
@@ -167,4 +175,31 @@ public class RobotController : MonoBehaviour
         }
         hitParticle.Play();
     }
+
+    public void DEBUG_SpawnBlock(InputType type)
+    {
+        GameObject prefab;
+
+        switch (type)
+        {
+            case InputType.Forward:
+                prefab = ForwardBlockPrefab;
+                break;
+            case InputType.Rotate_Clockwise:
+                prefab = ClockwisePrefab;
+                break;
+            case InputType.Rotate_CounterClockwise:
+                prefab = CounterClockwisePrefab;
+                break;
+            case InputType.Pop:
+                prefab = PopPrefab;
+                break;
+            default:
+                prefab = ForwardBlockPrefab;
+                break;
+        }
+
+        Object.Instantiate(prefab, transform.position + new Vector3(0.0f, 4.0f, 0.0f), transform.rotation);
+    }
 }
+

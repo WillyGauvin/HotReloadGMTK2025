@@ -116,6 +116,10 @@ MonoBehaviour:
   hitParticle: {fileID: 6290378089940650426}
   robotBulb: {fileID: 8715688423489385364}
   bulbMoveColor: {r: 0, g: 1, b: 0.5674212, a: 1}
+  ForwardBlockPrefab: {fileID: 4699375574208733598, guid: 6964c5b6c7fcb944d84ade8901710ee3, type: 3}
+  ClockwisePrefab: {fileID: 8622886643899074999, guid: 9205009b2f833db4da4ba7336b361b9f, type: 3}
+  CounterClockwisePrefab: {fileID: 8622886643899074999, guid: 0ba9f197dfe30c646a882bd1def17dfc, type: 3}
+  PopPrefab: {fileID: 8622886643899074999, guid: 4d485e33a4dc9184bae9f2d1480a00a7, type: 3}
 --- !u!54 &8950746198128587690
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -108,8 +108,6 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         MoveInput = value.Get<Vector2>().normalized;
-        //RuntimeManager.PlayOneShot(FMODEvents.instance.doorOpening, transform.position);
-        //Debug.Log("PlayingSound");
     }
 
     void OnInteract(InputValue value)
@@ -162,6 +160,34 @@ public class PlayerController : MonoBehaviour
     {
 #if UNITY_EDITOR
         RobotController.instance.ReceiveInput(InputType.Forward, true);
+#endif
+    }
+
+    void OnDEBUG_AddInstantForward(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.DEBUG_SpawnBlock(InputType.Forward);
+#endif
+    }
+
+    void OnDEBUG_AddInstantClockWise(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.DEBUG_SpawnBlock(InputType.Rotate_Clockwise);
+#endif
+    }
+
+    void OnDEBUG_AddInstantCounterClockwise(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.DEBUG_SpawnBlock(InputType.Rotate_CounterClockwise);
+#endif
+    }
+
+    void OnDEBUG_AddInstantPop(InputValue value)
+    {
+#if UNITY_EDITOR
+        RobotController.instance.DEBUG_SpawnBlock(InputType.Pop);
 #endif
     }
 

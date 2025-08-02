@@ -17,7 +17,8 @@ public class InputReader : MonoBehaviour
             Debug.LogError("Found more than 1 InputReader in scene");
     }
 
-    [SerializeField] private ConveyorBelt initalBelt;
+    public ConveyorBelt initalBelt;
+    public Transform BrainCenter;
 
     float readerMovementSpeed = 4.0f;
     float readerMaxMovementSpeed = 10.0f;
@@ -64,5 +65,27 @@ public class InputReader : MonoBehaviour
             if (!isSpedUp)
                 yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void PopBlocks()
+    {
+        StartCoroutine(Pop());
+    }
+
+    IEnumerator Pop()
+    {
+        ConveyorBelt currentBelt = initalBelt;
+
+        currentBelt.PopBlock();
+
+        currentBelt = currentBelt.GetNextBelt();
+
+        while(currentBelt != initalBelt)
+        {
+            currentBelt.PopBlock();
+            currentBelt = currentBelt.GetNextBelt();
+        }
+
+        yield return null;
     }
 }

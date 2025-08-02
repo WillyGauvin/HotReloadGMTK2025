@@ -43,7 +43,10 @@ public class CommandBlockSpawner : MonoBehaviour
         moveTween = myCommandBlock.transform.DOMoveY(placementTransform.position.y, 1.0f);
         yield return moveTween.WaitForCompletion();
 
-        myCommandBlock.GetComponent<Rigidbody>().isKinematic = false;
-        myCommandBlock.GetComponent<BoxCollider>().enabled = true;
+        if (myCommandBlock)
+        {
+            myCommandBlock.GetComponent<Rigidbody>().isKinematic = false;
+            myCommandBlock.GetComponent<BoxCollider>().enabled = true;
+        }
     }
 }
