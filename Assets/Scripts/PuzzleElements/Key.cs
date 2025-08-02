@@ -34,6 +34,7 @@ public class Key : MonoBehaviour
     {
         Vector3 OriginalPosition = transform.position;
 
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.key_collect);
         Tween rotation = transform.DORotate(new Vector3(0.0f, 2880.0f, 0.0f), 2.0f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
         Tween moveToGate = transform.DOJump(myGate.transform.position, 3.0f, 2, 1.5f);
 

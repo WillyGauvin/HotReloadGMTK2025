@@ -83,7 +83,16 @@ public class RobotController : MonoBehaviour
 
             InputType input;
 
-            input = (priorityQueue.Count > 0) ? priorityQueue.Dequeue() : regularQueue.Dequeue();
+            if (priorityQueue.Count > 0)
+            {
+                input = priorityQueue.Dequeue();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.command_instantly_executed);
+            }
+            else
+            {
+                input = regularQueue.Dequeue();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.command_executed);
+            }
 
             switch (input)
             {
@@ -103,8 +112,10 @@ public class RobotController : MonoBehaviour
                     {
                         ActivateBulb(true);
                         ActivateHitParticle();
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.robot_hitwall);
                         Tween shake = transform.DOShakePosition(0.5f, transform.forward * 0.25f, 10, 40.0f, false, true, ShakeRandomnessMode.Harmonic);
                         yield return shake.WaitForCompletion();
+                        AudioManager.instance.PlayOneShot(FMODEvents.instance.voice_wallHit);
                         ActivateBulb(false);
                     }
                     break;

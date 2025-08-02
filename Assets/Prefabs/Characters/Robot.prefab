@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BrainEnterTransform: {fileID: 0}
+  ParticleBurstPrefab: {fileID: 7209744293241007655, guid: 81f9f868ff7e44247ba774752702c888, type: 3}
 --- !u!65 &5041194191572569138
 BoxCollider:
   m_ObjectHideFlags: 0

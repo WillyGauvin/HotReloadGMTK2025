@@ -20,7 +20,9 @@ public class Gate : MonoBehaviour
         yield return raiseUp.WaitForPosition(0.5f);
         Tween pop = transform.DOScale(0.0f, 0.25f).SetEase(Ease.InBack, 2.0f);
         yield return pop.WaitForCompletion();
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.gate_pop);
         yield return raiseUp.WaitForCompletion();
+
 
         //yield return new WaitForSeconds(2.0f);
 

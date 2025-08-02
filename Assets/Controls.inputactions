@@ -344,7 +344,7 @@
                     "name": "",
                     "id": "299b5788-2cc4-498e-993e-f57b87ab5c46",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.3,pressPoint=0.3)",
                     "processors": "",
                     "groups": "",
                     "action": "SpeedUpRobot",
