@@ -548,7 +548,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/sfx.bank
   Name: sfx
   StudioPath: bank:/sfx
-  lastModified: 638897512534515727
+  lastModified: 638897549065287309
   FileSizes: []
   Exists: 1
 --- !u!114 &-2739610682514064689
@@ -647,7 +647,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638897512534306220
+  lastModified: 638897549065080741
   FileSizes: []
   Exists: 1
 --- !u!114 &-790372411588589894
@@ -773,7 +773,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638897512534515727
+  cacheTime: 638897549065287309
   SerializableEventsDict:
   - key: event:/Ambience/ambience_transition
     index: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638897512534320960
+  lastModified: 638897549065091514
   FileSizes:
   - Name: 
     Value: 4030

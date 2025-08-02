@@ -88,12 +88,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckCompletedLevel()
     {
         if (playerReachGoal && robotReachGoal)
         {
             AudioManager.instance.SetMusicArea(States_Music.level_finish);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_satisfied);
             isLevelBeaten = true;
             StartCoroutine(PlayNextLevel());
         }
@@ -101,10 +101,12 @@ public class LevelManager : MonoBehaviour
     public void PlayerReachGoal(bool hasReachedGoal)
     {
         playerReachGoal = hasReachedGoal;
+        CheckCompletedLevel();
     }
     public void RobotReachGoal(bool hasReachedGoal)
     {
         robotReachGoal = hasReachedGoal;
+        CheckCompletedLevel();
     }
 
     private IEnumerator PlayNextLevel()
