@@ -11,9 +11,14 @@ public class ScreenTransition : MonoBehaviour
     [SerializeField] private RectTransform conveyorPatternArrow;
     [SerializeField] private RectTransform fullWipeIn;
     [SerializeField] private RectTransform fullWipeOut;
+    [SerializeField] private RectTransform wipeBoxL;
+    [SerializeField] private RectTransform wipeBoxR;
+    [SerializeField] private Vector2[] boxWipeDirections;
+    [SerializeField] private float boxWipeShakeMagnitude = 32f;
 
     private RectTransform[] conveyorPattern;
     private static int lastSceneTransitionType = 0;
+    private static Vector2 currentBoxWipeDirection;
 
     public void Start()
     {
@@ -49,6 +54,8 @@ public class ScreenTransition : MonoBehaviour
         var sequence = DOTween.Sequence();
         if (!isSceneStart)
         {
+            lastSceneTransitionType = 1;
+
             var wipeTween = fullWipeIn.DOAnchorPosX(0f, 0.4f);
             sequence.Insert(0.6f, wipeTween);
             fullWipeIn.anchoredPosition = new Vector2(-canvasWidth.rect.width - 128f, 0f);
@@ -62,7 +69,6 @@ public class ScreenTransition : MonoBehaviour
                     .DOScale(new Vector3(-0.5f, 0.5f, 1f), 0.1f)
                     .SetEase(Ease.OutCubic));
             }
-            lastSceneTransitionType = 1;
         }
         else
         {
@@ -89,14 +95,34 @@ public class ScreenTransition : MonoBehaviour
 
     public void PlayRestartTransition(bool isSceneStart = false)
     {
+        var sequence = DOTween.Sequence();
+        wipeBoxL.gameObject.SetActive(true);
+        wipeBoxR.gameObject.SetActive(true);
         if (!isSceneStart)
         {
+            currentBoxWipeDirection = boxWipeDirections[Random.Range(0, boxWipeDirections.Length)];
             lastSceneTransitionType = 2;
+
+            wipeBoxL.anchoredPosition = Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * -0.5f, +canvasWidth.rect.height));
+            wipeBoxR.anchoredPosition = Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * +0.5f, -canvasWidth.rect.height));
+            sequence.Insert(0f, wipeBoxL.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic));
+            sequence.Insert(0f, wipeBoxR.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic));
+            sequence.Insert(0.6f, DOTween.To(() => boxWipeShakeMagnitude, ShakeBoxes, 0f, 0.4f));
         }
         else
         {
-            
+            wipeBoxL.anchoredPosition = new Vector2(0f, 0f);
+            wipeBoxR.anchoredPosition = new Vector2(0f, 0f);
+            sequence.Insert(0f, wipeBoxL.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * -0.5f, -canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic));
+            sequence.Insert(0f, wipeBoxR.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * +0.5f, +canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic));
         }
-        PlayNextLevelTransition(isSceneStart);
+        sequence.Play();
+    }
+
+    public void ShakeBoxes(float magnitude)
+    {
+        var vec = new Vector2(Random.value - 0.5f, Random.value - 0.5f) * magnitude;
+        wipeBoxL.anchoredPosition = vec;
+        wipeBoxR.anchoredPosition = vec;
     }
 }
