@@ -82,16 +82,16 @@ public class WinCondition : MonoBehaviour
 
     private void ActivateAnimation(bool activate)
     {
-        
-        if (activate)
-        {
-            flagAnimation = flag.transform.DOScale(flagScaleAmount, .5f).SetLoops(-1, LoopType.Yoyo);
-        }
-        else
-        {
-            flagAnimation.Kill();
-            flag.transform.DOScale(1.0f, .2f);
-            flagAnimation = null;
-        }
+        if (flag != null)
+            if (activate)
+            {
+                flagAnimation = flag.transform.DOScale(flagScaleAmount, .5f).SetLoops(-1, LoopType.Yoyo);
+            }
+            else
+            {
+                flagAnimation.Kill();
+                flag.transform.DOScale(1.0f, .2f);
+                flagAnimation = null;
+            }
     }
 }
