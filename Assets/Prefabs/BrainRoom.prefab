@@ -380,6 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8415966640298989623}
+  - component: {fileID: 1846587285068067627}
   m_Layer: 0
   m_Name: BrainRoom
   m_TagString: Ground
@@ -406,6 +407,19 @@ Transform:
   - {fileID: 2225912385718667886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1846587285068067627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415213009129810201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a4a34c9a4548046b1ac5dc5f07a3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faceMesh: {fileID: 2901516049123075918}
 --- !u!1 &4069254014496653782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1052,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 795572cb488903f498df98675f805a86, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9326051353ffb884d806657626349a0a, type: 2}
     - target: {fileID: 919132149155446097, guid: 795572cb488903f498df98675f805a86, type: 3}
       propertyPath: m_Name
       value: RobotBrain
@@ -1090,6 +1108,11 @@ PrefabInstance:
       addedObject: {fileID: 8545605310557195929}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 795572cb488903f498df98675f805a86, type: 3}
+--- !u!23 &2901516049123075918 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 795572cb488903f498df98675f805a86, type: 3}
+  m_PrefabInstance: {fileID: 4577298623031802826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4039567950071241761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 795572cb488903f498df98675f805a86, type: 3}

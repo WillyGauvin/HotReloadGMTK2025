@@ -157,6 +157,7 @@ public class EnterBrain : MonoBehaviour
         yield return rotateBox.WaitForCompletion();
         AudioManager.instance.PlayOneShot(FMODEvents.instance.explosionBlock);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_ouch);
+        RobotController.instance.SetExpression(RobotExpression.Ouch);
         Instantiate(ParticleBurstPrefab, Box.transform.position, Quaternion.Euler(-90.0f, 0.0f, 0.0f));
         Tween explosion = Box.transform.DOPunchScale(new Vector3(2.0f, 2.0f, 2.0f), 0.5f);
 
@@ -167,5 +168,6 @@ public class EnterBrain : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
+        RobotController.instance.SetExpression(RobotExpression.Angry);
     }
 }

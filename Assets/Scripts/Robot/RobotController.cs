@@ -4,6 +4,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
 
+[System.Serializable]
+public enum RobotExpression
+{
+    Neutral,
+    Angry,
+    Happy,
+    Ouch,
+}
+
 public class RobotController : MonoBehaviour
 {
     public static RobotController instance { get; private set; }
@@ -23,11 +32,19 @@ public class RobotController : MonoBehaviour
     private Color bulbStationaryColor;
     private bool hasReachedGoal;
 
+    public Material expression_neutral;
+    public Material expression_angry;
+    public Material expression_happy;
+    public Material expression_ouch;
+    public MeshRenderer faceMesh;
+    Coroutine expressionCoroutine = null;
+
     [Header("Debug Prefabs")]
     [SerializeField] GameObject ForwardBlockPrefab;
     [SerializeField] GameObject ClockwisePrefab;
     [SerializeField] GameObject CounterClockwisePrefab;
     [SerializeField] GameObject PopPrefab;
+
 
     private void Awake()
     {
@@ -178,6 +195,45 @@ public class RobotController : MonoBehaviour
         }
     }
 
+    public void SetExpression(RobotExpression expression)
+    {
+        if (expressionCoroutine != null)
+        {
+            SetExpressionMat(expression_neutral);
+            StopCoroutine(expressionCoroutine);
+        }
+        expressionCoroutine = StartCoroutine(SetExpression_Async(expression));
+    }
+
+    private IEnumerator SetExpression_Async(RobotExpression expression)
+    {
+        switch (expression)
+        {
+            case RobotExpression.Neutral:
+                SetExpressionMat(expression_neutral);
+                break;
+            case RobotExpression.Angry:
+                SetExpressionMat(expression_angry);
+                break;
+            case RobotExpression.Happy:
+                SetExpressionMat(expression_happy);
+                break;
+            case RobotExpression.Ouch:
+                SetExpressionMat(expression_ouch);
+                break;
+        }
+        yield return new WaitForSeconds(1.0f);
+        SetExpressionMat(expression_neutral);
+    }
+
+    private void SetExpressionMat(Material mat)
+    {
+        Material[] materials = faceMesh.materials;
+        materials[1] = mat;
+        faceMesh.materials = materials;
+        RobotBrain.instance.SetExpression(mat);
+    }
+
     void ActivateHitParticle()
     {
         if (hitParticle.isPlaying)
@@ -185,6 +241,8 @@ public class RobotController : MonoBehaviour
             hitParticle.Stop();
         }
         hitParticle.Play();
+
+        SetExpression(RobotExpression.Ouch);
     }
 
     public void DEBUG_SpawnBlock(InputType type)
