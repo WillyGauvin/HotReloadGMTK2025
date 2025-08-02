@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,8 +23,8 @@ public class ScreenTransition : MonoBehaviour
     private RectTransform[] conveyorPattern;
     private bool transitionPlaying = false;
     private static int lastSceneTransitionType = 0;
-    private static Vector2 currentBoxWipeDirection;
-    private static Color currentTransitionColor;
+    private static Vector2 currentBoxWipeDirection = Vector2.zero;
+    private static Color currentTransitionColor = Color.white;
 
     public void Start()
     {
@@ -32,26 +33,24 @@ public class ScreenTransition : MonoBehaviour
         conveyorPatternArrow.gameObject.SetActive(false);
         if (lastSceneTransitionType == 1)
         {
-            lastSceneTransitionType = 0;
             PlayNextLevelTransition(true);
         }
         if (lastSceneTransitionType == 2)
         {
-            lastSceneTransitionType = 0;
             PlayRestartTransition(true);
         }
     }
 
     public void PlayNextLevelTransition(bool isSceneStart = false)
     {
-        if (transitionPlaying)
-        {
-            return;
-        }
-        transitionPlaying = true;
-
         if (conveyorPattern == null || conveyorPattern.Length == 0)
         {
+            if (transitionPlaying)
+            {
+                return;
+            }
+            transitionPlaying = true;
+
             var patternItemCount = Mathf.CeilToInt(canvasWidth.rect.width / PatternInterval);
             conveyorPattern = new RectTransform[patternItemCount];
             for (var i = 0; i < patternItemCount; i++)
@@ -72,12 +71,9 @@ public class ScreenTransition : MonoBehaviour
             }
             lastSceneTransitionType = 1;
 
-            var wipeTween = fullWipeIn.DOAnchorPosX(0f, 0.4f);
-            sequence.Insert(0.6f, wipeTween);
+            sequence.Insert(0.6f, fullWipeIn.DOAnchorPosX(0f, 0.4f));
             fullWipeIn.anchoredPosition = new Vector2(-canvasWidth.rect.width - 128f, 0f);
             fullWipeIn.GetComponent<Graphic>().color = currentTransitionColor;
-            fullWipeIn.gameObject.SetActive(true);
-            fullWipeOut.gameObject.SetActive(false);
             for (var i = 0; i < conveyorPattern.Length; i++)
             {
                 var startTime = i * 0.05f;
@@ -91,16 +87,11 @@ public class ScreenTransition : MonoBehaviour
         }
         else
         {
-            var wipeTween = fullWipeOut.DOAnchorPosX(canvasWidth.rect.width + 128f, 0.4f);
-            sequence.Insert(0f, wipeTween);
+            lastSceneTransitionType = 0;
+
+            sequence.Insert(0f, fullWipeOut.DOAnchorPosX(canvasWidth.rect.width + 128f, 0.4f));
             fullWipeOut.anchoredPosition = new Vector2(-128f, 0f);
             fullWipeOut.GetComponent<Graphic>().color = currentTransitionColor;
-            fullWipeIn.gameObject.SetActive(false);
-            fullWipeOut.gameObject.SetActive(true);
-            wipeTween.OnComplete(() => {
-                fullWipeIn.gameObject.SetActive(false);
-                fullWipeOut.gameObject.SetActive(false);
-            });
             for (var i = 0; i < conveyorPattern.Length; i++)
             {
                 var startTime = 0.6f + i * 0.05f;
@@ -117,37 +108,46 @@ public class ScreenTransition : MonoBehaviour
 
     public void PlayRestartTransition(bool isSceneStart = false)
     {
-        if (transitionPlaying)
-        {
-            return;
-        }
-        transitionPlaying = true;
+        StartCoroutine(PlayRestartTransitionAsync(isSceneStart));
+    }
 
-        var sequence = DOTween.Sequence();
-        wipeBoxL.gameObject.SetActive(true);
-        wipeBoxR.gameObject.SetActive(true);
+    public IEnumerator PlayRestartTransitionAsync(bool isSceneStart = false)
+    {
         if (!isSceneStart)
         {
+            if (transitionPlaying)
+            {
+                yield break;
+            }
+            transitionPlaying = true;
+
             currentTransitionColor = transitionRandomColors[Random.Range(0, transitionRandomColors.Length)];
             currentBoxWipeDirection = boxWipeDirections[Random.Range(0, boxWipeDirections.Length)];
             lastSceneTransitionType = 2;
 
             wipeBoxL.anchoredPosition = Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * -0.5f, +canvasWidth.rect.height));
             wipeBoxR.anchoredPosition = Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * +0.5f, -canvasWidth.rect.height));
-            sequence.Insert(0f, wipeBoxL.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic));
-            sequence.Insert(0f, wipeBoxR.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic));
-            sequence.Insert(0.6f, DOTween.To(() => boxWipeShakeMagnitude, ShakeBoxes, 0f, 0.4f));
+            wipeBoxL.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic);
+            wipeBoxR.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.InCubic);
+
+            wipeBoxL.GetComponent<Graphic>().color = currentTransitionColor;
+            wipeBoxR.GetComponent<Graphic>().color = currentTransitionColor;
+
+            yield return new WaitForSeconds(0.6f);
+            DOTween.To(() => boxWipeShakeMagnitude, ShakeBoxes, 0f, 0.4f);
         }
         else
         {
+            lastSceneTransitionType = 0;
+
             wipeBoxL.anchoredPosition = new Vector2(0f, 0f);
             wipeBoxR.anchoredPosition = new Vector2(0f, 0f);
-            sequence.Insert(0f, wipeBoxL.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * -0.5f, -canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic));
-            sequence.Insert(0f, wipeBoxR.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * +0.5f, +canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic));
+            wipeBoxL.GetComponent<Graphic>().color = currentTransitionColor;
+            wipeBoxR.GetComponent<Graphic>().color = currentTransitionColor;
+
+            wipeBoxL.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * -0.5f, -canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic);
+            wipeBoxR.DOAnchorPos(Vector2.Scale(currentBoxWipeDirection, new Vector2(canvasWidth.rect.width * +0.5f, +canvasWidth.rect.height)), 0.4f).SetEase(Ease.InOutCubic);
         }
-        wipeBoxL.GetComponent<Graphic>().color = currentTransitionColor;
-        wipeBoxR.GetComponent<Graphic>().color = currentTransitionColor;
-        sequence.Play();
     }
 
     public void ShakeBoxes(float magnitude)
