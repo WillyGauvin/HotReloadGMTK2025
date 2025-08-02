@@ -109,15 +109,6 @@ public class Player : MonoBehaviour
         {
             moveParticle.Stop();
         }
-
-        //rb.linearVelocity = Velocity;
-
-        //if (rb.linearVelocity.magnitude > moveSpeed)
-        //{
-        //    Vector3 Direction = rb.linearVelocity.normalized;
-        //    Debug.Log("Limiting");
-        //    rb.linearVelocity = Direction * moveSpeed;
-        //}
     }
 
     public void Interact()

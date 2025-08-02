@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum InputType { Forward, Rotate_Clockwise, Rotate_CounterClockwise };
+public enum InputType { Forward, Rotate_Clockwise, Rotate_CounterClockwise, Pop };
 public class CommandBlock : MonoBehaviour, IInteractable
 {
     public InputType inputType;

@@ -16,11 +16,18 @@ public class RobotController : MonoBehaviour
     [SerializeField] LayerMask collidableSurfaces;
 
     public List<ParticleSystem> moveParticles = new List<ParticleSystem>();
+    public ParticleSystem hitParticle;
 
     public MeshRenderer robotBulb;
     public Color bulbMoveColor;
     private Color bulbStationaryColor;
     private bool hasReachedGoal;
+
+    [Header("Debug Prefabs")]
+    [SerializeField] GameObject ForwardBlockPrefab;
+    [SerializeField] GameObject ClockwisePrefab;
+    [SerializeField] GameObject CounterClockwisePrefab;
+    [SerializeField] GameObject PopPrefab;
 
     private void Awake()
     {
@@ -95,6 +102,7 @@ public class RobotController : MonoBehaviour
                     else
                     {
                         ActivateBulb(true);
+                        ActivateHitParticle();
                         Tween shake = transform.DOShakePosition(0.5f, transform.forward * 0.25f, 10, 40.0f, false, true, ShakeRandomnessMode.Harmonic);
                         yield return shake.WaitForCompletion();
                         ActivateBulb(false);
@@ -114,6 +122,9 @@ public class RobotController : MonoBehaviour
                     yield return rotateCounterClockwiseTween.WaitForCompletion();
                     ActivateBulb(false);
                     break;
+                case InputType.Pop:
+                    InputReader.instance.PopBlocks();
+                    break;
             }
         }
     }
@@ -127,7 +138,6 @@ public class RobotController : MonoBehaviour
         Ray ray = new Ray(transform.position + new Vector3(0.0f, 0.5f, 0.0f), transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3.0f, collidableSurfaces))
         {
-            Debug.Log(hit.collider.gameObject);
             return false;
         }
         else
@@ -156,4 +166,40 @@ public class RobotController : MonoBehaviour
             }
         }
     }
+
+    void ActivateHitParticle()
+    {
+        if (hitParticle.isPlaying)
+        {
+            hitParticle.Stop();
+        }
+        hitParticle.Play();
+    }
+
+    public void DEBUG_SpawnBlock(InputType type)
+    {
+        GameObject prefab;
+
+        switch (type)
+        {
+            case InputType.Forward:
+                prefab = ForwardBlockPrefab;
+                break;
+            case InputType.Rotate_Clockwise:
+                prefab = ClockwisePrefab;
+                break;
+            case InputType.Rotate_CounterClockwise:
+                prefab = CounterClockwisePrefab;
+                break;
+            case InputType.Pop:
+                prefab = PopPrefab;
+                break;
+            default:
+                prefab = ForwardBlockPrefab;
+                break;
+        }
+
+        Object.Instantiate(prefab, transform.position + new Vector3(0.0f, 4.0f, 0.0f), transform.rotation);
+    }
 }
+

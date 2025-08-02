@@ -50,6 +50,8 @@ MonoBehaviour:
   playerCanUse: 1
   isCompleted: 0
   winConditionTrigger: {fileID: 1482363795354843653}
+  flag: {fileID: 8534155854383137918}
+  flagScaleAmount: 1.2
 --- !u!65 &1482363795354843653
 BoxCollider:
   m_ObjectHideFlags: 0
