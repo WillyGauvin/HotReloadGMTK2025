@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class EnterBrain : MonoBehaviour
 {
@@ -36,14 +37,16 @@ public class EnterBrain : MonoBehaviour
             if (!box.IsTeleporting)
             {
                 StartCoroutine(MoveBox(box));
-                RobotController.instance.ReceiveInput(box.inputType, true);
+                if (box.inputType != InputType.Pop)
+                {
+                    RobotController.instance.ReceiveInput(box.inputType, true);
+                }
             }
         }
     }
 
     IEnumerator MovePlayer(Player player)
     {
-
         player.IsControllable = false;
 
         player.gameObject.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
@@ -61,6 +64,15 @@ public class EnterBrain : MonoBehaviour
         player.transform.position = BrainEnterTransform.position;
         player.transform.rotation = BrainEnterTransform.rotation;
         AudioManager.instance.PlayOneShot(FMODEvents.instance.player_TankEntry, BrainEnterTransform.position);
+
+        if (player.CarryObject)
+        {
+            if (player.CarryObject.inputType == InputType.Pop)
+            {
+                StartCoroutine(DoPop(player.CarryObject));
+                player.CarryObject = null;
+            }
+        }
 
         Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 0.5f);
 
@@ -91,33 +103,54 @@ public class EnterBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        ConveyorBelt currentBelt = StartingBelt;
-
-        while (currentBelt.heldBox != null)
+        if (Box.inputType == InputType.Pop)
         {
-            currentBelt = currentBelt.GetNextBelt();
-            if (currentBelt == StartingBelt)
-            {
-                currentBelt = null;
-                break;
-            }
-        }
-
-        if (currentBelt)
-        {
-            Debug.Log(currentBelt.gameObject.name);
-
-
-            Tween moveMove = Box.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 10.0f).SetSpeedBased(true);
-            yield return moveMove.WaitForCompletion();
-            currentBelt.PickupBox(Box, false);
+            StartCoroutine(DoPop(Box));
         }
         else
         {
-            Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
-        }
-        yield return new WaitForSeconds(2.0f);
+            ConveyorBelt currentBelt = StartingBelt;
 
-        Box.IsTeleporting = false;
+            while (currentBelt.heldBox != null)
+            {
+                currentBelt = currentBelt.GetNextBelt();
+                if (currentBelt == StartingBelt)
+                {
+                    currentBelt = null;
+                    break;
+                }
+            }
+
+            if (currentBelt)
+            {
+                Tween moveMove = Box.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 10.0f).SetSpeedBased(true);
+                yield return moveMove.WaitForCompletion();
+                currentBelt.PickupBox(Box, false);
+            }
+            else
+            {
+                Box.GetComponent<Rigidbody>().AddForce(BrainEnterTransform.forward * 20.0f, ForceMode.Impulse);
+            }
+
+            yield return new WaitForSeconds(2.0f);
+
+            Box.IsTeleporting = false;
+        }
+    }
+
+    IEnumerator DoPop(CommandBlock Box)
+    {
+        Box.IsTeleporting = true;
+        Box.transform.SetParent(null);
+        Box.GetComponent<BoxCollider>().enabled = false;
+        Box.GetComponent<Rigidbody>().isKinematic = true;
+        Tween moveMove = Box.transform.DOMove(InputReader.instance.BrainCenter.position, 10.0f).SetSpeedBased(true);
+        Tween rotateBox = Box.transform.DORotateQuaternion(InputReader.instance.BrainCenter.rotation, 10.0f).SetSpeedBased(true);
+        yield return moveMove.WaitForCompletion();
+        yield return rotateBox.WaitForCompletion();
+        Tween explosion = Box.transform.DOPunchScale(new Vector3(2.0f, 2.0f, 2.0f), 0.5f);
+        RobotController.instance.ReceiveInput(InputType.Pop, true);
+        yield return explosion.WaitForCompletion();
+        Destroy(Box.gameObject);
     }
 }

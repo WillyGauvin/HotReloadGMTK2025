@@ -7,7 +7,6 @@ public class ExitBrain : MonoBehaviour
     [SerializeField] Transform Robot;
     public ConveyorBelt StartingBelt;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

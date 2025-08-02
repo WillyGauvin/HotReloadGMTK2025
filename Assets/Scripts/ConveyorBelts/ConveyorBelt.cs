@@ -10,6 +10,7 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
     public CommandBlock heldBox;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject ghostBlock;
+    private bool isPopping = false;
 
     public CommandBlock HeldBox 
     { 
@@ -32,8 +33,10 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
             if (hit.collider.TryGetComponent<ConveyorBelt>(out ConveyorBelt nextBelt))
                 return nextBelt;
             else
+                Debug.Log(gameObject.name + " Could not find next belt");
                 return null;
         }
+        Debug.Log(gameObject.name + " Could not find next belt");
         return null;
     }
 
@@ -91,5 +94,37 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
     public void LookAway(Player player)
     {
         ghostBlock.SetActive(false);
+    }
+
+    public void PopBlock()
+    {
+        StartCoroutine(PopBlockAnimation());
+    }
+
+    IEnumerator PopBlockAnimation()
+    {
+        if (heldBox)
+        {
+            if (!isPopping)
+            {
+                isPopping = true;
+                heldBox.transform.SetParent(null);
+
+                Tween popTween = heldBox.transform.DOJump(beltholdTransform.position + beltholdTransform.right * 4.0f, 3.0f, 1, 1.0f);
+                GetNextBelt().PopBlock();
+                yield return popTween.WaitForCompletion();
+
+                if (heldBox)
+                {
+                    heldBox.GetComponent<Rigidbody>().isKinematic = false;
+                    heldBox.GetComponent<BoxCollider>().enabled = true;
+                    heldBox = null;
+                }
+                isPopping = false;
+            }
+
+        }
+        yield return null;
+
     }
 }
