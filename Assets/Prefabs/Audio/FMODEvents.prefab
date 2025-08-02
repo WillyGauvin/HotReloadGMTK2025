@@ -1,0 +1,347 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8315564110766815439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6814533401729965110}
+  - component: {fileID: 7316417981335050077}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6814533401729965110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315564110766815439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7316417981335050077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315564110766815439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2d4b5a06dc8e94684dfc530f292e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ambience>k__BackingField:
+    Guid:
+      Data1: 922632421
+      Data2: 1164189686
+      Data3: -590851711
+      Data4: 913150179
+    Path: event:/Ambience/ambience_transition
+  <gameMusic>k__BackingField:
+    Guid:
+      Data1: -1670949272
+      Data2: 1244087347
+      Data3: -417035589
+      Data4: 2025930342
+    Path: event:/Music/music_level
+  <menuMusic>k__BackingField:
+    Guid:
+      Data1: 563221583
+      Data2: 1132800573
+      Data3: 823380120
+      Data4: 961672553
+    Path: event:/Music/music_menu
+  <player_splash>k__BackingField:
+    Guid:
+      Data1: -823503371
+      Data2: 1166131685
+      Data3: -1798293368
+      Data4: -1057865043
+    Path: event:/SFX/Death/char hits water
+  <robot_splash>k__BackingField:
+    Guid:
+      Data1: 1107875574
+      Data2: 1289627865
+      Data3: 1704690108
+      Data4: -269395525
+    Path: event:/SFX/Death/robot hit water
+  <robot_hitwall>k__BackingField:
+    Guid:
+      Data1: -1370963117
+      Data2: 1116081827
+      Data3: -1242765175
+      Data4: -65871904
+    Path: event:/SFX/Death/robot hits wall
+  <drawBridge_lower>k__BackingField:
+    Guid:
+      Data1: -1593056464
+      Data2: 1180417968
+      Data3: -1031308412
+      Data4: 323962289
+    Path: event:/SFX/Draw Bridge/draw_bridge_lower
+  <drawBridge_raise>k__BackingField:
+    Guid:
+      Data1: 1154316907
+      Data2: 1211634097
+      Data3: 1941167765
+      Data4: -1983990147
+    Path: event:/SFX/Draw Bridge/draw_bridge_raise
+  <commandline_speedUp>k__BackingField:
+    Guid:
+      Data1: 263293370
+      Data2: 1296864398
+      Data3: 1665826187
+      Data4: -197131232
+    Path: event:/SFX/Inside_tank/command_line_speed_up
+  <commandline_slowDown>k__BackingField:
+    Guid:
+      Data1: 212909164
+      Data2: 1227578940
+      Data3: 1704314008
+      Data4: 1696515775
+    Path: event:/SFX/Inside_tank/command_line_speed_down
+  <explosionBlock>k__BackingField:
+    Guid:
+      Data1: 229304483
+      Data2: 1153713942
+      Data3: 418106556
+      Data4: 1620764534
+    Path: event:/SFX/Inside_tank/explosion block
+  <block_spawner>k__BackingField:
+    Guid:
+      Data1: -1166801843
+      Data2: 1194326413
+      Data3: -1405536087
+      Data4: -1733764517
+    Path: event:/SFX/Items/block_spwaner
+  <gate_pop>k__BackingField:
+    Guid:
+      Data1: -585861413
+      Data2: 1236739825
+      Data3: -1792873846
+      Data4: -810372999
+    Path: event:/SFX/Items/gate pop
+  <item_drop>k__BackingField:
+    Guid:
+      Data1: 846697801
+      Data2: 1233531904
+      Data3: 263487878
+      Data4: 607630627
+    Path: event:/SFX/Items/item_drop
+  <item_throw>k__BackingField:
+    Guid:
+      Data1: 470465818
+      Data2: 1319748749
+      Data3: -1469860930
+      Data4: 1660340323
+    Path: event:/SFX/Items/item_throw
+  <key_collect>k__BackingField:
+    Guid:
+      Data1: 1699727898
+      Data2: 1218669495
+      Data3: 958231703
+      Data4: 1874342482
+    Path: event:/SFX/Items/key collect
+  <menu_click>k__BackingField:
+    Guid:
+      Data1: 1489186375
+      Data2: 1182049577
+      Data3: -1726643057
+      Data4: 1168595571
+    Path: event:/SFX/Menu/menu_item_click
+  <player_footsteps_outside>k__BackingField:
+    Guid:
+      Data1: 2077223513
+      Data2: 1262912174
+      Data3: -135119226
+      Data4: -1839180652
+    Path: event:/SFX/Player Movement/Footsteps/footsteps_outside
+  <player_footsteps_tank>k__BackingField:
+    Guid:
+      Data1: 612178660
+      Data2: 1088811772
+      Data3: -1142667847
+      Data4: 142876983
+    Path: event:/SFX/Player Movement/Footsteps/footsteps_tank_inside
+  <player_tank_entry>k__BackingField:
+    Guid:
+      Data1: 221328869
+      Data2: 1270599923
+      Data3: 1626829205
+      Data4: -733805133
+    Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_entry
+  <player_tank_exit>k__BackingField:
+    Guid:
+      Data1: -1140372722
+      Data2: 1142263265
+      Data3: 814260373
+      Data4: 1645213106
+    Path: event:/SFX/Player Movement/Tank Enter-Exit/player_tank_exit
+  <player_drop>k__BackingField:
+    Guid:
+      Data1: 1156678986
+      Data2: 1183741522
+      Data3: 769000350
+      Data4: 1790043990
+    Path: event:/SFX/Player Voice/player__drop
+  <player_action>k__BackingField:
+    Guid:
+      Data1: 1260394284
+      Data2: 1203289260
+      Data3: 553468560
+      Data4: 1962791773
+    Path: event:/SFX/Player Voice/player_action
+  <player_pick_up>k__BackingField:
+    Guid:
+      Data1: 799555825
+      Data2: 1134134681
+      Data3: -570330960
+      Data4: -816969770
+    Path: event:/SFX/Player Voice/player_pick_up
+  <player_random_chatter>k__BackingField:
+    Guid:
+      Data1: -1777282078
+      Data2: 1306628540
+      Data3: -1635324005
+      Data4: 705728906
+    Path: event:/SFX/Player Voice/player_random_chatter
+  <player_throw>k__BackingField:
+    Guid:
+      Data1: 600126236
+      Data2: 1217790311
+      Data3: 316170146
+      Data4: 380648079
+    Path: event:/SFX/Player Voice/player_throw
+  <player_walk>k__BackingField:
+    Guid:
+      Data1: -1320157103
+      Data2: 1117486098
+      Data3: 777525177
+      Data4: -174509294
+    Path: event:/SFX/Player Voice/player_walk
+  <player_walkBox>k__BackingField:
+    Guid:
+      Data1: 77577204
+      Data2: 1225465412
+      Data3: 937082805
+      Data4: 1625285617
+    Path: event:/SFX/Player Voice/player_walk_with_box
+  <pressurePlate_pressed>k__BackingField:
+    Guid:
+      Data1: 1989902745
+      Data2: 1325665899
+      Data3: 1641014166
+      Data4: 1100668111
+    Path: event:/SFX/Pressure Plate/pressure_plate_pressed
+  <pressurePlate_released>k__BackingField:
+    Guid:
+      Data1: 782241551
+      Data2: 1235424132
+      Data3: 2127908999
+      Data4: 825295471
+    Path: event:/SFX/Pressure Plate/pressure_plate_released
+  <tank_driving>k__BackingField:
+    Guid:
+      Data1: -329739392
+      Data2: 1164400962
+      Data3: -1903879283
+      Data4: -627911318
+    Path: event:/SFX/Tank Movement/tank_driving
+  <command_executed>k__BackingField:
+    Guid:
+      Data1: 1773226179
+      Data2: 1176526848
+      Data3: -606534524
+      Data4: 1225379002
+    Path: event:/SFX/Tank Voices/commands/command_executed
+  <command_instantly_executed>k__BackingField:
+    Guid:
+      Data1: 825442956
+      Data2: 1262598559
+      Data3: -1250796926
+      Data4: 16366089
+    Path: event:/SFX/Tank Voices/commands/command_instantly_executed
+  <conversation_long>k__BackingField:
+    Guid:
+      Data1: -1627483744
+      Data2: 1111354086
+      Data3: 1312210073
+      Data4: 2134442568
+    Path: event:/SFX/Tank Voices/conversation/conversation_long
+  <conversation_short>k__BackingField:
+    Guid:
+      Data1: 1798234863
+      Data2: 1137788161
+      Data3: 675561895
+      Data4: 1646063978
+    Path: event:/SFX/Tank Voices/conversation/conversation_short
+  <emotion_angry>k__BackingField:
+    Guid:
+      Data1: -1950676955
+      Data2: 1293298451
+      Data3: -1284495968
+      Data4: 456381533
+    Path: event:/SFX/Tank Voices/emotions/agry
+  <emotion_neutral>k__BackingField:
+    Guid:
+      Data1: -1876216980
+      Data2: 1183772646
+      Data3: -937747554
+      Data4: -1846527966
+    Path: event:/SFX/Tank Voices/emotions/neutral
+  <emotion_ouch>k__BackingField:
+    Guid:
+      Data1: 53067029
+      Data2: 1323536158
+      Data3: 800671130
+      Data4: -1033800905
+    Path: event:/SFX/Tank Voices/emotions/ouch
+  <emotion_satisfied>k__BackingField:
+    Guid:
+      Data1: -980473387
+      Data2: 1220376055
+      Data3: -364534891
+      Data4: 790588906
+    Path: event:/SFX/Tank Voices/emotions/satisfied
+  <voice_driving>k__BackingField:
+    Guid:
+      Data1: -722053586
+      Data2: 1161111035
+      Data3: -1289491013
+      Data4: -1658996848
+    Path: event:/SFX/Tank Voices/driving
+  <voice_fallWater>k__BackingField:
+    Guid:
+      Data1: -1064595176
+      Data2: 1169957477
+      Data3: -337806963
+      Data4: 2000216472
+    Path: event:/SFX/Tank Voices/fall_water
+  <voice_wallHit>k__BackingField:
+    Guid:
+      Data1: -2135465089
+      Data2: 1248220065
+      Data3: -949724800
+      Data4: -397086118
+    Path: event:/SFX/Tank Voices/wall_hit
+  <muffle>k__BackingField:
+    Guid:
+      Data1: 1153423444
+      Data2: 1119316227
+      Data3: 789274245
+      Data4: -1116976054
+    Path: snapshot:/outside_muffled

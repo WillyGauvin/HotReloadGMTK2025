@@ -1413,7 +1413,7 @@ MonoBehaviour:
       Data2: 1244087347
       Data3: -417035589
       Data4: 2025930342
-    Path: event:/Music/music_fog
+    Path: event:/Music/music_level
   <doorOpening>k__BackingField:
     Guid:
       Data1: 1505637863
@@ -5244,6 +5244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073b39c8596ab6f4d920b0825afd25e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveInput: {x: 0, y: 0}
 --- !u!54 &2140736848
 Rigidbody:
   m_ObjectHideFlags: 0
