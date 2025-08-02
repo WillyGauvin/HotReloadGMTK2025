@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -13,7 +14,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public bool playerReachGoal;
     [SerializeField] public bool robotReachGoal;
 
-    public Animator sceneTransition;
+    public UnityEvent OnNextLevelTransition;
+    public UnityEvent OnRestartTransition;
     public BoxCollider waterTrigger;
 
     public ParticleSystem waterSplashParticle;
@@ -91,7 +93,7 @@ public class LevelManager : MonoBehaviour
     {
         if (isLevelBeaten)
         {
-            sceneTransition.SetTrigger("Start");
+            OnNextLevelTransition?.Invoke();
 
             yield return new WaitForSeconds(2);
 
@@ -107,7 +109,7 @@ public class LevelManager : MonoBehaviour
 
         AudioManager.instance.SetMusicArea(States_Music.level_fail);
 
-        sceneTransition.SetTrigger("Start");
+        OnRestartTransition?.Invoke();
 
         yield return new WaitForSeconds(1.5f);
 
