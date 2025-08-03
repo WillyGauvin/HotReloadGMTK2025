@@ -97,6 +97,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7316417981335050077, guid: 2221ce73593c52e41a292eb13f1f8719, type: 3}
+      propertyPath: <emotion_ouch>k__BackingField.Path
+      value: event:/SFX/Tank Voices/emotions/pain
+      objectReference: {fileID: 0}
+    - target: {fileID: 7316417981335050077, guid: 2221ce73593c52e41a292eb13f1f8719, type: 3}
+      propertyPath: <emotion_angry>k__BackingField.Path
+      value: event:/SFX/Tank Voices/emotions/angry
+      objectReference: {fileID: 0}
     - target: {fileID: 8315564110766815439, guid: 2221ce73593c52e41a292eb13f1f8719, type: 3}
       propertyPath: m_Name
       value: FMODEvents

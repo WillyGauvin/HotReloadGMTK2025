@@ -22,6 +22,17 @@ public class MenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        pauseMenu = Object.FindFirstObjectByType<PauseMenu>().gameObject;
+        settingsMenu = Object.FindFirstObjectByType<SettingsMenu>().gameObject;
+
+        if (pauseMenu == null)
+        {
+            Debug.Log("Didn't find pause menu");
+        }
+        if (settingsMenu == null)
+        {
+            Debug.Log("Didn't find settings menu");
+        }
         ResetMenus();
     }
 
