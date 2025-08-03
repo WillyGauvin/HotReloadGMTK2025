@@ -1192,7 +1192,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 67.3
+  field of view: 73.6
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3140,6 +3140,10 @@ PrefabInstance:
     - target: {fileID: 3230544100991874624, guid: 10381824cd33b5d41b539e0bbc5a220a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032865393725445953, guid: 10381824cd33b5d41b539e0bbc5a220a, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 73.6
       objectReference: {fileID: 0}
     - target: {fileID: 9032865393725445953, guid: 10381824cd33b5d41b539e0bbc5a220a, type: 3}
       propertyPath: Target.TrackingTarget
