@@ -245,8 +245,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6607614450079591198, guid: 163763feb2b5b144eb9dfb8c313d4124, type: 3}
       propertyPath: currentText
-      value: My commands execute on a loop. Try placing the forward command inside
-        of my brain.
+      value: My commands execute on a loop. Grab the forward command using E, then
+        try placing it inside of my brain.
       objectReference: {fileID: 0}
     - target: {fileID: 6607614450079591198, guid: 163763feb2b5b144eb9dfb8c313d4124, type: 3}
       propertyPath: maxTextBoxDisplayTime

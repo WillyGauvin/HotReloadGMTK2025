@@ -3099,7 +3099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6607614450079591198, guid: 163763feb2b5b144eb9dfb8c313d4124, type: 3}
       propertyPath: currentText
-      value: If you throw a command, it will execute immediately.
+      value: If you throw a command using F, it will execute immediately.
       objectReference: {fileID: 0}
     - target: {fileID: 6885149320386435742, guid: 163763feb2b5b144eb9dfb8c313d4124, type: 3}
       propertyPath: m_Name
