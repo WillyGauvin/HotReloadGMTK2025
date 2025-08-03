@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WillyGauvin\nIzaak A.\nBirchTree\n\ntristanblaskowitz\n\ndon-tnowe\n\t"
+  m_text: "Will Gauvin\nIzaak A.\nBirchTree\n\nTristan Blaskowitz\n\ndon-tnowe\n\t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a186cfadcc0634d94303e044877387, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: a7bddcb50d7f2bf4f98dd9328b15863c, type: 2}
@@ -4101,7 +4101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Programming\n\nArt\nSound & Music\n\nMain menu\n\t"
+  m_text: "Programming\n\nArt\nSound and Music\n\nMain menu\n\t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4a186cfadcc0634d94303e044877387, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: a7bddcb50d7f2bf4f98dd9328b15863c, type: 2}
