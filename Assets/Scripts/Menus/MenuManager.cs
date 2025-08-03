@@ -54,6 +54,8 @@ public class MenuManager : MonoBehaviour
         ResetMenus();
         pauseMenu.SetActive(true);
         PlayerController.instance.SwitchToActionMap(PlayerController.ActionMap.UI);
+        Debug.Log("Paused");
+        AudioManager.instance.SetMusicArea(States_Music.pause);
     }
 
     public void UnPause()
@@ -68,7 +70,11 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1.0f;
             ResetMenus();
             PlayerController.instance.SwitchToActionMap(PlayerController.ActionMap.Player);
+            Debug.Log("Unpaused");
+            AudioManager.instance.SetMusicArea(States_Music.level);
+
         }
+
     }
 
     public void QuitGame()

@@ -99,7 +99,6 @@ public class CommandBlock : MonoBehaviour, IInteractable
         IsTweening = true;
         transform.SetParent(target);
 
-        //transform.SetParent(null);
         Tween moveBlock = transform.DOMove(target.position, 0.5f);
         Tween rotateBlock = transform.DORotateQuaternion(target.rotation * Quaternion.Euler(new Vector3(90.0f, 0.0f, 0.0f)), 0.5f);
         yield return moveBlock.WaitForCompletion();

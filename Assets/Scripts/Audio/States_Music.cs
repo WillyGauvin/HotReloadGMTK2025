@@ -4,5 +4,6 @@ public enum States_Music
 {
     level = 0,
     level_finish = 1,
-    level_fail = 2
+    level_fail = 2,
+    pause = 3,
 }
