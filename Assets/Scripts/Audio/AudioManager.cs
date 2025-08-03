@@ -6,6 +6,7 @@ using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
+    public bool isInMenu = false;
     [Header("Volume")]
     [Range(0, 1)]
     public float masterVolume = 1;
@@ -51,7 +52,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         InitializeAmbience(FMODEvents.instance.ambience);
-        InitializeMusic(FMODEvents.instance.gameMusic);
+        InitializeMusic(isInMenu ? FMODEvents.instance.menuMusic : FMODEvents.instance.gameMusic);
         LoadPlayerPrefs();
         InitializeMuffle();
     }
@@ -95,6 +96,10 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeMuffle()
     {
+        if (!InputReader.instance || !RobotController.instance || PlayerController.instance)
+        {
+            return;
+        }
         float DistanceToBrain = Vector3.Distance(InputReader.instance.transform.position, PlayerController.instance.transform.position);
         float DistanceToWorld = Vector3.Distance(RobotController.instance.transform.position, PlayerController.instance.transform.position);
 
