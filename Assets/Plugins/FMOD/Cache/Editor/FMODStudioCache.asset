@@ -629,7 +629,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638898370336559081
+  lastModified: 638898374810000927
   FileSizes: []
   Exists: 1
 --- !u!114 &-790372411588589894
@@ -784,7 +784,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638898370338095870
+  cacheTime: 638898374811117965
   SerializableEventsDict:
   - key: event:/Ambience/ambience_transition
     index: 0
@@ -944,7 +944,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638898370336566955
+  lastModified: 638898374810008829
   FileSizes:
   - Name: 
     Value: 4428
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/music.bank
   Name: music
   StudioPath: bank:/music
-  lastModified: 638898367363095554
+  lastModified: 638898374811117965
   FileSizes: []
   Exists: 1
 --- !u!114 &4921550072571930555
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   - {fileID: -4706214255887178665}
   MinDistance: 1
   MaxDistance: 20
-  Length: 136860
+  Length: 133122
 --- !u!114 &7317750342814841865
 MonoBehaviour:
   m_ObjectHideFlags: 0
