@@ -1,113 +1,134 @@
-using NUnit.Framework;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
+[RequireComponent(typeof(Transform))]
 public class TextBox : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private TextMeshPro textMesh;
+    [SerializeField] private BoxCollider currentTrigger;
 
     [SerializeField] private string currentText;
-    [SerializeField] private BoxCollider currentTrigger;
-    [SerializeField] private int currentTextIndex = 0;
-    [SerializeField] private int currentTriggerIndex = 0;
-    [SerializeField] private int maxTextBoxDisplayTime = 0;
+    [SerializeField] private int maxTextBoxDisplayTime = 10;
+    [SerializeField] private float charDelay = 0.04f;
+    [SerializeField] private float showDelay = 3f;
 
-    public GameObject speaker;
-    public List<BoxCollider> allTriggers;
-    public List<string> allText;
+    [SerializeField] private TextBox nextTextBox;
+    [SerializeField] private float delayBeforeNextBox = 0.5f;
+
+    [SerializeField] private GameObject speaker;
+    private static GameObject sharedSpeaker;
+
+    private Coroutine activeCoroutine;
 
     private void Awake()
     {
-        if (allTriggers.Count > 0)
-        {
-            foreach (var trigger in allTriggers)
-            {
-                trigger.enabled = false;
-            }
+        if (textMesh == null)
+            Debug.LogError("TextMeshPro reference missing!");
 
-            allTriggers[0].enabled = true;
-            currentTrigger = allTriggers[0];
-        }
-
-        if (allText.Count > 0)
+        if (currentTrigger != null)
         {
-            currentText = allText[0];
+            currentTrigger.enabled = true;
         }
         else
         {
-            Debug.LogError("No Text Added to list of text boxes");
+            Debug.Log("No trigger assigned — textbox will auto-show after delay.");
         }
+    }
+
+    private void Start()
+    {
+        if (speaker != null)
+        {
+            sharedSpeaker = speaker;
+        }
+        else if (sharedSpeaker != null)
+        {
+            speaker = sharedSpeaker;
+        }
+
+        if (speaker != null)
+        {
+            Vector3 newPosition = speaker.transform.position;
+            transform.position = new Vector3(newPosition.x, newPosition.y + 6f, newPosition.z);
+        }
+
+        transform.localScale = Vector3.zero;
+        gameObject.SetActive(false);
+
+        if (currentTrigger == null)
+        {
+            gameObject.SetActive(true);
+            Invoke(nameof(ShowAutomatically), showDelay);
+        }
+    }
+
+    private void ShowAutomatically()
+    {
+        TriggerDisplay();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (currentTrigger != null)
+        if (currentTrigger == null) return;
+
+        if (other.TryGetComponent(out Player _) || other.TryGetComponent(out RobotController _))
         {
-            if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))
-            {
-
-                DisplayNextTextBox();
-
-            }
+            TriggerDisplay();
         }
     }
-    void Start()
+
+    private void OnTriggerExit(Collider other)
     {
-        currentTriggerIndex = 0;
-        currentTextIndex = 0;
-        StartCoroutine(DisplayTextBox());
+        if (currentTrigger == null) return;
+
+        if (other.TryGetComponent(out Player _) || other.TryGetComponent(out RobotController _))
+        {
+            HideTextBox(); // only hide on exit, no coroutine canceling
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerDisplay()
     {
-
+        if (activeCoroutine == null)
+        {
+            activeCoroutine = StartCoroutine(DisplayTextBox());
+        }
     }
 
     IEnumerator DisplayTextBox()
     {
-        if (currentText != null)
+        textMesh.text = "";
+        gameObject.SetActive(true);
+        textMesh.ForceMeshUpdate();
+
+        transform.localScale = Vector3.zero;
+        yield return transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
+
+        for (int i = 0; i < currentText.Length; i++)
         {
-            // If There is a speaker, make it spawn from them into the middle
-            if (speaker)
-            {
-
-                //do thing :)
-                yield return new WaitForSeconds(maxTextBoxDisplayTime);
-            }
-            else
-            {
-
-                //do thing :)
-                yield return new WaitForSeconds(maxTextBoxDisplayTime);
-            }
+            textMesh.text += currentText[i];
+            textMesh.ForceMeshUpdate();
+            yield return new WaitForSeconds(charDelay);
         }
+
+        yield return new WaitForSeconds(maxTextBoxDisplayTime);
+
+        yield return HideTextBox();
+
+        if (nextTextBox != null)
+        {
+            yield return new WaitForSeconds(delayBeforeNextBox);
+            nextTextBox.TriggerDisplay();
+        }
+
+        activeCoroutine = null;
     }
 
-    void HideTextBox()
+    IEnumerator HideTextBox()
     {
-        //hide the text box canvas
-    }
-
-    void DisplayNextTextBox()
-    {
-        if (allTriggers.Count > 0 && allText.Count > 0)
-        {
-            if (currentTriggerIndex < allTriggers.Count - 1)
-            {
-                HideTextBox();
-            }
-            else
-            {
-                currentText = allText[currentTextIndex];
-                currentTrigger = allTriggers[currentTriggerIndex];
-            }
-            StartCoroutine(DisplayTextBox());
-            currentTriggerIndex++;
-            currentTextIndex++;
-        }
+        yield return transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).WaitForCompletion();
+        gameObject.SetActive(false);
     }
 }

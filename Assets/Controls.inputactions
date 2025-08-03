@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ResetLevel",
+                    "type": "Button",
+                    "id": "bd6c0f32-bbe4-4616-9ecf-13109709de9e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "DEBUG_RobotForward",
                     "type": "Button",
                     "id": "b4082100-9c4b-4ecc-b879-f85273482a4a",
@@ -94,15 +103,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ResetLevel",
-                    "type": "Button",
-                    "id": "bd6c0f32-bbe4-4616-9ecf-13109709de9e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "DEBUG_AddInstantForward",
