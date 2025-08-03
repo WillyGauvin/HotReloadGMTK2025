@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] bool ShouldStartMusic = true;
     public InputActionReference waitForActionToStartMusic;
     public bool isInMenu = false;
     [Header("Volume")]
@@ -108,22 +109,37 @@ public class AudioManager : MonoBehaviour
 
     private void InitializeMusic(EventReference musicEventReference)
     {
-        musicEventInstance = CreateInstance(musicEventReference);
-        musicEventInstance.start();
+        if (ShouldStartMusic)
+        {
+            musicEventInstance = CreateInstance(musicEventReference);
+            musicEventInstance.start();
+        }
     }
 
     private void InitializeMuffle()
     {
+        SetAmbienceParameter("ambience_transition", 1.0f);
+
         if (!InputReader.instance || !RobotController.instance || PlayerController.instance)
         {
+            if (!ShouldStartMusic)
+            {
+                SetAmbienceParameter("ambience_transition", 1.0f);
+                EndMuffle();
+            }
             return;
         }
         float DistanceToBrain = Vector3.Distance(InputReader.instance.transform.position, PlayerController.instance.transform.position);
         float DistanceToWorld = Vector3.Distance(RobotController.instance.transform.position, PlayerController.instance.transform.position);
-
+        
         if (DistanceToBrain < DistanceToWorld)
         {
             StartMuffle();
+            SetAmbienceParameter("ambience_transition", 0.0f);
+        }
+        else
+        {
+            SetAmbienceParameter("ambience_transition", 1.0f);
         }
     }
 
