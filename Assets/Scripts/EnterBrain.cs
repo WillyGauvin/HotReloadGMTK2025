@@ -80,7 +80,7 @@ public class EnterBrain : MonoBehaviour
             }
         }
 
-        Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 5.0f, 0.5f);
+        Tween walkForward = player.transform.DOMove(BrainEnterTransform.position + BrainEnterTransform.forward * 7.0f, 0.5f);
 
         yield return walkForward.WaitForCompletion();
 
