@@ -304,6 +304,51 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &5137450929836121142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231623905516900804}
+  - component: {fileID: 6876637836977864136}
+  m_Layer: 0
+  m_Name: ResetHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231623905516900804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137450929836121142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 419953501254604320}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6876637836977864136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137450929836121142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d05ca8fbf27def4f9f5206af0f07039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radialImage: {fileID: 1451496892142858482}
 --- !u!1 &5280302024898056791
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,13 +452,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1417519303449481461}
   - {fileID: 2440887670411044265}
   - {fileID: 2344395455561925166}
   - {fileID: 5355242375265093349}
   - {fileID: 6426128757296184975}
   - {fileID: 4490742858298093592}
   - {fileID: 3760193473944037543}
+  - {fileID: 1417519303449481461}
   m_Father: {fileID: 419953501254604320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -643,7 +688,6 @@ GameObject:
   - component: {fileID: 3350816705604914521}
   - component: {fileID: 4975238887543380078}
   - component: {fileID: 7029320407413375274}
-  - component: {fileID: 999703643116671288}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -665,6 +709,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1200483559831106421}
+  - {fileID: 1231623905516900804}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3350816705604914521
@@ -687,6 +732,7 @@ MonoBehaviour:
   timeNeededToReset: 0
   timeResetHeld: 0
   winConditionList: []
+  resetRadialUI: {fileID: 6876637836977864136}
   playerReachGoal: 0
   robotReachGoal: 0
   OnNextLevelTransition:
@@ -721,7 +767,6 @@ MonoBehaviour:
         m_CallState: 2
   waterTrigger: {fileID: 4975238887543380078}
   waterSplashParticle: {fileID: 7870619482597036342, guid: 8176b55afb4aa734992a74518bf312d7, type: 3}
-  resetRadialUI: {fileID: 999703643116671288}
 --- !u!65 &4975238887543380078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -774,16 +819,3 @@ MonoBehaviour:
   - {r: 0.24572733, g: 0.53, b: 0.20236365, a: 1}
   transitionRandomColorAffectsNextLevel: 1
   boxWipeShakeMagnitude: 32
---- !u!114 &999703643116671288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8708501892187380504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d05ca8fbf27def4f9f5206af0f07039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radialImage: {fileID: 1451496892142858482}

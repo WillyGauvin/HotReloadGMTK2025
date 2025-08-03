@@ -144,13 +144,13 @@ public class PlayerController : MonoBehaviour
     void HoldingReset(InputAction.CallbackContext context)
     {
         LevelManager.instance.isHoldingDownReset = true;
-        LevelManager.instance.resetRadialUI.Show();
+        //LevelManager.instance.resetRadialUI.Show();
     }
 
     void ReleasedReset(InputAction.CallbackContext context)
     {
         LevelManager.instance.isHoldingDownReset = false;
-        LevelManager.instance.resetRadialUI.Hide();
+        //LevelManager.instance.resetRadialUI.Hide();
 
     }
     void OnDEBUG_RobotForward(InputValue value)

@@ -88,17 +88,24 @@ public class LevelManager : MonoBehaviour
             {
                 float fillAmount = timeResetHeld / timeNeededToReset;
                 resetRadialUI.SetFillAmount(fillAmount);
+                if (timeResetHeld >= timeNeededToReset)
+                    resetRadialUI.Show();
             }
         }
         else
         {
             timeResetHeld = 0;
+            if (resetRadialUI != null)
+                resetRadialUI.Hide();
 
         }
 
         if (timeResetHeld >= timeNeededToReset)
         {
             StartCoroutine(ResetCurrentLevel());
+
+            if (resetRadialUI != null)
+                resetRadialUI.Hide();
         }
     }
 
