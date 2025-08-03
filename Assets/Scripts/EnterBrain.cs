@@ -29,7 +29,8 @@ public class EnterBrain : MonoBehaviour
                 StartCoroutine(MovePlayer(player));
                 if (LevelManager.instance.robotReachGoal)
                 {
-                    LevelManager.instance.playerReachGoal = true;
+                    LevelManager.instance.PlayerReachGoal(true);
+
                 }
             }
         }

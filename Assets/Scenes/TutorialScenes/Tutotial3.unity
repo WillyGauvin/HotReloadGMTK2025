@@ -979,6 +979,10 @@ PrefabInstance:
       propertyPath: myBridge
       value: 
       objectReference: {fileID: 2110340441}
+    - target: {fileID: 8442276671879648975, guid: e93815104bb41704c870b26ecde31867, type: 3}
+      propertyPath: 'myBridge.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2110340441}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
