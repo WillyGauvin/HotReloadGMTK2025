@@ -38,13 +38,25 @@ public class PlayerController : MonoBehaviour
         speedUpAction.performed += OnSpeedUp;
         speedUpAction.canceled += OnSlowDown;
 
+        resetLevel.performed += HoldingReset;
+        resetLevel.canceled += ReleasedReset;
+
     }
+
+
+
     private void OnDestroy()
     {
         if (speedUpAction != null)
         {
             speedUpAction.performed -= OnSpeedUp;
             speedUpAction.canceled -= OnSlowDown;
+        }
+        if (resetLevel != null)
+        {
+
+            resetLevel.performed -= HoldingReset;
+            resetLevel.canceled -= ReleasedReset;
         }
     }
 
@@ -65,14 +77,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //GetComponent<Rigidbody>().AddTorque(new Vector3(MoveInput.y * Time.deltaTime * 10.0f, MoveInput.x * Time.deltaTime * 10.0f, 0.0f));
-    }
-    void Update()
-    {
-        if (resetLevel.WasPressedThisFrame())
-        {
-            LevelManager tempMananger = LevelManager.instance;
-            tempMananger.StartCoroutine(tempMananger.ResetCurrentLevel());
-        }
     }
 
     public void SwitchToActionMap(ActionMap map)
@@ -134,6 +138,17 @@ public class PlayerController : MonoBehaviour
     void OnSlowDown(InputAction.CallbackContext context)
     {
         InputReader.instance.SlowDownReader();
+
+    }
+
+    void HoldingReset(InputAction.CallbackContext context)
+    {
+        LevelManager.instance.isHoldingDownReset = true;
+    }
+
+    void ReleasedReset(InputAction.CallbackContext context)
+    {
+        LevelManager.instance.isHoldingDownReset = false;
 
     }
     void OnDEBUG_RobotForward(InputValue value)
