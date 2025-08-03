@@ -649,6 +649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1683354835863786675, guid: c0d967881247b4e41a6df26008452472, type: 3}
+      propertyPath: m_text
+      value: Level 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3011569645341618219, guid: c0d967881247b4e41a6df26008452472, type: 3}
       propertyPath: m_Name
       value: UI (1)
