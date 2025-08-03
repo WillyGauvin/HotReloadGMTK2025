@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance { get; private set; }
 
     [SerializeField] private List<WinCondition> winConditionList;
+    [SerializeField] public ResetRadialUI resetRadialUI;
 
     [SerializeField] public bool playerReachGoal;
     [SerializeField] public bool robotReachGoal;
@@ -81,15 +82,30 @@ public class LevelManager : MonoBehaviour
         if (isHoldingDownReset)
         {
             timeResetHeld += Time.deltaTime;
+
+            // Show radial fill and update it
+            if (resetRadialUI != null)
+            {
+                float fillAmount = timeResetHeld / timeNeededToReset;
+                resetRadialUI.SetFillAmount(fillAmount);
+                if (timeResetHeld >= timeNeededToReset)
+                    resetRadialUI.Show();
+            }
         }
         else
         {
             timeResetHeld = 0;
+            if (resetRadialUI != null)
+                resetRadialUI.Hide();
+
         }
 
         if (timeResetHeld >= timeNeededToReset)
         {
             StartCoroutine(ResetCurrentLevel());
+
+            if (resetRadialUI != null)
+                resetRadialUI.Hide();
         }
     }
 
