@@ -295,7 +295,7 @@ MonoBehaviour:
       Data2: 1293298451
       Data3: -1284495968
       Data4: 456381533
-    Path: event:/SFX/Tank Voices/emotions/agry
+    Path: event:/SFX/Tank Voices/emotions/angry
   <emotion_neutral>k__BackingField:
     Guid:
       Data1: -1876216980
@@ -309,7 +309,7 @@ MonoBehaviour:
       Data2: 1323536158
       Data3: 800671130
       Data4: -1033800905
-    Path: event:/SFX/Tank Voices/emotions/ouch
+    Path: event:/SFX/Tank Voices/emotions/pain
   <emotion_satisfied>k__BackingField:
     Guid:
       Data1: -980473387

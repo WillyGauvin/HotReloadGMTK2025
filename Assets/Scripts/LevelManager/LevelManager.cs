@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,13 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private bool isLevelBeaten;
+    [SerializeField] private bool willFullReset;
+    [SerializeField] private bool hasBeatTutorial;
+    [SerializeField] private bool failedLevel;
+
+    [SerializeField] public bool isHoldingDownReset;
+    [SerializeField] public float timeNeededToReset;
+    [SerializeField] public float timeResetHeld;
     public static LevelManager instance { get; private set; }
 
     [SerializeField] private List<WinCondition> winConditionList;
@@ -47,12 +55,42 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("No Win Condition Found, Be Sure To Add One");
         }
 
+        timeNeededToReset = 1.5f;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (waterTrigger != null)
             waterTrigger.enabled = true;
+
+        int tempInt = PlayerPrefs.GetInt("MasterVolume", 1);
+
+        if (tempInt != 0)
+            willFullReset = true;
+        else
+            willFullReset = false;
+
+        if (SceneManager.GetActiveScene().buildIndex >= 3)
+        {
+            hasBeatTutorial = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (isHoldingDownReset)
+        {
+            timeResetHeld += Time.deltaTime;
+        }
+        else
+        {
+            timeResetHeld = 0;
+        }
+
+        if (timeResetHeld >= timeNeededToReset)
+        {
+            StartCoroutine(ResetCurrentLevel());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,7 +105,7 @@ public class LevelManager : MonoBehaviour
         else if (other.GetComponent<PlayerController>())
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
-            if (Random.Range(0,2) == 1)
+            if (Random.Range(0, 2) == 1)
             {
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_neutral);
             }
@@ -88,6 +126,8 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(ResetCurrentLevel());
         }
+
+        failedLevel = true;
     }
 
     void CheckCompletedLevel()
@@ -104,6 +144,10 @@ public class LevelManager : MonoBehaviour
     public void PlayerReachGoal(bool hasReachedGoal)
     {
         playerReachGoal = hasReachedGoal;
+        if (!playerReachGoal)
+        {
+            Debug.Log("Yup it works");
+        }
         CheckCompletedLevel();
     }
     public void RobotReachGoal(bool hasReachedGoal)
@@ -123,6 +167,7 @@ public class LevelManager : MonoBehaviour
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
             SceneManager.LoadScene(currentSceneIndex + 1);
+
         }
     }
 
@@ -136,8 +181,22 @@ public class LevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (willFullReset)
+        {
+            if (failedLevel && hasBeatTutorial)
+            {
+                SceneManager.LoadScene(3);
+            }
 
-        SceneManager.LoadScene(currentSceneIndex);
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            SceneManager.LoadScene(currentSceneIndex);
+        }
+        else
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            SceneManager.LoadScene(currentSceneIndex);
+        }
     }
 }

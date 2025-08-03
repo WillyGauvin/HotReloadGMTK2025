@@ -603,6 +603,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLevelBeaten: 0
+  willFullReset: 0
+  hasBeatTutorial: 0
+  failedLevel: 0
+  isHoldingDownReset: 0
+  timeNeededToReset: 0
+  timeResetHeld: 0
   winConditionList: []
   playerReachGoal: 0
   robotReachGoal: 0
