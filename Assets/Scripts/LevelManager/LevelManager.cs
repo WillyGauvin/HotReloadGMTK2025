@@ -221,7 +221,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("hardmode worked");
 
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
         else
         {
