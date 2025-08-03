@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/ambience.bank
   Name: ambience
   StudioPath: bank:/ambience
-  lastModified: 638897665842349797
+  lastModified: 638897816830431918
   FileSizes: []
   Exists: 1
 --- !u!114 &-7399268745626042127
@@ -468,7 +468,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/sfx.bank
   Name: sfx
   StudioPath: bank:/sfx
-  lastModified: 638897665847136704
+  lastModified: 638897816829408377
   FileSizes: []
   Exists: 1
 --- !u!114 &-2739610682514064689
@@ -629,7 +629,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638897665795206031
+  lastModified: 638897816826665381
   FileSizes: []
   Exists: 1
 --- !u!114 &-790372411588589894
@@ -756,7 +756,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638897665847136704
+  cacheTime: 638897816830431918
   SerializableEventsDict:
   - key: event:/Ambience/ambience_transition
     index: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638897665795597146
+  lastModified: 638897816826279222
   FileSizes:
   - Name: 
     Value: 4122
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/music.bank
   Name: music
   StudioPath: bank:/music
-  lastModified: 638897665838189883
+  lastModified: 638897816829605457
   FileSizes: []
   Exists: 1
 --- !u!114 &4921550072571930555
