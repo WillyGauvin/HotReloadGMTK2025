@@ -112,11 +112,11 @@ public class CommandBlock : MonoBehaviour, IInteractable
         IsTweening = true;
         transform.SetParent(target);
         //transform.SetParent(null);
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = target.rotation;
 
         Vector3 start = transform.position;
         float time = 0f;
-
-        Tween rotateBlock = transform.DORotateQuaternion(target.rotation, 0.5f);
 
         while (time < 0.5f)
         {
@@ -129,12 +129,12 @@ public class CommandBlock : MonoBehaviour, IInteractable
             float y = Mathf.Sin(t * Mathf.PI) * 3.0f + Mathf.Lerp(start.y, target.position.y, t);
 
             transform.position = new Vector3(currentXZ.x, y, currentXZ.z);
+
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
             yield return null;
         }
 
         transform.position = new Vector3(target.position.x, target.position.y, target.position.z);
-
-        yield return rotateBlock.WaitForCompletion();
 
         IsTweening = false;
     }

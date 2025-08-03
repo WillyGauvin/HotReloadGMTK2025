@@ -95,8 +95,8 @@ public class EnterBrain : MonoBehaviour
         Box.GetComponent<BoxCollider>().isTrigger = true;
         Box.GetComponent<Rigidbody>().isKinematic = true;
 
-        Tween shrinkTween = Box.gameObject.transform.DOScale(0.01f, 1.0f);
-        Tween moveTween = Box.gameObject.transform.DOMove(transform.position, 1.0f);
+        Tween shrinkTween = Box.gameObject.transform.DOScale(0.01f, 0.5f);
+        Tween moveTween = Box.gameObject.transform.DOMove(transform.position, 0.5f);
 
         yield return shrinkTween.WaitForCompletion();
         yield return moveTween.WaitForCompletion();
@@ -152,8 +152,8 @@ public class EnterBrain : MonoBehaviour
         Box.transform.SetParent(null);
         Box.GetComponent<BoxCollider>().enabled = false;
         Box.GetComponent<Rigidbody>().isKinematic = true;
-        Tween moveMove = Box.transform.DOMove(InputReader.instance.BrainCenter.position, 10.0f).SetSpeedBased(true);
-        Tween rotateBox = Box.transform.DORotateQuaternion(InputReader.instance.BrainCenter.rotation, 10.0f).SetSpeedBased(true);
+        Tween moveMove = Box.transform.DOMove(InputReader.instance.BrainCenter.position, 0.5f);
+        Tween rotateBox = Box.transform.DORotateQuaternion(InputReader.instance.BrainCenter.rotation, 0.5f);
         yield return moveMove.WaitForCompletion();
         yield return rotateBox.WaitForCompletion();
         AudioManager.instance.PlayOneShot(FMODEvents.instance.explosionBlock);

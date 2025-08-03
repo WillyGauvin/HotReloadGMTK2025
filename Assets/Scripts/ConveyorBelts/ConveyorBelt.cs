@@ -57,6 +57,10 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
 
         if (HeldBox)
         {
+            if (HeldBox.IsTeleporting || HeldBox.IsTweening)
+            {
+                return;
+            }
             RaycastHit[] hits = Physics.SphereCastAll(beltholdTransform.position, 0.25f, beltholdTransform.up, 0.25f, LayerMask.GetMask("Box"));
             bool doesHaveBlock = false;
             foreach(RaycastHit hit in hits)
@@ -112,11 +116,20 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
         {
             ghostBlock.SetActive(true);
         }
+        else if (HeldBox)
+        {
+            HeldBox.LookAt(player);
+        }
     }
 
     public void LookAway(Player player)
     {
         ghostBlock.SetActive(false);
+
+        if (HeldBox)
+        {
+            heldBox.LookAway(player);
+        }
     }
 
     public void PopBlock()
