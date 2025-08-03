@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using FMOD.Studio;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public bool WillFullResest
     {
         get { return willFullReset; }
-        set 
+        set
         {
             willFullReset = value;
             PlayerPrefs.SetInt("HardMode", Convert.ToInt32(willFullReset));
@@ -101,6 +102,7 @@ public class LevelManager : MonoBehaviour
                 resetRadialUI.SetFillAmount(fillAmount);
                 if (timeResetHeld >= timeNeededToReset)
                     resetRadialUI.Show();
+
             }
         }
         else
@@ -108,6 +110,7 @@ public class LevelManager : MonoBehaviour
             timeResetHeld = 0;
             if (resetRadialUI != null)
                 resetRadialUI.Hide();
+
 
         }
 
@@ -117,6 +120,7 @@ public class LevelManager : MonoBehaviour
 
             if (resetRadialUI != null)
                 resetRadialUI.Hide();
+
         }
     }
 
@@ -217,11 +221,11 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("hardmode worked");
 
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
         else
         {
-            Debug.Log("willFullReset: " + willFullReset + " failedLevel: " +  failedLevel + " hasBeatTutorial: " + hasBeatTutorial);
+            Debug.Log("willFullReset: " + willFullReset + " failedLevel: " + failedLevel + " hasBeatTutorial: " + hasBeatTutorial);
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentSceneIndex);
         }

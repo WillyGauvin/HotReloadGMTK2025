@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/ambience.bank
   Name: ambience
   StudioPath: bank:/ambience
-  lastModified: 638898112509085714
+  lastModified: 638898197076687011
   FileSizes: []
   Exists: 1
 --- !u!114 &-7399268745626042127
@@ -148,12 +148,11 @@ MonoBehaviour:
   - {fileID: -2822455953754918049}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 2690639313410814209}
+  IsOneShot: 1
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 0
 --- !u!114 &-6031000644885359734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +279,7 @@ MonoBehaviour:
   Name: level_music
   StudioPath: 
   Min: 0
-  Max: 3
+  Max: 4
   Default: 0
   ID:
     data1: 355142699
@@ -292,6 +291,7 @@ MonoBehaviour:
   - level_finish
   - level_fail
   - pause
+  - restart
   Exists: 1
 --- !u!114 &-4283257769108769352
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/sfx.bank
   Name: sfx
   StudioPath: bank:/sfx
-  lastModified: 638898112509580805
+  lastModified: 638898197072844357
   FileSizes: []
   Exists: 1
 --- !u!114 &-2739610682514064689
@@ -614,6 +614,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1305477348052676141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/level_restart
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/level_restart
+  Guid:
+    Data1: 1475706349
+    Data2: 1225586719
+    Data3: -88695662
+    Data4: -1397612929
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1800
 --- !u!114 &-1273709788111292505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +656,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638898112508796136
+  lastModified: 638898197069066230
   FileSizes: []
   Exists: 1
 --- !u!114 &-790372411588589894
@@ -750,13 +777,14 @@ MonoBehaviour:
   - {fileID: -2045599192452928250}
   - {fileID: 6847372430144946255}
   - {fileID: 8999765171125732781}
+  - {fileID: -1305477348052676141}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1273709788111292505}
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638898112509580805
+  cacheTime: 638898197076687011
   SerializableEventsDict:
   - key: event:/Ambience/ambience_transition
     index: 0
@@ -848,6 +876,8 @@ MonoBehaviour:
     index: 43
   - key: event:/SFX/Tank Voices/tank_action
     index: 44
+  - key: event:/SFX/level_restart
+    index: 45
 --- !u!114 &670288274638899762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,10 +944,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638898112508873410
+  lastModified: 638898197072214448
   FileSizes:
   - Name: 
-    Value: 4122
+    Value: 4486
   Exists: 1
 --- !u!114 &1854743834823923275
 MonoBehaviour:
@@ -1000,30 +1030,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2690639313410814209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/tank_driving/tank_movement
-  m_EditorClassIdentifier: 
-  Name: tank_movement
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3564291486
-    data2: 302929524
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &2863501511477173323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,7 +1153,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/music.bank
   Name: music
   StudioPath: bank:/music
-  lastModified: 638898112509286629
+  lastModified: 638898197075604781
   FileSizes: []
   Exists: 1
 --- !u!114 &4921550072571930555
