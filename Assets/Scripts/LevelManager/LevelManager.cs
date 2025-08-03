@@ -115,11 +115,20 @@ public class LevelManager : MonoBehaviour
                 RobotController.instance.SetExpression(RobotExpression.Ouch);
             }
         }
-        else
+        else if (other.TryGetComponent<CommandBlock>(out CommandBlock commandBlock))
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
-            RobotController.instance.SetExpression(RobotExpression.Angry);
+            if (commandBlock.inputType == InputType.Pop)
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_satisfied);
+                RobotController.instance.SetExpression(RobotExpression.Happy);
+            }
+
+            else
+            {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_angry);
+                RobotController.instance.SetExpression(RobotExpression.Angry);
+            }
         }
 
         if (other.TryGetComponent<Player>(out Player player) || other.TryGetComponent<RobotController>(out RobotController robot))

@@ -82,7 +82,7 @@ public class ExitBrain : MonoBehaviour
 
         Box.transform.localScale = Vector3.one * 0.01f;
 
-        Box.transform.position = Robot.position;
+        Box.transform.position = Robot.position + new Vector3(0.0f, 0.5f, 0.0f);
         Box.transform.rotation = Robot.rotation;
 
         Tween scaleTween = Box.transform.DOScale(1.0f, 0.5f);
@@ -90,7 +90,7 @@ public class ExitBrain : MonoBehaviour
         Box.GetComponent<Rigidbody>().isKinematic = false;
         Box.GetComponent<BoxCollider>().isTrigger = false;
 
-        Box.GetComponent<Rigidbody>().AddForce(-Robot.forward * 5.0f, ForceMode.Impulse);
+        Box.GetComponent<Rigidbody>().AddForce(-Robot.forward * 10.0f, ForceMode.Impulse);
 
         yield return new WaitForSeconds(2.0f);
 
