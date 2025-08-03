@@ -6610,6 +6610,10 @@ PrefabInstance:
       propertyPath: isInMenu
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5824386652154405745, guid: 486a3420fd03bbf44bfb0dd988a956c5, type: 3}
+      propertyPath: waitForActionToStartMusic
+      value: 
+      objectReference: {fileID: 8283313054877357340, guid: 17d9e948a374a1540861cce773945857, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

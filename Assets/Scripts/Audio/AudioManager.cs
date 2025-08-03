@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.InputSystem;
 
 public class AudioManager : MonoBehaviour
 {
+    public InputActionReference waitForActionToStartMusic;
     public bool isInMenu = false;
     [Header("Volume")]
     [Range(0, 1)]
@@ -32,6 +34,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance { get; private set; }
 
+    private static bool webGLMusicAllowed = false;
+
     private void Awake()
     {
         if (instance != null)
@@ -51,8 +55,22 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeAmbience(FMODEvents.instance.ambience);
-        InitializeMusic(isInMenu ? FMODEvents.instance.menuMusic : FMODEvents.instance.gameMusic);
+        if (waitForActionToStartMusic && !webGLMusicAllowed)
+        {
+            waitForActionToStartMusic.action.performed += (context) =>
+            {
+                if (!webGLMusicAllowed)
+                {
+                    webGLMusicAllowed = true;
+                    Start();
+                }
+            };
+        }
+        if (webGLMusicAllowed)
+        {
+            InitializeAmbience(FMODEvents.instance.ambience);
+            InitializeMusic(isInMenu ? FMODEvents.instance.menuMusic : FMODEvents.instance.gameMusic);
+        }
         LoadPlayerPrefs();
         InitializeMuffle();
     }

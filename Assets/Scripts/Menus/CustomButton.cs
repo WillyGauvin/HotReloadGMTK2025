@@ -37,7 +37,8 @@ public class CustomButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        targetScale = 2.5f;
+        // targetScale = 2.5f;
+        isPointerOver = false;
         FMODUnity.RuntimeManager.PlayOneShot(sfxClick);
     }
 
