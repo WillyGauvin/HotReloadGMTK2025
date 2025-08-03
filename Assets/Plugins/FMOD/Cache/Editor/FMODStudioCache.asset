@@ -468,7 +468,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/sfx.bank
   Name: sfx
   StudioPath: bank:/sfx
-  lastModified: 638898367372042956
+  lastModified: 638898370338095870
   FileSizes: []
   Exists: 1
 --- !u!114 &-2739610682514064689
@@ -629,7 +629,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638898367360364862
+  lastModified: 638898370336559081
   FileSizes: []
   Exists: 1
 --- !u!114 &-790372411588589894
@@ -686,6 +686,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-274743660402617138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/level_restart
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/level_restart
+  Guid:
+    Data1: 1475706349
+    Data2: 1225586719
+    Data3: -88695662
+    Data4: -1397612929
+  Banks:
+  - {fileID: -2822455953754918049}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1800
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,13 +777,14 @@ MonoBehaviour:
   - {fileID: -2045599192452928250}
   - {fileID: 6847372430144946255}
   - {fileID: 8999765171125732781}
+  - {fileID: -274743660402617138}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1273709788111292505}
   StringsBanks:
   - {fileID: 1849028034053486528}
   cacheVersion: 131848
-  cacheTime: 638898367372042956
+  cacheTime: 638898370338095870
   SerializableEventsDict:
   - key: event:/Ambience/ambience_transition
     index: 0
@@ -848,6 +876,8 @@ MonoBehaviour:
     index: 43
   - key: event:/SFX/Tank Voices/tank_action
     index: 44
+  - key: event:/SFX/level_restart
+    index: 45
 --- !u!114 &670288274638899762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,10 +944,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638898367360373391
+  lastModified: 638898370336566955
   FileSizes:
   - Name: 
-    Value: 4384
+    Value: 4428
   Exists: 1
 --- !u!114 &1854743834823923275
 MonoBehaviour:
