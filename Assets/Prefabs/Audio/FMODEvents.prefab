@@ -163,6 +163,13 @@ MonoBehaviour:
       Data3: -1726643057
       Data4: 1168595571
     Path: event:/SFX/Menu/menu_item_click
+  <reset_sound>k__BackingField:
+    Guid:
+      Data1: 1475706349
+      Data2: 1225586719
+      Data3: -88695662
+      Data4: -1397612929
+    Path: event:/SFX/level_restart
   <player_footsteps_outside>k__BackingField:
     Guid:
       Data1: 2077223513

@@ -120,6 +120,7 @@ public class RobotController : MonoBehaviour
                         ActivateBulb(true);
                         Tween moveXTween = rb.DOMoveX((rb.transform.position + transform.forward * 3.0f).x, 1.0f);
                         Tween moveZTween = rb.DOMoveZ((rb.transform.position + transform.forward * 3.0f).z, 1.0f);
+                        Debug.Log("Played drive");
                         AudioManager.instance.PlayOneShot(FMODEvents.instance.tank_driving);
                         yield return moveXTween.WaitForCompletion();
                         yield return moveZTween.WaitForCompletion();

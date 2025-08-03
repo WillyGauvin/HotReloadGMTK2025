@@ -1,14 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using FMOD.Studio;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private bool isLevelBeaten;
-    [SerializeField] private bool willFullReset;
+    [SerializeField] private bool willFullReset = false;
+
+    public bool WillFullResest
+    {
+        get { return willFullReset; }
+        set
+        {
+            willFullReset = value;
+            PlayerPrefs.SetInt("HardMode", Convert.ToInt32(willFullReset));
+        }
+    }
     [SerializeField] private bool hasBeatTutorial;
     [SerializeField] private bool failedLevel;
 
@@ -64,7 +76,7 @@ public class LevelManager : MonoBehaviour
         if (waterTrigger != null)
             waterTrigger.enabled = true;
 
-        int tempInt = PlayerPrefs.GetInt("MasterVolume", 1);
+        int tempInt = PlayerPrefs.GetInt("HardMode", 1);
 
         if (tempInt != 0)
             willFullReset = true;
@@ -90,6 +102,7 @@ public class LevelManager : MonoBehaviour
                 resetRadialUI.SetFillAmount(fillAmount);
                 if (timeResetHeld >= timeNeededToReset)
                     resetRadialUI.Show();
+
             }
         }
         else
@@ -97,6 +110,7 @@ public class LevelManager : MonoBehaviour
             timeResetHeld = 0;
             if (resetRadialUI != null)
                 resetRadialUI.Hide();
+
 
         }
 
@@ -106,6 +120,7 @@ public class LevelManager : MonoBehaviour
 
             if (resetRadialUI != null)
                 resetRadialUI.Hide();
+
         }
     }
 
@@ -121,7 +136,7 @@ public class LevelManager : MonoBehaviour
         else if (other.GetComponent<PlayerController>())
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.player_splash);
-            if (Random.Range(0, 2) == 1)
+            if (UnityEngine.Random.Range(0, 2) == 1)
             {
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.emotion_neutral);
             }
@@ -202,21 +217,16 @@ public class LevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        if (willFullReset)
+        if (willFullReset && failedLevel && hasBeatTutorial)
         {
-            if (failedLevel && hasBeatTutorial)
-            {
-                SceneManager.LoadScene(3);
-            }
+            Debug.Log("hardmode worked");
 
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-            SceneManager.LoadScene(currentSceneIndex);
+            SceneManager.LoadScene(3);
         }
         else
         {
+            Debug.Log("willFullReset: " + willFullReset + " failedLevel: " + failedLevel + " hasBeatTutorial: " + hasBeatTutorial);
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
             SceneManager.LoadScene(currentSceneIndex);
         }
     }

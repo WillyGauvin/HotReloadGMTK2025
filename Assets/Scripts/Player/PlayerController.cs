@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance { get; private set; }
 
+
+    EventInstance resetSoundEventInstance;
+
     private InputAction speedUpAction;
     private InputAction resetLevel;
     PlayerInput input;
@@ -72,6 +75,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+
+        resetSoundEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.reset_sound);
     }
 
     private void FixedUpdate()
@@ -144,13 +149,13 @@ public class PlayerController : MonoBehaviour
     void HoldingReset(InputAction.CallbackContext context)
     {
         LevelManager.instance.isHoldingDownReset = true;
-        //LevelManager.instance.resetRadialUI.Show();
+        resetSoundEventInstance.start();
     }
 
     void ReleasedReset(InputAction.CallbackContext context)
     {
         LevelManager.instance.isHoldingDownReset = false;
-        //LevelManager.instance.resetRadialUI.Hide();
+        resetSoundEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
     }
     void OnDEBUG_RobotForward(InputValue value)

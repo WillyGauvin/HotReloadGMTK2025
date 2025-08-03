@@ -38,6 +38,7 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("Menu")]
     [field: SerializeField] public EventReference menu_click { get; private set; }
+    [field: SerializeField] public EventReference reset_sound { get; private set; }
 
     [field: Header("Player Movement")]
     [field: SerializeField] public EventReference player_footsteps_outside { get; private set; }
