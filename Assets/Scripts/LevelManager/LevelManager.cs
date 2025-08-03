@@ -144,10 +144,6 @@ public class LevelManager : MonoBehaviour
     public void PlayerReachGoal(bool hasReachedGoal)
     {
         playerReachGoal = hasReachedGoal;
-        if (!playerReachGoal)
-        {
-            Debug.Log("Yup it works");
-        }
         CheckCompletedLevel();
     }
     public void RobotReachGoal(bool hasReachedGoal)
