@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class ConveyorBelt : MonoBehaviour, IInteractable
 {
@@ -47,6 +48,28 @@ public class ConveyorBelt : MonoBehaviour, IInteractable
             if (!box.IsTeleporting)
             {
                 PickupBox(box, false);
+            }
+        }
+    }
+
+    private void Update()
+    {
+
+        if (HeldBox)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(beltholdTransform.position, 0.25f, beltholdTransform.up, 0.25f, LayerMask.GetMask("Box"));
+            bool doesHaveBlock = false;
+            foreach(RaycastHit hit in hits)
+            {
+                if (hit.collider.transform.parent == beltholdTransform)
+                {
+                    doesHaveBlock = true;
+                    break;
+                }
+            }
+            if (!doesHaveBlock)
+            {
+                HeldBox = null;
             }
         }
     }
