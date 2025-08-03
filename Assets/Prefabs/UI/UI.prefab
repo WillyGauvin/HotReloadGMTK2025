@@ -3831,7 +3831,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1881622674775560968, guid: 32fcf469894f6f643b99233ef1d4e94b, type: 3}
       propertyPath: m_text
-      value: Enabled
+      value: Disabled
       objectReference: {fileID: 0}
     - target: {fileID: 1881622674775560968, guid: 32fcf469894f6f643b99233ef1d4e94b, type: 3}
       propertyPath: m_fontSize

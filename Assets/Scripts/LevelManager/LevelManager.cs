@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
         if (waterTrigger != null)
             waterTrigger.enabled = true;
 
-        int tempInt = PlayerPrefs.GetInt("HardMode", 1);
+        int tempInt = PlayerPrefs.GetInt("HardMode", 0);
 
         if (tempInt != 0)
             willFullReset = true;
