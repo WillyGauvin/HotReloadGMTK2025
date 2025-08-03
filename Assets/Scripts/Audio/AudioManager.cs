@@ -66,13 +66,13 @@ public class AudioManager : MonoBehaviour
                 }
             };
         }
-        if (webGLMusicAllowed)
+        if (!waitForActionToStartMusic || webGLMusicAllowed)
         {
             InitializeAmbience(FMODEvents.instance.ambience);
             InitializeMusic(isInMenu ? FMODEvents.instance.menuMusic : FMODEvents.instance.gameMusic);
+            LoadPlayerPrefs();
+            InitializeMuffle();
         }
-        LoadPlayerPrefs();
-        InitializeMuffle();
     }
 
     private void Update()
